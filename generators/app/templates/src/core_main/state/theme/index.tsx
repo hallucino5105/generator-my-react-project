@@ -1,4 +1,4 @@
-// src/react/mobx/theme/index.tsx
+// src/core_mainm/state/theme/index.tsx
 
 import * as _ from "lodash";
 import {observable, computed, action} from "mobx";
