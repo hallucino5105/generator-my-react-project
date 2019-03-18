@@ -30,7 +30,6 @@ const __exports = function(env, argv) {
     src          : path.join(__workdirname, "src"),
     stag         : path.join(__workdirname, "stag"),
     prod         : path.join(__workdirname, "prod"),
-    assets       : path.join(__workdirname, "assets"),
     node_modules : path.join(__workdirname, "node_modules"),
     entry        : path.join(__workdirname, "src/core_main/entry"),
   };
@@ -164,8 +163,8 @@ const __exports = function(env, argv) {
             options: {
               mimetype: "application/font-woff",
               name: "[hash].[ext]",
-              outputPath: "asset",
-              publicPath: "asset",
+              outputPath: "assets",
+              publicPath: "assets",
             },
           }],
         }, {
@@ -176,8 +175,8 @@ const __exports = function(env, argv) {
             options: {
               mimetype: "image/svg+xml",
               name: "[hash].[ext]",
-              outputPath: "asset",
-              publicPath: "asset",
+              outputPath: "assets",
+              publicPath: "assets",
             },
           }],
         }, {
@@ -187,8 +186,8 @@ const __exports = function(env, argv) {
             loader: "file-loader",
             options: {
               name: "[hash].[ext]",
-              outputPath: "asset",
-              publicPath: "asset",
+              outputPath: "assets",
+              publicPath: "assets",
             },
           }],
         }, {
@@ -197,8 +196,8 @@ const __exports = function(env, argv) {
             loader: "file-loader",
             options: {
               name: "[hash].[ext]",
-              outputPath: "asset",
-              publicPath: "asset",
+              outputPath: "assets",
+              publicPath: "assets",
             },
           }],
         }, {

@@ -130,8 +130,8 @@ const __exports = function(env, argv) {
           options: {
             mimetype: "application/font-woff",
             name: "[hash].[ext]",
-            outputPath: "asset",
-            publicPath: "asset",
+            outputPath: "assets",
+            publicPath: "assets",
           },
         }],
       }, {
@@ -142,8 +142,8 @@ const __exports = function(env, argv) {
           options: {
             mimetype: "image/svg+xml",
             name: "[hash].[ext]",
-            outputPath: "asset",
-            publicPath: "asset",
+            outputPath: "assets",
+            publicPath: "assets",
           },
         }],
       }, {
@@ -153,8 +153,8 @@ const __exports = function(env, argv) {
           loader: "file-loader",
           options: {
             name: "[hash].[ext]",
-            outputPath: "asset",
-            publicPath: "asset",
+            outputPath: "assets",
+            publicPath: "assets",
           },
         }],
       }, {
@@ -163,8 +163,8 @@ const __exports = function(env, argv) {
           loader: "file-loader",
           options: {
             name: "[hash].[ext]",
-            outputPath: "asset",
-            publicPath: "asset",
+            outputPath: "assets",
+            publicPath: "assets",
           },
         }],
       }, {
