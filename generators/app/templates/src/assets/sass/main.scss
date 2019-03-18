@@ -1,0 +1,64 @@
+// src/sass/main.scss
+
+@import "~normalize.css/normalize.css";
+//@import "~@blueprintjs/core/lib/css/blueprint.css";
+//@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+//@import "~blueprint-css/dist/blueprint.min.css";
+
+@font-face { font-family: "Roboto"; font-weight: 100; src: url("../font/Roboto/Roboto-Thin.ttf");    }
+@font-face { font-family: "Roboto"; font-weight: 300; src: url("../font/Roboto/Roboto-Light.ttf");   }
+@font-face { font-family: "Roboto"; font-weight: 400; src: url("../font/Roboto/Roboto-Regular.ttf"); }
+@font-face { font-family: "Roboto"; font-weight: 500; src: url("../font/Roboto/Roboto-Medium.ttf");  }
+@font-face { font-family: "Roboto"; font-weight: 700; src: url("../font/Roboto/Roboto-Bold.ttf");    }
+
+//@font-face { font-family: "NotoSansJP"; font-weight: 100; src: url("../font/NotoSansJP/NotoSansJP-Thin.otf");    }
+//@font-face { font-family: "NotoSansJP"; font-weight: 300; src: url("../font/NotoSansJP/NotoSansJP-Light.otf");   }
+//@font-face { font-family: "NotoSansJP"; font-weight: 400; src: url("../font/NotoSansJP/NotoSansJP-Regular.otf"); }
+//@font-face { font-family: "NotoSansJP"; font-weight: 500; src: url("../font/NotoSansJP/NotoSansJP-Medium.otf");  }
+//@font-face { font-family: "NotoSansJP"; font-weight: 700; src: url("../font/NotoSansJP/NotoSansJP-Bold.otf");    }
+//@font-face { font-family: "NotoSansJP"; font-weight: 900; src: url("../font/NotoSansJP/NotoSansJP-Black.otf");   }
+
+//@font-face { font-family: "RobotoMono"; font-weight: 100; src: url("../font/RobotoMono/RobotoMono-Thin.ttf");    }
+//@font-face { font-family: "RobotoMono"; font-weight: 300; src: url("../font/RobotoMono/RobotoMono-Light.ttf");   }
+//@font-face { font-family: "RobotoMono"; font-weight: 400; src: url("../font/RobotoMono/RobotoMono-Regular.ttf"); }
+//@font-face { font-family: "RobotoMono"; font-weight: 500; src: url("../font/RobotoMono/RobotoMono-Medium.ttf");  }
+//@font-face { font-family: "RobotoMono"; font-weight: 700; src: url("../font/RobotoMono/RobotoMono-Bold.ttf");    }
+//
+//@font-face { font-family: "OpenSans"; font-weight: 300; src: url("../font/OpenSans/OpenSans-Light.ttf");     }
+//@font-face { font-family: "OpenSans"; font-weight: 400; src: url("../font/OpenSans/OpenSans-Regular.ttf");   }
+//@font-face { font-family: "OpenSans"; font-weight: 600; src: url("../font/OpenSans/OpenSans-SemiBold.ttf");  }
+//@font-face { font-family: "OpenSans"; font-weight: 700; src: url("../font/OpenSans/OpenSans-Bold.ttf");      }
+//
+//@font-face { font-family: "Inconsolata"; font-weight: 400; src: url("../font/Inconsolata/Inconsolata-Regular.ttf"); }
+//@font-face { font-family: "Inconsolata"; font-weight: 700; src: url("../font/Inconsolata/Inconsolata-Bold.ttf");    }
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "'-apple-system', 'Hiragino Kaku Gothic ProN', Meiryo, '游ゴシック', YuGothic, sans-serif";
+}
+
+h1, h2 ,h3 ,h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  white-space: nowrap;
+}
+

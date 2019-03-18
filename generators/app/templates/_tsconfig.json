@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "lib": ["dom"],
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "pretty": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots" : [
+      "node_modules/@types",
+      "./src/typings"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
