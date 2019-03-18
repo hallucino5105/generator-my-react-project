@@ -331,7 +331,7 @@ const __exports = function(env, argv) {
     }
 
     return item => merge({}, common_setting, {
-      entry: [path.join(paths.src, `react/entry_${item.name}.${item.ext}`)],
+      entry: [path.join(paths.entry, `${item.name}.${item.ext}`)],
 
       output: {
         path: output_dir,
@@ -343,7 +343,7 @@ const __exports = function(env, argv) {
         new HtmlWebpackPlugin({
           title: __config.title,
           filename: `${item.name}.html`,
-          template: path.join(paths.src, `html/${item.name}.ejs`),
+          template: path.join(paths.entry, `${item.name}.ejs`),
           minify: false,
           hash: false,
           inject: false,
