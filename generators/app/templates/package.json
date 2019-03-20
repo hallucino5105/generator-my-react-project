@@ -2,7 +2,14 @@
   "name": "<%= projname %>",
   "version": "1.0.0",
   "description": "",
+  "private": true,
+  <% if (framework_type === "React") { %>
   "main": "index.js",
+  <% } else if (framework_type === "React Native") { %>
+  "main": "src/core_main/entry/app_entry.js",
+  <% } else if (framework_type === "Electron") { %>
+  "main": "index.js",
+  <% } %>
   "scripts": {
     <% if (framework_type === "React") { %>
     "__prebuild": "npm run mkdir && npm run link",
@@ -40,6 +47,10 @@
     "clean": "./scripts/clean/clean.sh",
     "app": "./backend/app/app.py"
     <% } else if (framework_type === "React Native") { %>
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
     <% } else if (framework_type === "Electron") { %>
     <% } %>
   },
@@ -80,6 +91,9 @@
     "sprintf-js": "^1.1.2",
     "style-it": "^2.1.2"
     <% } else if (framework_type === "React Native") { %>
+    "expo": "^32.0.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz"
     <% } else if (framework_type === "Electron") { %>
     <% } %>
   },
@@ -146,6 +160,7 @@
     "webpack-node-externals": "^1.7.2",
     "webpack-notifier": "^1.7.0"
     <% } else if (framework_type === "React Native") { %>
+    "babel-preset-expo": "^5.0.0"
     <% } else if (framework_type === "Electron") { %>
     <% } %>
   }

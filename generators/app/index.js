@@ -106,7 +106,12 @@ module.exports = class extends Generator {
 
   _writing_react() {
     this._copy_target([
+      ["babel.config.js", "babel.config.js", null],
+      ["metro.config.js", "metro.config.js", null],
+      ["rn-cli.config.js", "rn-cli.config.js", null],
       ["src/_core_main_react", "src/core_main", null],
+
+      ["app.js", "app.js", this.props_second],
     ]);
   }
 
