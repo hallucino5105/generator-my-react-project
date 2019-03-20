@@ -51,8 +51,8 @@ const __exports = function(env, argv) {
 
     output: {
       path: output_dir,
-      filename: "[name].dll.js",
-      library: "[name]_lib",
+      filename: "vendor.dll.js",
+      library: "vendor_lib",
       libraryTarget: "umd",
     },
 
@@ -69,8 +69,8 @@ const __exports = function(env, argv) {
       new ExtractTextPlugin("vendor.css"),
 
       new webpack.DllPlugin({
-        path: path.join(output_dir, "[name]_manifest.json"),
-        name: "[name]_lib",
+        path: path.join(output_dir, "vendor_manifest.json"),
+        name: "vendor_lib",
       }),
 
       new webpack.LoaderOptionsPlugin({

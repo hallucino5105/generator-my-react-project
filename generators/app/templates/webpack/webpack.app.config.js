@@ -1,4 +1,4 @@
-// webpack.app.__config.js
+// webpack.app.config.js
 
 const _ = require("lodash");
 const fs = require("fs");
@@ -16,32 +16,35 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-const __workdirname = `${__dirname}/..`;
-const __packagepath = `${__workdirname}/package.json`;
-const __configpath = `${__workdirname}/config.json`;
-const __tsfilepath = `${__workdirname}/tsconfig.json`;
-
-const __package = require(__packagepath);
-const __config = require(__configpath);
+const __workingdir = `${__dirname}/..`;
 
 
-const __exports = function(env, argv) {
-  const paths = {
-    root         : __workdirname,
-    src          : path.join(__workdirname, "src"),
-    stag         : path.join(__workdirname, "stag"),
-    prod         : path.join(__workdirname, "prod"),
-    node_modules : path.join(__workdirname, "node_modules"),
-    entry        : path.join(__workdirname, "src/core_main/entry"),
-  };
-
+module.exports = (env, argv) => {
   const prod = argv.mode === "production";
-  const output_dir = prod ? paths.prod : paths.stag;
+  const output_dir = prod ? __paths.prod : __paths.stag;
   const build_target = process.env.npm_lifecycle_event;
 
-  // src/react 直下にある"entry_*.(js|jsx|ts|tsx)"をエントリとする
+  const __paths = {
+    root : __workingdir,
+
+    src          : path.join(__workingdir, "src"),
+    stag         : path.join(__workingdir, "stag"),
+    prod         : path.join(__workingdir, "prod"),
+    node_modules : path.join(__workingdir, "node_modules"),
+    entry        : path.join(__workingdir, "src/core_main/entry"),
+
+    package    : path.join(__workingdir, "package.json"),
+    config     : path.join(__workingdir, "config.json"),
+    tsconfig   : path.join(__workingdir, "tsconfig.json"),
+    dll_vendor : path.join(output_dir, "vendor_manifest.json"),
+  };
+
+  const __package = require(__paths.package);
+  const __config = require(__paths.config);
+
+  // src/core 直下にある"entry/*.(js|jsx|ts|tsx)"をエントリとする
   const pages = (() => {
-    const target_files = fs.readdirSync(paths.entry);
+    const target_files = fs.readdirSync(__paths.entry);
 
     const entry_files = _.compact(_.map(target_files, function(file) {
       const matches = file.match(/(.*)\.((j|t)sx?)/);
@@ -75,7 +78,7 @@ const __exports = function(env, argv) {
       resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
         modules: [
-          path.resolve(paths.root),
+          path.resolve(__paths.root),
           "node_modules",
         ],
       },
@@ -86,7 +89,7 @@ const __exports = function(env, argv) {
           loader: "html-loader",
         }, {
           test: /\.tsx?$/,
-          include: paths.src,
+          include: __paths.src,
           exclude: /node_modules/,
           use: [{
             loader: "babel-loader",
@@ -96,7 +99,7 @@ const __exports = function(env, argv) {
           }, {
             loader: "ts-loader",
             options: {
-              configFile: ts_file,
+              configFile: __paths.tsconfig,
               transpileOnly: true,
               experimentalWatchApi: true,
               logLevel: "info",
@@ -104,7 +107,7 @@ const __exports = function(env, argv) {
           }],
         }, {
           test: /\.jsx?$/,
-          include: paths.src,
+          include: __paths.src,
           exclude: /node_modules/,
           use: [{
             loader: "babel-loader",
@@ -233,11 +236,11 @@ const __exports = function(env, argv) {
       }),
 
       new HardSourceWebpackPlugin({
-        cacheDirectory: `${paths.root}/.cache/hard-source/[confighash]`,
+        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
 
       new ForkTsCheckerWebpackPlugin({
-        tsconfig: ts_file,
+        tsconfig: __paths.tsconfig,
         workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
         tslint: false,
         useTypescriptIncrementalApi: true,
@@ -245,11 +248,11 @@ const __exports = function(env, argv) {
       }),
     ];
 
-    if(prod) {
+    if(fs.existsSync(__paths.dll_vendor)) {
       common_plugin.push(
         new webpack.DllReferencePlugin({
-          context: paths.root,
-          manifest: require(path.join(output_dir, "vendor_manifest.json")),
+          context: __paths.root,
+          manifest: require(__paths.dll_vendor),
         })
       );
     }
@@ -330,7 +333,7 @@ const __exports = function(env, argv) {
     }
 
     return item => merge({}, common_setting, {
-      entry: [path.join(paths.entry, `${item.name}.${item.ext}`)],
+      entry: [path.join(__paths.entry, `${item.name}.${item.ext}`)],
 
       output: {
         path: output_dir,
@@ -342,7 +345,7 @@ const __exports = function(env, argv) {
         new HtmlWebpackPlugin({
           title: __config.title,
           filename: `${item.name}.html`,
-          template: path.join(paths.entry, `${item.name}.ejs`),
+          template: path.join(__paths.entry, `${item.name}.ejs`),
           minify: false,
           hash: false,
           inject: false,
@@ -357,7 +360,4 @@ const __exports = function(env, argv) {
 
   return _.map(pages, item => generate_entry(item));
 };
-
-
-module.exports = __exports;
 
