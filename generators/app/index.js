@@ -14,20 +14,20 @@ module.exports = class extends Generator {
 
     const done = this.async();
 
-    const prompts_framework = [{
+    const prompts_first = [{
       type: "list",
       name: "framework_type",
       message: "Please select a framework to use.",
       choices: ["React", "React Native", "Electron"],
       default: 0,
-    }];
-
-    const prompts_react = [{
+    }, {
       type: "input",
       name: "projname",
       message: "Input project name.",
       default: "TemplateReactWeb",
-    }, {
+    }];
+
+    const prompts_react = [{
       type: "input",
       name: "defport",
       message: "Input web port.",
@@ -43,17 +43,17 @@ module.exports = class extends Generator {
 
     const prompts_electron = [];
 
-    this.prompt(prompts_framework).then(props_first => {
-      this.props_first = props_first.framework_type;
+    this.prompt(prompts_first).then(props_first => {
+      this.props_first = props_first;
 
       const prompts_second = (() => {
-        if(this.props_first === "React") return prompts_react;
-        else if(this.props_first === "React Native") return prompts_react_native;
-        else if(this.props_first === "Electron") return prompts_electron;
+        if(this.props_first.framework_type === "React") return prompts_react;
+        else if(this.props_first.framework_type === "React Native") return prompts_react_native;
+        else if(this.props_first.framework_type === "Electron") return prompts_electron;
       })();
 
       this.prompt(prompts_second).then(props_second => {
-        this.props_second = props_second;
+        this.props_second = Object.assign({}, props_first, props_second);
         done();
       });
     });
@@ -64,9 +64,9 @@ module.exports = class extends Generator {
   writing() {
     this._writing_common();
 
-    if(this.props_first === "React") this._writing_react();
-    else if(this.props_first === "React Native") this._writing_react_native();
-    else if(this.props_first === "Electron") this._writing_electron();
+    if(this.props_first.framework_type === "React") this._writing_react();
+    else if(this.props_first.framework_type === "React Native") this._writing_react_native();
+    else if(this.props_first.framework_type === "Electron") this._writing_electron();
   }
 
   _copy_target(targets) {
@@ -111,12 +111,18 @@ module.exports = class extends Generator {
   }
 
   _writing_react_native() {
+    this._copy_target([
+      ["src/_core_main_react_native", "src/core_main", null],
+    ]);
   }
 
   _writing_electron() {
+    this._copy_target([
+      ["src/_core_main_electron", "src/core_main", null],
+    ]);
   }
 
   install() {
-    this.spawnCommand("npm", ["run", "init"]);
+    //this.spawnCommand("npm", ["run", "init"]);
   }
 };

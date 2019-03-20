@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    <% if (framework_type === "React") { %>
     "__prebuild": "npm run mkdir && npm run link",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "build:app:stag": "npm run __prebuild && webpack --mode development --progress --config webpack/webpack.app.config.js",
@@ -38,6 +39,9 @@
     "module": "./scripts/module/gen_module.py",
     "clean": "./scripts/clean/clean.sh",
     "app": "./backend/app/app.py"
+    <% } else if (framework_type === "React Native") { %>
+    <% } else if (framework_type === "Electron") { %>
+    <% } %>
   },
   "directories": {
     "test": "test/"
@@ -46,6 +50,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    <% if (framework_type === "React") { %>
     "@blueprintjs/core": "^3.13.0",
     "@material-ui/core": "^3.9.2",
     "classnames": "^2.2.6",
@@ -74,8 +79,12 @@
     "socket.io-client": "^2.2.0",
     "sprintf-js": "^1.1.2",
     "style-it": "^2.1.2"
+    <% } else if (framework_type === "React Native") { %>
+    <% } else if (framework_type === "Electron") { %>
+    <% } %>
   },
   "devDependencies": {
+    <% if (framework_type === "React") { %>
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/preset-env": "7.3.1",
@@ -136,5 +145,8 @@
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2",
     "webpack-notifier": "^1.7.0"
+    <% } else if (framework_type === "React Native") { %>
+    <% } else if (framework_type === "Electron") { %>
+    <% } %>
   }
 }
