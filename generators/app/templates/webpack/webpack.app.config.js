@@ -1,9 +1,5 @@
 // webpack.app.__config.js
 
-const __workdirname = `${__dirname}/..`;
-const __packagepath = `${__workdirname}/package.json`;
-const __configpath = `${__workdirname}/config.json`;
-
 const _ = require("lodash");
 const fs = require("fs");
 const path = require("path");
@@ -19,6 +15,11 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 const WebpackNotifierPlugin = require("webpack-notifier");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+
+const __workdirname = `${__dirname}/..`;
+const __packagepath = `${__workdirname}/package.json`;
+const __configpath = `${__workdirname}/config.json`;
+const __tsfilepath = `${__workdirname}/tsconfig.json`;
 
 const __package = require(__packagepath);
 const __config = require(__configpath);
@@ -52,7 +53,6 @@ const __exports = function(env, argv) {
     return entry_files;
   })();
 
-  const ts_file = path.resolve(`${paths.root}/.tsconfig.json`);
   const ts_checker_async = (
     (!build_target || build_target.match(/serve.*/)) ||
     (build_target && build_target.match(/watch.*/))

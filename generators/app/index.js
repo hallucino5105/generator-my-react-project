@@ -69,27 +69,45 @@ module.exports = class extends Generator {
     else if(this.props_first === "Electron") this._writing_electron();
   }
 
+  _copy_target(targets) {
+    for(const t of targets) {
+      if(!t[2]) {
+        this.fs.copy(this.templatePath(t[0]), this.destinationPath(t[1]));
+      } else {
+        this.fs.copyTpl(this.templatePath(t[0]), this.destinationPath(t[1]), t[2]);
+      }
+    }
+  }
+
   _writing_common() {
-    this.fs.copy(this.templatePath('_gitignore')       , this.destinationPath('.gitignore'));
-    this.fs.copy(this.templatePath('_editorconfig')    , this.destinationPath('.editorconfig'));
-    this.fs.copy(this.templatePath('_babelrc')         , this.destinationPath('.babelrc'));
-    this.fs.copy(this.templatePath('_eslintrc')        , this.destinationPath('.eslintrc'));
-    this.fs.copy(this.templatePath('_requirements.txt'), this.destinationPath('.requirements.txt'));
-    this.fs.copy(this.templatePath('_tsconfig.json')   , this.destinationPath('.tsconfig.json'));
+    this._copy_target([
+      ["_gitignore"        , ".gitignore"        , null],
+      ["_editorconfig"     , ".editorconfig"     , null],
+      ["_babelrc"          , ".babelrc"          , null],
+      ["_eslintrc"         , ".eslintrc"         , null],
+      ["_requirements.txt" , ".requirements.txt" , null],
 
-    this.fs.copy(this.templatePath('backend') , this.destinationPath('backend'));
-    this.fs.copy(this.templatePath('src')     , this.destinationPath('src'));
-    this.fs.copy(this.templatePath('scripts') , this.destinationPath('scripts'));
-    this.fs.copy(this.templatePath('webpack') , this.destinationPath('webpack'));
-    this.fs.copy(this.templatePath('misc')    , this.destinationPath('misc'));
+      ["tsconfig.json" , "tsconfig.json" , null],
 
-    this.fs.copyTpl(this.templatePath('README.md')    , this.destinationPath('README.md')    , this.props_second);
-    this.fs.copyTpl(this.templatePath('VERSION')      , this.destinationPath('VERSION')      , this.props_second);
-    this.fs.copyTpl(this.templatePath('package.json') , this.destinationPath('package.json') , this.props_second);
-    this.fs.copyTpl(this.templatePath('config.json')  , this.destinationPath('config.json')  , this.props_second);
+      ["webpack", "webpack", null],
+      ["backend", "backend", null],
+      ["scripts", "scripts", null],
+
+      ["src/assets"  , "src/assets"  , null],
+      ["src/common"  , "src/common"  , null],
+      ["src/typings" , "src/typings" , null],
+
+      ["README.md"    , "README.md"    , this.props_second],
+      ["VERSION"      , "VERSION"      , this.props_second],
+      ["package.json" , "package.json" , this.props_second],
+      ["config.json"  , "config.json"  , this.props_second],
+    ]);
   }
 
   _writing_react() {
+    this._copy_target([
+      ["src/_core_main_react", "src/core_main", null],
+    ]);
   }
 
   _writing_react_native() {

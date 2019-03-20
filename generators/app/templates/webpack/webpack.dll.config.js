@@ -1,9 +1,5 @@
 // webpack.dll.config.js
 
-const __workdirname = `${__dirname}/..`;
-const __packagepath = `${__workdirname}/package.json`;
-const __configpath = `${__workdirname}/config.json`;
-
 const _ = require("lodash");
 const path = require("path");
 const merge = require("webpack-merge");
@@ -15,6 +11,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const WebpackNotifierPlugin = require("webpack-notifier");
+
+const __workdirname = `${__dirname}/..`;
+const __packagepath = `${__workdirname}/package.json`;
+const __configpath = `${__workdirname}/config.json`;
 
 const __package = require(__packagepath);
 const __config = require(__configpath);
