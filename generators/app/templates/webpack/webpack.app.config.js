@@ -21,23 +21,29 @@ const __workingdir = `${__dirname}/..`;
 
 module.exports = (env, argv) => {
   const prod = argv.mode === "production";
-  const output_dir = prod ? __paths.prod : __paths.stag;
   const build_target = process.env.npm_lifecycle_event;
 
-  const __paths = {
-    root : __workingdir,
+  const __paths = (() => {
+    const p = {
+      root : __workingdir,
 
-    src          : path.join(__workingdir, "src"),
-    stag         : path.join(__workingdir, "stag"),
-    prod         : path.join(__workingdir, "prod"),
-    node_modules : path.join(__workingdir, "node_modules"),
-    entry        : path.join(__workingdir, "src/core_main/entry"),
+      src          : path.join(__workingdir, "src"),
+      stag         : path.join(__workingdir, "stag"),
+      prod         : path.join(__workingdir, "prod"),
+      node_modules : path.join(__workingdir, "node_modules"),
+      entry        : path.join(__workingdir, "src/core_main/entry"),
 
-    package    : path.join(__workingdir, "package.json"),
-    config     : path.join(__workingdir, "config.json"),
-    tsconfig   : path.join(__workingdir, "tsconfig.json"),
-    dll_vendor : path.join(output_dir, "vendor_manifest.json"),
-  };
+      package    : path.join(__workingdir, "package.json"),
+      config     : path.join(__workingdir, "config.json"),
+      tsconfig   : path.join(__workingdir, "tsconfig.json"),
+    };
+
+    const output = prod ? p.prod : p.stag;
+
+    return Object.assign({}, p, {output}, {
+      dll_vendor : path.join(output, "vendor_manifest.json"),
+    });
+  })();
 
   const __package = require(__paths.package);
   const __config = require(__paths.config);
@@ -60,6 +66,8 @@ module.exports = (env, argv) => {
     (!build_target || build_target.match(/serve.*/)) ||
     (build_target && build_target.match(/watch.*/))
   ) ? false : true;
+
+  const exist_dll_vendor = fs.existsSync(__paths.dll_vendor);
 
   const generate_entry = (() => {
     let common_setting = {
@@ -248,7 +256,7 @@ module.exports = (env, argv) => {
       }),
     ];
 
-    if(fs.existsSync(__paths.dll_vendor)) {
+    if(exist_dll_vendor) {
       common_plugin.push(
         new webpack.DllReferencePlugin({
           context: __paths.root,
@@ -304,7 +312,7 @@ module.exports = (env, argv) => {
 
       common_setting = merge({}, common_setting, {
         devServer: {
-          contentBase: output_dir,
+          contentBase: __paths.output,
           publicPath: __config.serve.public_path,
           compress: true,
           progress: true,
@@ -336,7 +344,7 @@ module.exports = (env, argv) => {
       entry: [path.join(__paths.entry, `${item.name}.${item.ext}`)],
 
       output: {
-        path: output_dir,
+        path: __paths.output,
         publicPath: __config.serve.public_path,
         filename: `${item.name}.build.js`,
       },
@@ -349,7 +357,7 @@ module.exports = (env, argv) => {
           minify: false,
           hash: false,
           inject: false,
-          prod: prod,
+          exist_dll: exist_dll_vendor,
         }),
       ]),
     });

@@ -12,25 +12,35 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const WebpackNotifierPlugin = require("webpack-notifier");
 
-const __workdirname = `${__dirname}/..`;
-const __packagepath = `${__workdirname}/package.json`;
-const __configpath = `${__workdirname}/config.json`;
-
-const __package = require(__packagepath);
-const __config = require(__configpath);
+const __workingdir = `${__dirname}/..`;
 
 
 const __exports = function(env, argv) {
-  const paths = {
-    root : __workdirname,
-    src  : path.join(__workdirname, "src"),
-    stag : path.join(__workdirname, "stag"),
-    prod : path.join(__workdirname, "prod"),
-  };
-
   const prod = argv.mode === "production";
-  const output_dir = prod ? paths.prod : paths.stag;
   const build_target = process.env.npm_lifecycle_event;
+
+  const __paths = (() => {
+    const p = {
+      root : __workingdir,
+
+      src          : path.join(__workingdir, "src"),
+      stag         : path.join(__workingdir, "stag"),
+      prod         : path.join(__workingdir, "prod"),
+      node_modules : path.join(__workingdir, "node_modules"),
+
+      package    : path.join(__workingdir, "package.json"),
+      config     : path.join(__workingdir, "config.json"),
+    };
+
+    const output = prod ? p.prod : p.stag;
+
+    return Object.assign({}, p, {output}, {
+      dll_vendor : path.join(output, "vendor_manifest.json"),
+    });
+  })();
+
+  const __package = require(__paths.package);
+  const __config = require(__paths.config);
 
   let common_setting = {
     cache: true,
@@ -50,7 +60,7 @@ const __exports = function(env, argv) {
     },
 
     output: {
-      path: output_dir,
+      path: __paths.output,
       filename: "vendor.dll.js",
       library: "vendor_lib",
       libraryTarget: "umd",
@@ -69,7 +79,7 @@ const __exports = function(env, argv) {
       new ExtractTextPlugin("vendor.css"),
 
       new webpack.DllPlugin({
-        path: path.join(output_dir, "vendor_manifest.json"),
+        path: __paths.dll_vendor,
         name: "vendor_lib",
       }),
 
