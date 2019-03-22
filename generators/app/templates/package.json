@@ -36,8 +36,6 @@
     "init": "npm install --force && npm run build",
     "serve": "webpack-dev-server --mode development --config webpack/webpack.app.config.js",
     "serve:prod": "webpack-dev-server --mode production --config webpack/webpack.app.config.js",
-    "start": "concurrently 'npm run app' 'npm run serve'",
-    "start:prod": "concurrently 'npm run app' 'npm run serve:prod'",
     "uwsgi": "uwsgi --ini $(pwd)/misc/conf/uwsgi/uwsgi_app.ini --chdir $(pwd)",
     "mkdir": "mkdir -p stag && mkdir -p prod",
     "version": "./scripts/version/version.py",
@@ -45,12 +43,21 @@
     "link": "./scripts/link/link.py",
     "module": "./scripts/module/gen_module.py",
     "clean": "./scripts/clean/clean.sh",
-    "app": "./backend/app/app.py"
+    "app": "./backend/app/app.py",
+    <% if (enable_app) { %>
+    "start": "concurrently 'npm run app' 'npm run serve'",
+    "start:prod": "concurrently 'npm run app' 'npm run serve:prod'"
+    <% } else { %>
+    "start": "concurrently 'npm run serve'",
+    "start:prod": "concurrently 'npm run serve:prod'"
+    <% } %>
+
     <% } else if (framework_type === "React Native") { %>
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject"
+
     <% } else if (framework_type === "Electron") { %>
     <% } %>
   },

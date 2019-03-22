@@ -6,15 +6,17 @@ const yosay = require('yosay');
 
 
 module.exports = class extends Generator {
-  prompting() {
+  async prompting() {
     // Have Yeoman greet the user.
     this.log(
       yosay(`Welcome to the scrumtrulescent ${chalk.red('generator-my-react-project')} generator!`)
     );
 
-    const done = this.async();
+    const default_server_port = 33000;
 
-    const prompts_first = [{
+    this.props_list = [];
+
+    this.props_list.push(await this.prompt([{
       type: "list",
       name: "framework_type",
       message: "Please select a framework to use.",
@@ -25,48 +27,52 @@ module.exports = class extends Generator {
       name: "projname",
       message: "Input project name.",
       default: "MyReactTemplate",
-    }];
-
-    const prompts_react = [{
-      type: "input",
-      name: "defport",
-      message: "Input web port.",
-      default: "33000",
     }, {
       type: "input",
-      name: "defport_app",
-      message: "Input application port.",
-      default: "33001",
-    }];
+      name: "defport",
+      message: "Input server port.",
+      default: default_server_port,
+    }, {
+      type: "confirm",
+      name: "enable_app",
+      message: "Enable application server?",
+      default: false,
+    }]));
 
-    const prompts_react_native = [];
+    if(this.props_list[0].enable_app) {
+      const default_app_port = default_server_port + 1;
 
-    const prompts_electron = [];
+      this.props_list.push(await this.prompt([{
+        type: "input",
+        name: "defport_app",
+        message: "Input application port.",
+        default: default_app_port,
+      }]));
+    } else {
+      this.props_list.push({ defport_app: -1 });
+    }
 
-    this.prompt(prompts_first).then(props_first => {
-      this.props_first = props_first;
+    this.props_list.push(await this.prompt((() => {
+      if(this.props_list[0].framework_type === "React") {
+        return [];
+      }
+      else if(this.props_list[0].framework_type === "React Native") {
+        return [];
+      }
+      else if(this.props_list[0].framework_type === "Electron") {
+        return [];
+      }
+    })()));
 
-      const prompts_second = (() => {
-        if(this.props_first.framework_type === "React") return prompts_react;
-        else if(this.props_first.framework_type === "React Native") return prompts_react_native;
-        else if(this.props_first.framework_type === "Electron") return prompts_electron;
-      })();
-
-      this.prompt(prompts_second).then(props_second => {
-        this.props_second = Object.assign({}, props_first, props_second);
-        done();
-      });
-    });
-
-    return done;
+    this.props_list = Object.assign({}, ...this.props_list);
   }
 
   writing() {
     this._writing_common();
 
-    if(this.props_first.framework_type === "React") this._writing_react();
-    else if(this.props_first.framework_type === "React Native") this._writing_react_native();
-    else if(this.props_first.framework_type === "Electron") this._writing_electron();
+    if(this.props_list.framework_type === "React") this._writing_react();
+    else if(this.props_list.framework_type === "React Native") this._writing_react_native();
+    else if(this.props_list.framework_type === "Electron") this._writing_electron();
   }
 
   _copy_target(targets) {

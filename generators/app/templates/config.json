@@ -1,7 +1,6 @@
 {
   "title": "<%= projname %>",
 
-  <% if (framework_type === "React") { %>
   "serve": {
     "public_path": "/",
 
@@ -15,8 +14,5 @@
       "port": <%= defport_app %>
     }
   }
-  <% } else if (framework_type === "React Native") { %>
-  <% } else if (framework_type === "Electron") { %>
-  <% } %>
 }
 
