@@ -117,9 +117,11 @@ module.exports = class extends Generator {
   _writing_react_native() {
     this._copy_target([
       ["src/_core_main_react_native", "src/core_main", null],
+
       ["babel.config.js", "babel.config.js", null],
       ["rn-cli.config.js", "rn-cli.config.js", null],
       ["metro.config.js", "metro.config.js", null],
+
       ["app.json", "app.json", this.props],
     ]);
   }
