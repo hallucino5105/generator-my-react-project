@@ -100,6 +100,8 @@ module.exports = (env, argv) => {
           include: __paths.src,
           exclude: /node_modules/,
           use: [{
+            loader: "babel-loader",
+          }, {
             loader: "ts-loader",
             options: {
               configFile: __paths.tsconfig,
