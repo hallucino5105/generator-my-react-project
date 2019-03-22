@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "<%= projname %>",
-    "slug": "<%= projname %>"
+    "slug": "<%= projname %>",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
