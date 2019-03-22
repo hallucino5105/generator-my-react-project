@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "esnext",
-    "lib": ["dom"],
+    "lib": ["esnext", "dom"],
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -19,6 +19,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "noEmit": true,
+    "esModuleInterop": true
     "typeRoots" : [
       "node_modules/@types",
       "./src/typings"

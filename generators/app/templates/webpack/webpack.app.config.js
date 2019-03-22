@@ -346,17 +346,25 @@ module.exports = (env, argv) => {
         filename: `${item.name}.build.js`,
       },
 
-      plugins: common_plugin.concat([
-        new HtmlWebpackPlugin({
-          title: __config.title,
-          filename: `${item.name}.html`,
-          template: path.join(__paths.entry, `${item.name}.ejs`),
-          minify: false,
-          hash: false,
-          inject: false,
-          exist_dll: exist_dll_vendor,
-        }),
-      ]),
+      plugins: common_plugin.concat((() => {
+        const html_template_path = path.join(__paths.entry, `${item.name}.ejs`);
+
+        if(fs.existsSync(html_template_path)) {
+          return [
+            new HtmlWebpackPlugin({
+              title: __config.title,
+              filename: `${item.name}.html`,
+              template: path.join(__paths.entry, `${item.name}.ejs`),
+              minify: false,
+              hash: false,
+              inject: false,
+              exist_dll: exist_dll_vendor,
+            }),
+          ];
+        } else {
+          return [];
+        }
+      })()),
     });
   })();
 
