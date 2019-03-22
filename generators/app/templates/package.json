@@ -56,7 +56,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "init": "npm install --force"
 
     <% } else if (framework_type === "Electron") { %>
     <% } %>

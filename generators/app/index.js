@@ -131,6 +131,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    //this.spawnCommand("npm", ["run", "init"]);
+    this.spawnCommand("npm", ["run", "init"]);
   }
 };
