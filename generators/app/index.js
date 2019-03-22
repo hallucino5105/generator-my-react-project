@@ -110,25 +110,28 @@ module.exports = class extends Generator {
 
   _writing_react() {
     this._copy_target([
-      ["src/_core_main_react", "src/core_main", null],
+      ["src/_core_main_react" , "src/core_main" , null] ,
     ]);
   }
 
   _writing_react_native() {
     this._copy_target([
-      ["src/_core_main_react_native", "src/core_main", null],
+      ["src/_core_main_react_native" , "src/core_main" , null],
 
-      ["babel.config.js", "babel.config.js", null],
-      ["rn-cli.config.js", "rn-cli.config.js", null],
-      ["metro.config.js", "metro.config.js", null],
+      ["babel.config.js"  , "babel.config.js"  , null],
+      ["rn-cli.config.js" , "rn-cli.config.js" , null],
+      ["metro.config.js"  , "metro.config.js"  , null],
 
-      ["app.json", "app.json", this.props],
+      ["app.json" , "app.json" , this.props],
     ]);
   }
 
   _writing_electron() {
     this._copy_target([
-      ["src/_core_main_electron", "src/core_main", null],
+      ["src/_core_main_electron" , "src/core_main"     , null],
+      ["src/_core_main_react"    , "src/core_renderer" , null],
+
+      ["gulpfile.js" , "gulpfile.js" , null],
     ]);
   }
 
