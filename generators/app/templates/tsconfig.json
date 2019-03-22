@@ -18,6 +18,7 @@
     "pretty": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "noEmit": true,
     "typeRoots" : [
       "node_modules/@types",
       "./src/typings"
