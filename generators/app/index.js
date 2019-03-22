@@ -14,9 +14,9 @@ module.exports = class extends Generator {
 
     const default_server_port = 33000;
 
-    this.props_list = [];
+    this.props = [];
 
-    this.props_list.push(await this.prompt([{
+    this.props.push(await this.prompt([{
       type: "list",
       name: "framework_type",
       message: "Please select a framework to use.",
@@ -39,40 +39,38 @@ module.exports = class extends Generator {
       default: false,
     }]));
 
-    if(this.props_list[0].enable_app) {
-      const default_app_port = default_server_port + 1;
-
-      this.props_list.push(await this.prompt([{
+    if(this.props[0].enable_app) {
+      this.props.push(await this.prompt([{
         type: "input",
         name: "defport_app",
         message: "Input application port.",
-        default: default_app_port,
+        default: default_server_port + 1,
       }]));
     } else {
-      this.props_list.push({ defport_app: -1 });
+      this.props.push({ defport_app: -1 });
     }
 
-    this.props_list.push(await this.prompt((() => {
-      if(this.props_list[0].framework_type === "React") {
+    this.props.push(await this.prompt((() => {
+      if(this.props[0].framework_type === "React") {
         return [];
       }
-      else if(this.props_list[0].framework_type === "React Native") {
+      else if(this.props[0].framework_type === "React Native") {
         return [];
       }
-      else if(this.props_list[0].framework_type === "Electron") {
+      else if(this.props[0].framework_type === "Electron") {
         return [];
       }
     })()));
 
-    this.props_list = Object.assign({}, ...this.props_list);
+    this.props = Object.assign({}, ...this.props);
   }
 
   writing() {
     this._writing_common();
 
-    if(this.props_list.framework_type === "React") this._writing_react();
-    else if(this.props_list.framework_type === "React Native") this._writing_react_native();
-    else if(this.props_list.framework_type === "Electron") this._writing_electron();
+    if(this.props.framework_type === "React") this._writing_react();
+    else if(this.props.framework_type === "React Native") this._writing_react_native();
+    else if(this.props.framework_type === "Electron") this._writing_electron();
   }
 
   _copy_target(targets) {
@@ -103,10 +101,10 @@ module.exports = class extends Generator {
       ["src/common"  , "src/common"  , null],
       ["src/typings" , "src/typings" , null],
 
-      ["README.md"    , "README.md"    , this.props_second],
-      ["VERSION"      , "VERSION"      , this.props_second],
-      ["package.json" , "package.json" , this.props_second],
-      ["config.json"  , "config.json"  , this.props_second],
+      ["README.md"    , "README.md"    , this.props],
+      ["VERSION"      , "VERSION"      , this.props],
+      ["package.json" , "package.json" , this.props],
+      ["config.json"  , "config.json"  , this.props],
     ]);
   }
 
@@ -121,7 +119,8 @@ module.exports = class extends Generator {
       ["src/_core_main_react_native", "src/core_main", null],
       ["babel.config.js", "babel.config.js", null],
       ["rn-cli.config.js", "rn-cli.config.js", null],
-      ["app.json", "app.json", this.props_second],
+      ["metro.config.js", "metro.config.js", null],
+      ["app.json", "app.json", this.props],
     ]);
   }
 
