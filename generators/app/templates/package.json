@@ -60,7 +60,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "init": "npm install --force"
+    "init": "yarn"
 
     <% } else if (framework_type === "Electron") { %>
     "__prebuild": "npm run link",
