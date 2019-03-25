@@ -27,15 +27,16 @@ module.exports = (env, argv) => {
     const p = {
       root : __workingdir,
 
-      src          : path.join(__workingdir, "src"),
-      stag         : path.join(__workingdir, "stag"),
-      prod         : path.join(__workingdir, "prod"),
-      node_modules : path.join(__workingdir, "node_modules"),
-      entry        : path.join(__workingdir, "src/core_main/entry"),
+      src            : path.join(__workingdir, "src"),
+      stag           : path.join(__workingdir, "stag"),
+      prod           : path.join(__workingdir, "prod"),
+      node_modules   : path.join(__workingdir, "node_modules"),
+      entry_main     : path.join(__workingdir, "src/core_main/entry"),
+      entry_renderer : path.join(__workingdir, "src/core_renderer/entry"),
 
-      package    : path.join(__workingdir, "package.json"),
-      config     : path.join(__workingdir, "config.json"),
-      tsconfig   : path.join(__workingdir, "tsconfig.json"),
+      package  : path.join(__workingdir, "package.json"),
+      config   : path.join(__workingdir, "config.json"),
+      tsconfig : path.join(__workingdir, "tsconfig.json"),
     };
 
     const output = prod ? p.prod : p.stag;
@@ -50,7 +51,7 @@ module.exports = (env, argv) => {
 
   // src/core 直下にある"entry/*.(js|jsx|ts|tsx)"をエントリとする
   const pages = (() => {
-    const target_files = fs.readdirSync(__paths.entry);
+    const target_files = fs.readdirSync(__paths.entry_renderer);
 
     const entry_files = _.compact(_.map(target_files, function(file) {
       const matches = file.match(/(.*)\.((j|t)sx?)/);
@@ -75,6 +76,7 @@ module.exports = (env, argv) => {
       target: "web",
       mode: argv.mode,
       devtool: "source-map",
+      externals: [nodeExternals()],
 
       node: {
         fs: "empty",
@@ -94,7 +96,11 @@ module.exports = (env, argv) => {
       module: {
         rules: [{
           test: /\.(html)$/,
-          loader: "html-loader",
+          include: __paths.src,
+          exclude: /node_modules/,
+          use: [{
+            loader: "html-loader",
+          }],
         }, {
           test: /\.tsx?$/,
           include: __paths.src,
@@ -226,6 +232,10 @@ module.exports = (env, argv) => {
 
       new ExtractTextPlugin("styles.css"),
 
+      new webpack.ProvidePlugin({
+        $: "jquery",
+      }),
+
       new webpack.LoaderOptionsPlugin({
         options: {
           postcss: [
@@ -337,40 +347,60 @@ module.exports = (env, argv) => {
       });
     }
 
-    return item => merge({}, common_setting, {
-      entry: [path.join(__paths.entry, `${item.name}.${item.ext}`)],
+    return {
+      <% if (framework_type === "Electron") { %>
+      electron: () => merge({}, common_setting, {
+        entry: [path.join(__paths.entry_main, "index.ts")],
 
-      output: {
-        path: __paths.output,
-        publicPath: __config.serve.public_path,
-        filename: `${item.name}.build.js`,
-      },
+        output: {
+          path: output_dir,
+          filename: "electron.build.js",
+        },
 
-      plugins: common_plugin.concat((() => {
-        const html_template_path = path.join(__paths.entry, `${item.name}.ejs`);
+        plugins: common_plugin,
+      }),
+      <% } %>
 
-        if(fs.existsSync(html_template_path)) {
-          return [
-            new HtmlWebpackPlugin({
-              title: __config.title,
-              filename: `${item.name}.html`,
-              template: path.join(__paths.entry, `${item.name}.ejs`),
-              minify: false,
-              hash: false,
-              inject: false,
-              exist_dll: exist_dll_vendor,
-            }),
-          ];
-        } else {
-          return [];
-        }
-      })()),
-    });
+      react: page => merge({}, common_setting, {
+        entry: [path.join(__paths.entry_renderer, `${page.name}.${page.ext}`)],
+
+        output: {
+          path: __paths.output,
+          publicPath: __config.serve.public_path,
+          filename: `${page.name}.build.js`,
+        },
+
+        plugins: common_plugin.concat((() => {
+          const html_template_path = path.join(__paths.entry_renderer, `${page.name}.ejs`);
+
+          if(fs.existsSync(html_template_path)) {
+            return [
+              new HtmlWebpackPlugin({
+                title: __config.title,
+                filename: `${page.name}.html`,
+                template: html_template_path,
+                minify: false,
+                hash: false,
+                inject: false,
+                exist_dll: exist_dll_vendor,
+              }),
+            ];
+          } else {
+            return [];
+          }
+        })()),
+      }),
+    };
   })();
 
   process.env.NODE_ENV = build_target;
   process.env.BABEL_ENV = build_target;
 
-  return _.map(pages, item => generate_entry(item));
+  return [
+    <% if (framework_type === "Electron") { %>
+    generate_entry.electron(),
+    <% } %>
+    ..._.map(pages, page => generate_entry.react(page)),
+  ];
 };
 

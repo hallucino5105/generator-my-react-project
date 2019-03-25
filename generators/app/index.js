@@ -89,11 +89,11 @@ module.exports = class extends Generator {
   writing() {
     this._writing_common();
 
-    return framework_mapper(this.props.framework_type, [
-      this._writing_react(),
-      this._writing_react_native(),
-      this._writing_electron(),
-    ]);
+    framework_mapper(this.props.framework_type, [
+      this._writing_react.bind(this),
+      this._writing_react_native.bind(this),
+      this._writing_electron.bind(this),
+    ])();
   }
 
   _copy_target(targets) {
@@ -116,7 +116,6 @@ module.exports = class extends Generator {
 
       ["tsconfig.json" , "tsconfig.json" , null],
 
-      ["webpack", "webpack", null],
       ["backend", "backend", null],
       ["scripts", "scripts", null],
 
@@ -128,18 +127,21 @@ module.exports = class extends Generator {
       ["VERSION"      , "VERSION"      , this.props],
       ["package.json" , "package.json" , this.props],
       ["config.json"  , "config.json"  , this.props],
+
+      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
+      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
     ]);
   }
 
   _writing_react() {
     this._copy_target([
-      ["src/_core_main_react" , "src/core_main" , null] ,
+      ["src/_core_renderer_react" , "src/core_renderer" , null] ,
     ]);
   }
 
   _writing_react_native() {
     this._copy_target([
-      ["src/_core_main_react_native" , "src/core_main" , null],
+      ["src/_core_renderer_react_native" , "src/core_renderer" , null],
 
       ["babel.config.js"  , "babel.config.js"  , null],
       ["rn-cli.config.js" , "rn-cli.config.js" , null],
@@ -151,8 +153,8 @@ module.exports = class extends Generator {
 
   _writing_electron() {
     this._copy_target([
-      ["src/_core_main_electron" , "src/core_main"     , null],
-      ["src/_core_main_react"    , "src/core_renderer" , null],
+      ["src/_core_main_electron"  , "src/core_main"     , null],
+      ["src/_core_renderer_react" , "src/core_renderer" , null],
 
       ["gulpfile.js" , "gulpfile.js" , null],
     ]);

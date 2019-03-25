@@ -1,6 +1,6 @@
-// src/react/mobx/index.tsx
+// src/core_renderer/store/index.tsx
 
-import state_theme from "src/core_main/state/theme";
+import state_theme from "src/core_renderer/state/theme";
 
 
 const stores = {

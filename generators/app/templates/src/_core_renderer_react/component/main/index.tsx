@@ -1,10 +1,10 @@
-// src/core_main/component/main/index.tsx
+// src/core_renderer/component/main/index.tsx
 
 import * as React from "react";
 import {inject, observer} from "mobx-react";
 
 import * as config from "config.json";
-import {StateThemeType} from "src/core_main/state/theme";
+import {StateThemeType} from "src/core_renderer/state/theme";
 
 
 interface MainPropsType {

@@ -1,4 +1,4 @@
-// src/electron/index.jsx
+// src/electron/index.ts
 
 "use strict";
 

@@ -1,4 +1,4 @@
-// src/core_main/entry/main.tsx
+// src/core_renderer/entry/main.tsx
 
 import "src/assets/sass/main.scss";
 
@@ -6,8 +6,8 @@ import * as React from "react";
 import {render} from "react-dom";
 import {Provider} from "mobx-react";
 
-import stores from "src/core_main/store";
-import Main from "src/core_main/component/main";
+import stores from "src/core_renderer/store";
+import Main from "src/core_renderer/component/main";
 
 
 const node = document.createElement("main");

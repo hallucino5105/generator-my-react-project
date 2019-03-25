@@ -1,4 +1,4 @@
-// src/core_main/entry/index.js
+// src/core_renderer/entry/index.js
 
 import {KeepAwake, registerRootComponent} from "expo";
 import App from "../app";
