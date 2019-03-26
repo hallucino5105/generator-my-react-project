@@ -76,16 +76,7 @@ const __exports = (env, argv) => {
       mode: argv.mode,
       devtool: "source-map",
 
-      //target: "web",
-      //target: "node",
-      //target: "electron-renderer",
-      //externals: [nodeExternals()],
-
       node: {
-        fs: "empty",
-        net: "empty",
-        tls: "empty",
-        child_process: "empty",
         __dirname: false,
         __filename: false,
       },
@@ -353,6 +344,7 @@ const __exports = (env, argv) => {
     }
 
     return {
+      <% if (framework_type === "Electron") { %> 
       electron: () => merge({}, common_setting, {
         target: "electron-main",
 
@@ -365,9 +357,14 @@ const __exports = (env, argv) => {
 
         plugins: common_plugin,
       }),
+      <% } %> 
 
       react: page => merge({}, common_setting, {
+        <% if (framework_type !== "Electron") { %> 
+        target: "web",
+        <% } else { %>
         target: "electron-renderer",
+        <% } %>
 
         entry: [path.join(__paths.entry_renderer, `${page.name}.${page.ext}`)],
 
@@ -404,7 +401,9 @@ const __exports = (env, argv) => {
   process.env.BABEL_ENV = build_target;
 
   return [
+    <% if (framework_type === "Electron") { %> 
     generate_entry.electron(),
+    <% } %>
     ..._.map(pages, page => generate_entry.react(page)),
   ];
 };
