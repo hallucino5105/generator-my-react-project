@@ -3,8 +3,7 @@
 import {ipcMain} from "electron";
 
 import IPCKeys from "src/common/ipc/ipckeys";
-import AppConfig from "src/common/app_config";
-import WindowManager from "src/electron/window_manager";
+import WindowManager from "src/core_main/window_manager";
 
 
 export default class WindowBase {

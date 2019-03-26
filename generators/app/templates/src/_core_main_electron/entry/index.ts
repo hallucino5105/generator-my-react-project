@@ -13,10 +13,10 @@ import _ from "lodash";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/common/ipc/ipckeys";
-import AppMenu from "./menu";
-import AppTray from "./tray";
-import WindowManager from "./window_manager";
-import WindowMain from "./window/main"
+import AppMenu from "../menu";
+import AppTray from "../tray";
+import WindowManager from "../window_manager";
+import WindowMain from "../window/main"
 
 
 if(myutil.isDev()) {
