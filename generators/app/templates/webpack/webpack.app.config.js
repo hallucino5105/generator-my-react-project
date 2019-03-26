@@ -250,13 +250,13 @@ const __exports = (env, argv) => {
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
 
-      //new ForkTsCheckerWebpackPlugin({
-      //  tsconfig: __paths.tsconfig,
-      //  workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
-      //  tslint: false,
-      //  useTypescriptIncrementalApi: true,
-      //  measureCompilationTime: true,
-      //}),
+      new ForkTsCheckerWebpackPlugin({
+        tsconfig: __paths.tsconfig,
+        workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
+        tslint: false,
+        useTypescriptIncrementalApi: true,
+        measureCompilationTime: true,
+      }),
     ];
 
     if(exist_dll_vendor) {
