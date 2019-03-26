@@ -19,7 +19,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const __workingdir = `${__dirname}/..`;
 
 
-module.exports = (env, argv) => {
+const __exports = (env, argv) => {
   const prod = argv.mode === "production";
   const build_target = process.env.npm_lifecycle_event;
 
@@ -73,13 +73,18 @@ module.exports = (env, argv) => {
   const generate_entry = (() => {
     let common_setting = {
       cache: true,
-      target: "web",
       mode: argv.mode,
       devtool: "source-map",
-      externals: [nodeExternals()],
+
+      //target: "web",
+      //target: "node",
+      //target: "electron-renderer",
+      //externals: [nodeExternals()],
 
       node: {
         fs: "empty",
+        net: "empty",
+        tls: "empty",
         child_process: "empty",
         __dirname: false,
         __filename: false,
@@ -254,13 +259,13 @@ module.exports = (env, argv) => {
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
 
-      new ForkTsCheckerWebpackPlugin({
-        tsconfig: __paths.tsconfig,
-        workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
-        tslint: false,
-        useTypescriptIncrementalApi: true,
-        measureCompilationTime: true,
-      }),
+      //new ForkTsCheckerWebpackPlugin({
+      //  tsconfig: __paths.tsconfig,
+      //  workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
+      //  tslint: false,
+      //  useTypescriptIncrementalApi: true,
+      //  measureCompilationTime: true,
+      //}),
     ];
 
     if(exist_dll_vendor) {
@@ -348,20 +353,22 @@ module.exports = (env, argv) => {
     }
 
     return {
-      <% if (framework_type === "Electron") { %>
       electron: () => merge({}, common_setting, {
+        target: "electron-main",
+
         entry: [path.join(__paths.entry_main, "index.ts")],
 
         output: {
-          path: output_dir,
+          path: __paths.output,
           filename: "electron.build.js",
         },
 
         plugins: common_plugin,
       }),
-      <% } %>
 
       react: page => merge({}, common_setting, {
+        target: "electron-renderer",
+
         entry: [path.join(__paths.entry_renderer, `${page.name}.${page.ext}`)],
 
         output: {
@@ -397,10 +404,11 @@ module.exports = (env, argv) => {
   process.env.BABEL_ENV = build_target;
 
   return [
-    <% if (framework_type === "Electron") { %>
     generate_entry.electron(),
-    <% } %>
     ..._.map(pages, page => generate_entry.react(page)),
   ];
 };
+
+
+module.exports = __exports;
 
