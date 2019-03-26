@@ -2,7 +2,7 @@
 
 import "src/assets/sass/main.scss";
 
-import * as React from "react";
+import React from "react";
 import {render} from "react-dom";
 import {Provider} from "mobx-react";
 

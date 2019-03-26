@@ -156,11 +156,12 @@ module.exports = class extends Generator {
       ["src/_core_main_electron"  , "src/core_main"     , null],
       ["src/_core_renderer_react" , "src/core_renderer" , null],
 
+      ["_vscode"     , ".vscode"     , null],
       ["gulpfile.js" , "gulpfile.js" , null],
     ]);
   }
 
   install() {
-    //this.spawnCommand("npm", ["run", "init"]);
+    this.spawnCommand("npm", ["run", "init"]);
   }
 };

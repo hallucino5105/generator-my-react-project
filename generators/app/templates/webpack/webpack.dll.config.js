@@ -44,13 +44,16 @@ const __exports = function(env, argv) {
 
   let common_setting = {
     cache: true,
-    target: "web",
     mode: argv.mode,
     devtool: "source-map",
 
+    <% if (framework_type === "Electron") { %> 
+    target: "node",
+    <% } else { %>
+    target: "web",
+    <% } %>
+
     node: {
-      fs: "empty",
-      child_process: "empty",
       __dirname: false,
       __filename: false,
     },

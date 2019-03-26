@@ -63,7 +63,7 @@
     "init": "yarn"
 
     <% } else if (framework_type === "Electron") { %>
-    "__prebuild": "npm run link",
+    "__prebuild": "npm run mkdir && npm run link",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "build:app:stag": "webpack --mode development --progress --config webpack/webpack.app.config.js",
     "build:app:prod": "webpack --mode production  --progress --config webpack/webpack.app.config.js",
@@ -87,6 +87,7 @@
     "electron3": "ELECTRON_ENV=development DEBUG=true gulp serve",
     "app": "./app/app.py",
     "link": "./scripts/link/link.py",
+    "mkdir": "mkdir -p stag && mkdir -p prod",
     "start": "concurrently 'npm run watch' 'npm run electron3'"
     <% } %>
   },
@@ -265,6 +266,15 @@
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
+    "@types/lodash": "^4.14.121",
+    "@types/node": "^11.9.4",
+    "@types/react": "^16.8.4",
+    "@types/react-dom": "^16.8.2",
+    "@types/react-redux": "^7.0.1",
+    "@types/react-responsive": "^3.0.3",
+    "@types/redux-logger": "^3.0.7",
+    "@types/socket.io-client": "^1.4.32",
+    "@types/webpack": "^4.4.25",
     "autoprefixer": "^9.3.1",
     "aws-sdk": "^2.354.0",
     "babel-loader": "^8.0.4",
