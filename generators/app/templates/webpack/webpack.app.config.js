@@ -259,15 +259,6 @@ const __exports = (env, argv) => {
       }),
     ];
 
-    if(exist_dll_vendor) {
-      common_plugin.push(
-        new webpack.DllReferencePlugin({
-          context: __paths.root,
-          manifest: require(__paths.dll_vendor),
-        })
-      );
-    }
-
     if(build_target && build_target.match(/analyze.*/)) {
       common_plugin.push(
         new BundleAnalyzerPlugin(),
@@ -375,10 +366,11 @@ const __exports = (env, argv) => {
         },
 
         plugins: common_plugin.concat((() => {
+          const ret = [];
           const html_template_path = path.join(__paths.entry_renderer, `${page.name}.ejs`);
 
           if(fs.existsSync(html_template_path)) {
-            return [
+            ret.push([
               new HtmlWebpackPlugin({
                 title: __config.title,
                 filename: `${page.name}.html`,
@@ -388,10 +380,19 @@ const __exports = (env, argv) => {
                 inject: false,
                 exist_dll: exist_dll_vendor,
               }),
-            ];
-          } else {
-            return [];
+            ]);
           }
+
+          if(exist_dll_vendor) {
+            ret.push(
+              new webpack.DllReferencePlugin({
+                context: __paths.root,
+                manifest: require(__paths.dll_vendor),
+              })
+            );
+          }
+
+          return ret;
         })()),
       }),
     };

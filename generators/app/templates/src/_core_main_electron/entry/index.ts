@@ -2,7 +2,7 @@
 
 "use strict";
 
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
 
 import url from "url";
@@ -27,16 +27,12 @@ if(myutil.isDev()) {
 
 
 class Entry {
+  wins: { [k: string]: BrowserWindow };
+  force_quit: boolean;
+
   constructor() {
     this.wins = {};
-    this.menu = null;
     this.force_quit = false;
-
-    this.setEventHandler();
-  }
-
-  setEventHandler() {
-    ipcMain.on(IPCKeys.hotkey.SetGlobalHotkey, this.onSetGlobalHotkey.bind(this));
   }
 
   createWindow() {
@@ -81,10 +77,6 @@ class Entry {
 
     globalShortcut.unregisterAll();
     app.quit();
-  }
-
-  onSetGlobalHotkey(e, arg) {
-    e.returnValue = this.createHotkey(arg);
   }
 
   run() {
