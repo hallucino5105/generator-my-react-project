@@ -16,7 +16,7 @@
       "env": {
         "ELECTRON_ENV": "development",
         "NODE_ENV": "development",
-        "DEBUG": true
+        "DEBUG": "true"
       },
       "args": ["."],
       "console": "integratedTerminal"

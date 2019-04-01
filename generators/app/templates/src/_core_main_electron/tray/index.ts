@@ -1,4 +1,4 @@
-// src/electron/tray/index.jsx
+// src/core_main/tray/index.ts
 
 import {app, Tray, Menu} from "electron";
 

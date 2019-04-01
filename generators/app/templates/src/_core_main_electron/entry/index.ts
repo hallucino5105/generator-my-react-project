@@ -1,4 +1,4 @@
-// src/electron/index.ts
+// src/core_main/entry/index.ts
 
 "use strict";
 
@@ -108,5 +108,9 @@ class Entry {
 }
 
 
-new Entry().run();
+const entry_instance = new Entry();
+entry_instance.run();
+
+
+export default Entry;
 

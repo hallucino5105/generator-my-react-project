@@ -11,7 +11,7 @@
   <% } else if (framework_type === "React Native") { %>
   "main": "src/core_renderer/entry/index.js",
   <% } else if (framework_type === "Electron") { %>
-  "main": "stag/main.build.js",
+  "main": "stag/electron.build.js",
   <% } %>
   "scripts": {
     <% if (framework_type === "React") { %>

@@ -1,18 +1,15 @@
-// src/electron/window/main.jsx
+// src/core_main/window/main.ts
 
 import WindowBase from "./base";
 
 
 class WindowMain extends WindowBase {
   constructor() {
-    super({
-      window_label: "main_window",
-      ipc_label: "main",
-    });
+    super("main_window", "main");
   }
 
   createWindow() {
-    super.createWindow({
+    return super.createWindow({
       width: 0,
       height: 0,
       html: "main.html",
@@ -20,8 +17,6 @@ class WindowMain extends WindowBase {
       center: false,
       hide: true,
     });
-
-    return this.window_info;
   }
 }
 

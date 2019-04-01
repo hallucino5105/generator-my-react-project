@@ -1,27 +1,34 @@
-// src/electron/window_manager/index.jsx
+// src/core_main/window_manager/index.ts
 
 
 import path from "path";
 import {app, BrowserWindow} from "electron";
 
 import IPCKeys from "src/common/ipc/ipckeys";
+import Entry from "src/core_main/entry";
 
 
-const distpath = `${__dirname}/../dist`;
+const rootpath = `${__dirname}`;
 const DEBUG = true;
 
 
 class WindowManager {
-  initialize(entry_instance) {
+  windows!: Map<number, BrowserWindow>;
+  entry_instance!: Entry;
+  initialized!: boolean;
+
+  initialize(entry_instance: Entry) {
     this.windows = new Map();
     this.entry_instance = entry_instance;
     this.initialized = true;
   }
 
-  createNewWindow(options) {
+  createNewWindow(options: any) {
     if(!this.initialized) {
       throw Error("Window manager not initialized.");
     }
+
+    console.log(options);
 
     options = Object.assign({}, {
       width: 800,
@@ -70,7 +77,7 @@ class WindowManager {
     this.windows.set(wid, win);
 
     const html_file = options.html;
-    const html_path = path.join(distpath, html_file);
+    const html_path = path.join(rootpath, html_file);
 
     if(options.hide || options.hide_until_loading_complete) {
       win.hide();
@@ -95,7 +102,7 @@ class WindowManager {
     return win;
   }
 
-  closeWindow(wid) {
+  closeWindow(wid: number) {
     if(DEBUG) {
       console.log(`window was closed, id=${wid}`);
     }
@@ -104,7 +111,7 @@ class WindowManager {
     this.notifyUpdateWindowID(wid);
   }
 
-  notifyUpdateWindowID(exclude_wid) {
+  notifyUpdateWindowID(exclude_wid: number) {
     const wids = [];
     for(const wid of this.windows.keys()) {
       wids.push(wid);
@@ -112,7 +119,7 @@ class WindowManager {
 
     for(const [wid, win] of this.windows) {
       if(wid === exclude_wid) continue;
-      win.webContents.send(IPCKeys.UpdateWindowID, wids);
+      win.webContents.send((<any>IPCKeys)["UpdateWindowID"], wids);
     }
   }
 }

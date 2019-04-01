@@ -326,11 +326,6 @@ const __exports = (env, argv) => {
             },
           },
         },
-
-        //plugins: common_plugin.concat([
-        //  new webpack.NamedModulesPlugin(),
-        //  new webpack.HotModuleReplacementPlugin(),
-        //]),
       });
     }
 
@@ -370,26 +365,22 @@ const __exports = (env, argv) => {
           const html_template_path = path.join(__paths.entry_renderer, `${page.name}.ejs`);
 
           if(fs.existsSync(html_template_path)) {
-            ret.push([
-              new HtmlWebpackPlugin({
-                title: __config.title,
-                filename: `${page.name}.html`,
-                template: html_template_path,
-                minify: false,
-                hash: false,
-                inject: false,
-                exist_dll: exist_dll_vendor,
-              }),
-            ]);
+            ret.push(new HtmlWebpackPlugin({
+              title: __config.title,
+              filename: `${page.name}.html`,
+              template: html_template_path,
+              minify: false,
+              hash: false,
+              inject: false,
+              exist_dll: exist_dll_vendor,
+            }));
           }
 
           if(exist_dll_vendor) {
-            ret.push(
-              new webpack.DllReferencePlugin({
-                context: __paths.root,
-                manifest: require(__paths.dll_vendor),
-              })
-            );
+            ret.push(new webpack.DllReferencePlugin({
+              context: __paths.root,
+              manifest: require(__paths.dll_vendor),
+            }));
           }
 
           return ret;
