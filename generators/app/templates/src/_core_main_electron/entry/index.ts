@@ -43,7 +43,7 @@ class Entry {
     };
 
     if(_.filter(this.wins, win => !win).length > 0) {
-      throw Error("Window creation did not end normally.");
+      throw new Error("Window creation did not end normally.");
     }
   }
 
