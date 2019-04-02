@@ -6,4 +6,5 @@ ROOT_DIR=$(cd $PROJECT_DIR/frontend; pwd)
 
 rm -rf $ROOT_DIR/stag/*
 rm -rf $ROOT_DIR/prod/*
+rm -rf $ROOT_DIR/dist/*
 

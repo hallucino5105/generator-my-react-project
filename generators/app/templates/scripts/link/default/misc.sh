@@ -2,6 +2,12 @@
 
 ROOT_DIR=$1
 
-#ln -sfv $ROOT_DIR/VERSION $ROOT_DIR/stag/
-ln -sfv $ROOT_DIR/VERSION $ROOT_DIR/prod/
+
+if [ ! -e $ROOT_DIR/prod ]; then
+  ln -sfv $ROOT_DIR/VERSION $ROOT_DIR/prod/VERSION
+fi
+
+if [ ! -e $ROOT_DIR/dist ]; then
+  ln -sfv $ROOT_DIR/VERSION $ROOT_DIR/prod/VERSION
+fi
 
