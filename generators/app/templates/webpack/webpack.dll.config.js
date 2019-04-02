@@ -15,6 +15,13 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const __workingdir = `${__dirname}/..`;
 
 
+<% if (framework_type === "Electron") { %> 
+const electron_project = true;
+<% } else { %>
+const electron_project = false;
+<% } %>
+
+
 const __exports = function(env, argv) {
   const prod = argv.mode === "production";
   const build_target = process.env.npm_lifecycle_event;
@@ -26,13 +33,20 @@ const __exports = function(env, argv) {
       src          : path.join(__workingdir, "src"),
       stag         : path.join(__workingdir, "stag"),
       prod         : path.join(__workingdir, "prod"),
+      dist         : path.join(__workingdir, "dist"),
       node_modules : path.join(__workingdir, "node_modules"),
 
       package    : path.join(__workingdir, "package.json"),
       config     : path.join(__workingdir, "config.json"),
     };
 
-    const output = prod ? p.prod : p.stag;
+    const output = (() => {
+      if(electron_project) {
+        return p.dist;
+      } else {
+        return prod ? p.prod : p.stag;
+      }
+    })();
 
     return Object.assign({}, p, {output}, {
       dll_vendor : path.join(output, "vendor_manifest.json"),
