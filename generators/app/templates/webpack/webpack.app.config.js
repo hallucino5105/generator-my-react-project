@@ -19,6 +19,13 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const __workingdir = `${__dirname}/..`;
 
 
+<% if (framework_type === "Electron") { %> 
+const electron_project = true;
+<% } else { %>
+const electron_project = false;
+<% } %>
+
+
 const __exports = (env, argv) => {
   const prod = argv.mode === "production";
   const build_target = process.env.npm_lifecycle_event;
@@ -30,6 +37,7 @@ const __exports = (env, argv) => {
       src            : path.join(__workingdir, "src"),
       stag           : path.join(__workingdir, "stag"),
       prod           : path.join(__workingdir, "prod"),
+      dist           : path.join(__workingdir, "dist"),
       node_modules   : path.join(__workingdir, "node_modules"),
       entry_main     : path.join(__workingdir, "src/core_main/entry"),
       entry_renderer : path.join(__workingdir, "src/core_renderer/entry"),
@@ -39,7 +47,13 @@ const __exports = (env, argv) => {
       tsconfig : path.join(__workingdir, "tsconfig.json"),
     };
 
-    const output = prod ? p.prod : p.stag;
+    const output = (() => {
+      if(electron_project) {
+        return p.dist;
+      } else {
+        return prod ? p.prod : p.stag;
+      }
+    })();
 
     return Object.assign({}, p, {output}, {
       dll_vendor : path.join(output, "vendor_manifest.json"),
