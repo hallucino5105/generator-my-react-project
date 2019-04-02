@@ -25,8 +25,10 @@ class WindowManager {
 
   createNewWindow(options: any) {
     if(!this.initialized) {
-      throw new Error("Window manager not initialized.");
+      throw Error("Window manager not initialized.");
     }
+
+    console.log(options);
 
     options = Object.assign({}, {
       width: 800,
@@ -44,7 +46,7 @@ class WindowManager {
     }, options);
 
     if(!options.html) {
-      throw new Error("A null value of html is not allowed.");
+      throw Error("A null value of html is not allowed.");
     }
 
     const win = new BrowserWindow({
