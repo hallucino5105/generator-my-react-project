@@ -28,8 +28,6 @@ class WindowManager {
       throw Error("Window manager not initialized.");
     }
 
-    console.log(options);
-
     options = Object.assign({}, {
       width: 800,
       height: 600,
