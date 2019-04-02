@@ -9,11 +9,9 @@ __pycache__
 node_modules/
 stag/
 prod/
+dist/
 .cache/
 
 yarn.lock
 package-lock.json
-
-src/js/config.json
-backend/app/config.json
 
