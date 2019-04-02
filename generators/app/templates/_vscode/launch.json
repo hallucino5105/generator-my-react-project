@@ -8,6 +8,8 @@
       "name": "Debug Main Process",
       "type": "node",
       "request": "launch",
+      "sourceMaps": true,
+      "stopOnEntry": false,
       "cwd": "${workspaceRoot}",
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
       "windows": {
@@ -18,7 +20,11 @@
         "NODE_ENV": "development",
         "DEBUG": "true"
       },
+      "runtimeArgs": [
+        "--enable-logging"
+      ],
       "args": ["."],
+      "protocol": "inspector",
       "console": "integratedTerminal"
     }
   ]
