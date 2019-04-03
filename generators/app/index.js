@@ -135,7 +135,11 @@ module.exports = class extends Generator {
 
   _writing_react() {
     this._copy_target([
-      ["src/_core_renderer_react" , "src/core_renderer" , null] ,
+      ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
+      ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
+      ["src/_core_renderer_react/component/main" , "src/core_renderer/component/main" , null],
+      ["src/_core_renderer_react/entry/main.tsx" , "src/core_renderer/entry/main.tsx" , null],
+      ["src/_core_renderer_react/entry/main.ejs" , "src/core_renderer/entry/main.ejs" , null],
     ]);
   }
 
@@ -154,7 +158,15 @@ module.exports = class extends Generator {
   _writing_electron() {
     this._copy_target([
       ["src/_core_main_electron"  , "src/core_main"     , null],
-      ["src/_core_renderer_react" , "src/core_renderer" , null],
+
+      ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
+      ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
+      ["src/_core_renderer_react/component/main"  , "src/core_renderer/component/main"  , null],
+      ["src/_core_renderer_react/component/about" , "src/core_renderer/component/about" , null],
+      ["src/_core_renderer_react/entry/main.tsx"  , "src/core_renderer/entry/main.tsx"  , null],
+      ["src/_core_renderer_react/entry/main.ejs"  , "src/core_renderer/entry/main.ejs"  , null],
+      ["src/_core_renderer_react/entry/about.tsx" , "src/core_renderer/entry/about.tsx" , null],
+      ["src/_core_renderer_react/entry/about.ejs" , "src/core_renderer/entry/about.ejs" , null],
 
       ["_vscode"     , ".vscode"     , null],
       ["gulpfile.js" , "gulpfile.js" , null],

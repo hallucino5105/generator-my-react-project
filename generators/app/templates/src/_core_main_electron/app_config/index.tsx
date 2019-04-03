@@ -312,40 +312,38 @@ const app_config_proxy_instance = new AppConfigProxy();
 export default app_config_proxy_instance;
 
 
-//export const connectAppConfig = <T>(ChildComponent: React.Component<T>) => {
-//  if(!app_config_proxy_instance) {
-//    throw new Error("Uninitialized application config proxy");
-//  }
-//
-//  return class extends React.Component<T, {}> {
-//    constructor(props) {
-//      super(props);
-//
-//      this.state = {
-//        app_config: app_config_proxy_instance.getSync(),
-//      };
-//    }
-//
-//    componentDidMount() {
-//      app_config_proxy_instance.addEventChangeValue((e, values) => {
-//        this.setState({ app_config: values });
-//      });
-//    }
-//
-//    componentWillUnmount() {
-//      app_config_proxy_instance.clearEventChangeValue();
-//    }
-//
-//    render() {
-//      const {app_config} = this.state;
-//
-//      return (
-//        <ChildComponent
-//          app_config={app_config}
-//          {...this.props}
-//        />
-//      );
-//    }
-//  }
-//};
+export const connectAppConfig = <P extends {}>(ChildComponent: React.ComponentClass<P>) => {
+  if(!app_config_proxy_instance) {
+    throw new Error("Uninitialized application config proxy");
+  }
+
+  interface ConnectAppConfigStateType  {
+    app_config: any;
+  };
+
+  return class extends React.Component<P, ConnectAppConfigStateType> {
+    state: ConnectAppConfigStateType = {
+      app_config: app_config_proxy_instance.getSync(),
+    };
+  
+    componentDidMount() {
+      app_config_proxy_instance.addEventChangeValue((values: any) => {
+        this.setState({ app_config: values });
+      });
+    }
+  
+    componentWillUnmount() {
+      app_config_proxy_instance.clearEventChangeValue();
+    }
+  
+    render() {
+      return (
+        <ChildComponent
+          {...this.props}
+          {...this.state}
+        />
+      );
+    }
+  }
+};
 

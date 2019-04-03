@@ -7,7 +7,7 @@ import * as config from "config.json";
 import {StateThemeType} from "src/core_renderer/state/theme";
 
 
-interface MainPropsType {
+export interface MainPropsType {
   state_theme?: StateThemeType;
 }
 

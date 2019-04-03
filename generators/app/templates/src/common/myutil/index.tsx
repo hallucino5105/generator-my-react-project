@@ -48,11 +48,19 @@ const uuid = () => {
   return chars.join("");
 };
 
+const deepKeys = (obj: object): any[] => {
+  return Object.keys(obj)
+    .filter(key => _.isPlainObject((obj as any)[key]))
+    .map(key => deepKeys((obj as any)[key]).map(k => `${key}.${k}`))
+    .reduce((x, y) => x.concat(y), Object.keys(obj));
+};
+
 
 export default {
   isDev,
   isDebug,
   dlog,
   uuid,
+  deepKeys,
 }
 

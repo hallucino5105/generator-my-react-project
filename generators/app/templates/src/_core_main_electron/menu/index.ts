@@ -2,6 +2,8 @@
 
 import {app, Menu} from "electron";
 
+import WindowAbout from "src/core_main/window/about";
+
 
 interface HandlerType {
   quit?: () => void,
@@ -18,7 +20,9 @@ class AppMenu {
     const template: Electron.MenuItemConstructorOptions[] = [{
       label: "Application",
       submenu: [
-        { label: "About", role: "about" },
+        { label: "About", click: () => {
+          WindowAbout.show();
+        }},
         { type: "separator" },
         { label: "Quit", accelerator: "Command+Q", click: () => {
           if(this.handler.quit) {

@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja">
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Style-Type" content="text/css"/>
+    <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <% if (htmlWebpackPlugin.options.exist_dll) { %><script type="text/javascript" src="vendor.dll.js"></script><% } %>
+    <script type="text/javascript" src="about.build.js"></script>
+  </body>
+</html>
+
