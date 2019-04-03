@@ -16,6 +16,7 @@
   "scripts": {
     <% if (framework_type === "React") { %>
     "__prebuild": "npm run mkdir && npm run link",
+    "init": "npm install && npm run build",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "build:app:stag": "npm run __prebuild && webpack --mode development --progress --config webpack/webpack.app.config.js",
     "build:app:prod": "npm run __prebuild && webpack --mode production  --progress --config webpack/webpack.app.config.js",
@@ -36,7 +37,6 @@
     "analyze": "npm run analyze:app:stag",
     "release": "npm run build:all:prod",
     "export": "npm run build:prod && ./scripts/export/export.py",
-    "init": "yarn && npm run build",
     "serve": "webpack-dev-server --mode development --config webpack/webpack.app.config.js",
     "serve:prod": "webpack-dev-server --mode production --config webpack/webpack.app.config.js",
     "uwsgi": "uwsgi --ini $(pwd)/misc/conf/uwsgi/uwsgi_app.ini --chdir $(pwd)",
@@ -56,20 +56,22 @@
     <% } %>
 
     <% } else if (framework_type === "React Native") { %>
+    "init": "npm install"
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "init": "yarn"
 
     <% } else if (framework_type === "Electron") { %>
     "__prebuild": "npm run mkdir && npm run link",
+    "init": "npm install && npm run build",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "build:app": "webpack --mode development --progress --config webpack/webpack.app.config.js",
     "build:dll": "webpack --mode development --progress --config webpack/webpack.dll.config.js",
     "build:all": "npm run build:dll && npm run build:app",
     "build": "npm run __prebuild && npm run build:app",
-    "init": "yarn && npm run build",
+    "ts:check": "tsc --build tsconfig.json -v",
+    "ts:watch": "tsc --build tsconfig.json -v -w",
     "release:mac": "electron-builder --mac --x64",
     "release:win": "electron-builder --win --x64",
     "release:linux": "electron-builder --linux --x64",
@@ -164,6 +166,7 @@
     "electron-debug": "https://github.com/miyaizu/electron-debug.git",
     "electron-hotkey": "0.0.1-alpha.1",
     "electron-reload": "^1.3.0",
+    "electron-store": "^3.1.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
     "mobx": "^5.9.0",
@@ -256,6 +259,7 @@
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
+    "@types/electron-store": "^1.3.1",
     "@types/lodash": "^4.14.121",
     "@types/node": "^11.9.4",
     "@types/react": "^16.8.4",

@@ -2,7 +2,7 @@
 
 import {ipcMain, BrowserWindow} from "electron";
 
-import IPCKeys from "src/common/ipc/ipckeys";
+import IPCKeys from "src/core_main/ipc/keys";
 import WindowManager from "src/core_main/window_manager";
 
 
@@ -30,8 +30,8 @@ export default class WindowBase {
 
   setEventHandler() {
     const __setEventHandler = (ipc_name: string, method_name: string) => {
-      const ipckey = (<any>IPCKeys)["window"][this.ipc_label][ipc_name];
-      const method = (<any>this)[method_name];
+      const ipckey = (IPCKeys as any)["window"][this.ipc_label][ipc_name];
+      const method = (this as any)[method_name];
       if(!ipckey || !method) return;
       ipcMain.on(ipckey, method.bind(this));
     };
@@ -71,13 +71,13 @@ export default class WindowBase {
     }
 
     this.window_info.show();
-    this.window_info.webContents.send((<any>IPCKeys)["window"][this.ipc_label]["ShownWindow"]);
+    this.window_info.webContents.send((IPCKeys as any)["window"][this.ipc_label]["ShownWindow"]);
     this.visible = true;
   }
 
   close() {
     this.window_info.hide();
-    this.window_info.webContents.send((<any>IPCKeys)["window"][this.ipc_label]["ClosedWindow"]);
+    this.window_info.webContents.send((IPCKeys as any)["window"][this.ipc_label]["ClosedWindow"]);
     this.visible = false;
   }
 

@@ -1,22 +1,18 @@
 // src/core_main/entry/index.ts
 
-"use strict";
-
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
-
-
-import url from "url";
-
 import {app, BrowserWindow, globalShortcut, ipcMain} from "electron";
 import ElectronDebug from "electron-debug";
 import _ from "lodash";
 
 import myutil from "src/common/myutil";
-import IPCKeys from "src/common/ipc/ipckeys";
-import AppMenu from "../menu";
-import AppTray from "../tray";
-import WindowManager from "../window_manager";
-import WindowMain from "../window/main"
+import IPCKeys from "src/core_main/ipc/keys";
+import AppMenu from "src/core_main/menu";
+import AppTray from "src/core_main/tray";
+import WindowManager from "src/core_main/window_manager";
+import WindowMain from "src/core_main/window/main"
+
+
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
 
 if(myutil.isDev()) {

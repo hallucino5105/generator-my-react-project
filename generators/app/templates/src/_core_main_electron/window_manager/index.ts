@@ -4,7 +4,7 @@
 import path from "path";
 import {app, BrowserWindow} from "electron";
 
-import IPCKeys from "src/common/ipc/ipckeys";
+import IPCKeys from "src/core_main/ipc/keys";
 import Entry from "src/core_main/entry";
 
 
@@ -117,7 +117,7 @@ class WindowManager {
 
     for(const [wid, win] of this.windows) {
       if(wid === exclude_wid) continue;
-      win.webContents.send((<any>IPCKeys)["UpdateWindowID"], wids);
+      win.webContents.send((IPCKeys as any)["UpdateWindowID"], wids);
     }
   }
 }

@@ -1,6 +1,6 @@
 // src/core_main/window/main.ts
 
-import WindowBase from "./base";
+import WindowBase from "./_base";
 
 
 class WindowMain extends WindowBase {
