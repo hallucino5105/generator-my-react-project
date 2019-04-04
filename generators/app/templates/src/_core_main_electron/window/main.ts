@@ -10,12 +10,12 @@ class WindowMain extends WindowBase {
 
   createWindow() {
     return super.createWindow({
-      width: 0,
-      height: 0,
+      width: 800,
+      height: 600,
       html: "main.html",
       resizeable: true,
       center: false,
-      hide: true,
+      hide: false,
     });
   }
 }

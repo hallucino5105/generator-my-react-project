@@ -7,7 +7,7 @@
 
 import React from "react";
 
-import electron, {ipcRenderer} from "electron";
+import electron from "electron";
 import ElectronStore from "electron-store";
 
 import _ from "lodash";
@@ -224,7 +224,7 @@ class AppConfigProxy {
     this.uid = myutil.uuid();
 
     if(!AppConfigProxy.isMainProcess()) {
-      this.ipc_renderer = ipcRenderer;
+      this.ipc_renderer = require("electron").ipcRenderer;
     }
 
     myutil.dlog("app config proxy uid:", this.uid);

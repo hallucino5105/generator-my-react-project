@@ -12,7 +12,7 @@ import WindowManager from "src/core_main/window_manager";
 import WindowMain from "src/core_main/window/main"
 
 
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
+//process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
 
 if(myutil.isDev()) {
@@ -82,7 +82,6 @@ class Entry {
         this.shutdown();
       }
     }
-
     app.on("ready", () => {
       this.prepare();
     });

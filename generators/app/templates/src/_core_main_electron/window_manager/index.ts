@@ -2,10 +2,14 @@
 
 
 import path from "path";
+import url from "url";
 import {app, BrowserWindow} from "electron";
 
+import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
 import Entry from "src/core_main/entry";
+
+import config from "config.json";
 
 
 const rootpath = `${__dirname}`;
@@ -59,7 +63,7 @@ class WindowManager {
 
     const wid = win.id;
 
-    win.on("close", e => {
+    win.on("close", (e: Event) => {
       if(process.platform === "darwin") {
         if(!this.entry_instance.force_quit) {
           e.preventDefault();
@@ -74,14 +78,17 @@ class WindowManager {
 
     this.windows.set(wid, win);
 
-    const html_file = options.html;
-    const html_path = path.join(rootpath, html_file);
-
     if(options.hide || options.hide_until_loading_complete) {
       win.hide();
     }
 
-    win.loadURL(`file://${html_path}#${wid}`);
+    //const html_path = myutil.isDev()
+    //  ? `http://${config.serve.dev.host}:${config.serve.dev.port}/${options.html}`
+    //  : `file://${path.join(rootpath, options.html)}#${wid}`;
+
+    const html_path = `file://${path.join(rootpath, options.html)}#${wid}`;
+
+    win.loadURL(html_path);
 
     if(options.hide_until_loading_complete) {
       win.webContents.on("did-finish-load", () => {

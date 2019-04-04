@@ -3,7 +3,7 @@
 import {app, Tray, Menu} from "electron";
 
 
-const rootpath = `${__dirname}/..`;
+const rootpath = `${__dirname}`;
 
 
 class AppTray {
