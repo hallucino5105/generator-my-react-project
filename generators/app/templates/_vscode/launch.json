@@ -10,22 +10,21 @@
       "request": "launch",
       "sourceMaps": true,
       "stopOnEntry": false,
-      "cwd": "${workspaceRoot}",
-      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-      "windows": {
-        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-      },
+      "console": "integratedTerminal",
       "env": {
         "ELECTRON_ENV": "development",
         "NODE_ENV": "development",
         "DEBUG": "true"
       },
-      "runtimeArgs": [
-        "--enable-logging"
-      ],
-      "args": ["."],
-      "protocol": "inspector",
-      "console": "integratedTerminal"
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+      },
+      "program": "${workspaceRoot}/src/core_main/entry/index.ts",
+      "outFiles": [
+         "${workspaceFolder}/dist/**/*.js"
+      ]
     }
   ]
 }

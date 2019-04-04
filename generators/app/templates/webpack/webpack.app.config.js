@@ -86,7 +86,7 @@ const __exports = (env, argv) => {
 
   const generate_entry = (() => {
     let common_setting = {
-      cache: true,
+      //cache: true,
       mode: argv.mode,
       devtool: "source-map",
 
@@ -133,7 +133,7 @@ const __exports = (env, argv) => {
           use: [{
             loader: "babel-loader",
             options: {
-              cacheDirectory: true,
+              //cacheDirectory: true,
               presets: ["@babel/preset-react", ["@babel/preset-env", {
                 modules: false,
                 useBuiltIns: "usage",
@@ -260,9 +260,9 @@ const __exports = (env, argv) => {
         },
       }),
 
-      new HardSourceWebpackPlugin({
-        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      }),
+      //new HardSourceWebpackPlugin({
+      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      //}),
 
       //new ForkTsCheckerWebpackPlugin({
       //  tsconfig: __paths.tsconfig,
