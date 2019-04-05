@@ -43,7 +43,7 @@ export default class WindowBase {
   }
 
 
-  createWindow(options: object) {
+  createWindow(options: object): BrowserWindow {
     this.window_info = WindowManager.createNewWindow({
       width: 800,
       height: 600,
@@ -59,6 +59,15 @@ export default class WindowBase {
     this.window_info.on("hide", () => this.visible = false);
 
     return this.window_info;
+  }
+
+  createWindowAsync(options: object): Promise<BrowserWindow> {
+    return new Promise((resolve, reject) => {
+      const win = this.createWindow(options);
+      win.webContents.on("did-finish-load", () => {
+        resolve(win);
+      });
+    });
   }
 
   show(focus_current_screen=true) {

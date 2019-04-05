@@ -6,10 +6,12 @@ import _ from "lodash";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
+import AppConfig from "src/core_main/app_config";
 import AppMenu from "src/core_main/menu";
 import AppTray from "src/core_main/tray";
 import WindowManager from "src/core_main/window_manager";
-import WindowMain from "src/core_main/window/main"
+import WindowMain from "src/core_main/window/main";
+import WindowAbout from "src/core_main/window/about";
 
 
 //process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
@@ -29,18 +31,20 @@ class Entry {
   constructor() {
     this.wins = {};
     this.force_quit = false;
+
+    AppConfig.initialize();
+    WindowManager.initialize(this);
   }
 
-  createWindow() {
-    WindowManager.initialize(this);
-
-    this.wins = {
-      main: WindowMain.createWindow(),
-    };
+  async createWindow() {
+    this.wins.main = await WindowMain.createWindowAsync();
+    this.wins.about = await WindowAbout.createWindowAsync();
 
     if(_.filter(this.wins, win => !win).length > 0) {
       throw Error("Window creation did not end normally.");
     }
+
+    AppConfig.initializeLazy();
   }
 
   createMenu() {
