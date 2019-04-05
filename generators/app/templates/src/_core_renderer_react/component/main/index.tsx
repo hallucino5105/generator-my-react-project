@@ -3,7 +3,7 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 
-import * as config from "config.json";
+import config from "config.json";
 import {StateThemeType} from "src/core_renderer/state/theme";
 
 

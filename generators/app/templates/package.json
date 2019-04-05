@@ -2,9 +2,9 @@
   "name": "<%= projname %>",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "React application",
   "keywords": [],
-  "author": "",
+  "author": "Hohshino",
   "license": "MIT",
   <% if (framework_type === "React") { %>
   "main": "index.js",

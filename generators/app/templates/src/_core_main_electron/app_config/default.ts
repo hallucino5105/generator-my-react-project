@@ -11,60 +11,19 @@ export interface SizeType {
 }
 
 export interface AppConfigType {
-  store_version: number,
-  window: {
-    size: {
-      search: {
-        main: SizeType,
-        subpanel: SizeType,
-      },
-      app_config: {
-        main: SizeType,
-      },
-      about: {
-        main: SizeType,
-      },
-    },
-    position: PositionType,
-  },
-  general: {
-    call_hotkey: {
-			modifier: string[],
-			main: string,
-			accelerator: string,
-    },
-    keep_window_focus_out: boolean,
-    enable_drag_search_window: boolean,
-    auto_launch: boolean,
-  },
+  [k: string]: any,
 }
 
 
 const data: AppConfigType = {
-  store_version: 27,
+  store_version: 29,
 
   window: {
     size: {
-      search: {
-        main: {
-          width: 600,
-          height: 65
-        },
-        subpanel: {
-          width: 600,
-          height: 60,
-        },
-      },
-      app_config: {
-        main: {
-          width: 650,
-          height: 400,
-        },
-      },
       about: {
         main: {
           width: 400,
-          height: 450,
+          height: 500,
         },
       },
     },
