@@ -100,8 +100,6 @@ class AppConfig {
         this.store.set(app_config_default);
       } else {
         if(old_store_version < new_store_version) {
-          const a = app_config_default;
-
           const old_store = _.cloneDeep(this.store.store);
           const new_store = _.merge({}, old_store, app_config_default);
 

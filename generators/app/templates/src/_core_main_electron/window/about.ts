@@ -12,7 +12,7 @@ class WindowAbout extends WindowBase {
 
     this.window_options = {
       html: "about.html",
-      resizeable: true,
+      resizeable: false,
       center: true,
     };
   }
