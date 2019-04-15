@@ -56,11 +56,11 @@
     <% } %>
 
     <% } else if (framework_type === "React Native") { %>
-    "init": "npm install"
+    "init": "npm install",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject",
+    "eject": "expo eject"
 
     <% } else if (framework_type === "Electron") { %>
     "__prebuild": "npm run mkdir && npm run link",
