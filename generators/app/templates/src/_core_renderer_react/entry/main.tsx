@@ -16,7 +16,7 @@ document.body.appendChild(node);
 
 // sync rendering
 render((
-  <Provider {...stores} >
+  <Provider {...stores}>
     <Main />
   </Provider>
 ), node);
