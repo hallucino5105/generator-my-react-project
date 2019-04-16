@@ -4,13 +4,16 @@
 *.swp
 *.log
 *.lock
+.activate
 
-__pycache__
+.cache/
+.expo/
+.env/
+__pycache__/
 node_modules/
 stag/
 prod/
 dist/
-.cache/
 
 yarn.lock
 package-lock.json
