@@ -23,7 +23,10 @@
     "typeRoots" : [
       "node_modules/@types",
       "./src/typings"
-    ]
+    ],
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "include": [
     "src/**/*"
