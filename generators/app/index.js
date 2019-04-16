@@ -127,9 +127,6 @@ module.exports = class extends Generator {
       ["VERSION"      , "VERSION"      , this.props],
       ["package.json" , "package.json" , this.props],
       ["config.json"  , "config.json"  , this.props],
-
-      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
-      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
     ]);
   }
 
@@ -140,6 +137,8 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/component/main" , "src/core_renderer/component/main" , null],
       ["src/_core_renderer_react/entry/main.tsx" , "src/core_renderer/entry/main.tsx" , null],
       ["src/_core_renderer_react/entry/main.ejs" , "src/core_renderer/entry/main.ejs" , null],
+      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
+      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
     ]);
   }
 
@@ -158,6 +157,8 @@ module.exports = class extends Generator {
   _writing_electron() {
     this._copy_target([
       ["src/_core_main_electron"  , "src/core_main"     , null],
+      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
+      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
 
       ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
