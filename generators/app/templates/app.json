@@ -23,7 +23,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "local.anonymous.myproj"
+    },
+    "android": {
+      "package": "local.anonymous.myproj"
     }
   }
 }
