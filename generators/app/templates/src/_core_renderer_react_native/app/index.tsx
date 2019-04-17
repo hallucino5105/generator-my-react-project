@@ -4,7 +4,7 @@ import React from "react";
 import {Provider} from "mobx-react";
 import {StyleSheet, Text, View} from "react-native";
 
-import stores from "src/core_renderer/store";
+import stores from "../store";
 
 
 interface AppProps {

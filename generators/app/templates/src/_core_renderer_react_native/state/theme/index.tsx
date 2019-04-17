@@ -3,7 +3,7 @@
 import _ from "lodash";
 import {observable, computed, action} from "mobx";
 
-import themes from "src/assets/theme/default";
+import themes from "../../../assets/theme/default";
 
 
 export interface StateThemeType {

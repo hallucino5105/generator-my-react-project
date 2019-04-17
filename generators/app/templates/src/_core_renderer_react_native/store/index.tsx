@@ -1,9 +1,11 @@
 // src/core_renderer/store/index.tsx
 
-import state_theme from "src/core_renderer/state/theme";
+import state_config from "../state/config";
+import state_theme from "../state/theme";
 
 
 const stores = {
+  state_config,
   state_theme,
 };
 
