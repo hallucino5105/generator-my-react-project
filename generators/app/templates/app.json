@@ -28,6 +28,9 @@
     },
     "android": {
       "package": "local.anonymous.myproj"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content"
     }
   }
 }
