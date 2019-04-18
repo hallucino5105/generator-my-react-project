@@ -5,13 +5,8 @@ import {observable, computed, action} from "mobx";
 import {NavigationNavigator, NavigationActions} from "react-navigation";
 
 
-export interface StateNaviType {
-  _navigation: NavigationActions;
-}
-
-
 class StateNavi {
-  @observable.ref _navigation: StateNaviType;
+  @observable.ref _navigation: NavigationActions;
 
   @computed
   get navigation() {

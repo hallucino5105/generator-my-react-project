@@ -6,13 +6,8 @@ import {observable, computed, action} from "mobx";
 import themes from "../../../assets/theme/default";
 
 
-export interface StateThemeType {
-  theme: any;
-}
-
-
 class StateTheme {
-  @observable theme: object = StateTheme.getDefaultTheme();
+  @observable _theme: any = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
     let default_theme = _.find(themes, (value:any, key:any) => {
@@ -24,6 +19,11 @@ class StateTheme {
     }
 
     return default_theme;
+  }
+
+  @computed
+  get theme() {
+    return this._theme;
   }
 }
 
