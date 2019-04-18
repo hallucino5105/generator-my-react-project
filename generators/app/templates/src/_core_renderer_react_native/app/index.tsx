@@ -9,6 +9,22 @@ import {createStackNavigator, createAppContainer} from "react-navigation";
 import stores from "../store";
 
 
+const MainNavigator = createAppContainer(createStackNavigator({
+  AppRoot: {
+    screen: DummyRootComponent,
+  },
+}, {
+  initialRouteName: "AppRoot",
+  defaultNavigationOptions: {
+    header: null,
+  },
+}));
+
+const MainNavigatorRefHandler = (navigator: NavigationNavigator) => {
+  stores.state_navi.setNavigator(navigator);
+};
+
+
 interface AppProps {}
 
 export default class App extends React.Component<AppProps> {
@@ -32,7 +48,7 @@ export default class App extends React.Component<AppProps> {
       <AppLoading />
     ) : (
       <Provider {...stores}>
-        <MainNavigator />
+        <MainNavigator ref={MainNavigatorRefHandler} />
       </Provider>
     );
   }
@@ -49,17 +65,4 @@ const DummyRootComponent: React.SFC<{}> = props => (
     <Text>Open up App.js to start working on your app !</Text>
   </View>
 );
-
-
-const MainNavigator = createAppContainer(createStackNavigator({
-  AppRoot: {
-    screen: DummyRootComponent,
-  },
-}, {
-  initialRouteName: "AppRoot",
-  defaultNavigationOptions: {
-    header: null,
-  },
-}));
-
 
