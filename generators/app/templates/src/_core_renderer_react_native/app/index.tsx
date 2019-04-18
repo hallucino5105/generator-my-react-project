@@ -1,42 +1,65 @@
 // src/core_renderer/app/index.tsx
 
+import {Font, AppLoading} from "expo";
 import React from "react";
+import {View, Text} from "react-native";
 import {Provider} from "mobx-react";
-import {StyleSheet, Text, View, KeyboardAvoidingView} from "react-native";
+import {createStackNavigator, createAppContainer} from "react-navigation";
 
 import stores from "../store";
 
 
-interface AppProps {
-}
+interface AppProps {}
 
 export default class App extends React.Component<AppProps> {
-  styles = StyleSheet.create({
-    keyboard_avoiding_view: {
-      flex: 1,
-    },
+  state = {
+    loaded: false,
+  };
 
-    container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-  });
+  async componentWillMount() {
+    await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+    });
+
+    this.setState({
+      loaded: true,
+    });
+  }
 
   render() {
-    return (
+    return !this.state.loaded ? (
+      <AppLoading />
+    ) : (
       <Provider {...stores}>
-        <KeyboardAvoidingView
-          style={this.styles.keyboard_avoiding_view}a
-          behavior="padding"
-        >
-          <View style={this.styles.container}>
-            <Text>Open up App.js to start working on your app !</Text>
-          </View>
-        </KeyboardAvoidingView>
+        <MainNavigator />
       </Provider>
     );
   }
 }
+
+
+const DummyRootComponent: React.SFC<{}> = props => (
+  <View style={{
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+  }}>
+    <Text>Open up App.js to start working on your app !</Text>
+  </View>
+);
+
+
+const MainNavigator = createAppContainer(createStackNavigator({
+  AppRoot: {
+    screen: DummyRootComponent,
+  },
+}, {
+  initialRouteName: "AppRoot",
+  defaultNavigationOptions: {
+    header: null,
+  },
+}));
+
 
