@@ -127,9 +127,6 @@ module.exports = class extends Generator {
       ["VERSION"      , "VERSION"      , this.props],
       ["package.json" , "package.json" , this.props],
       ["config.json"  , "config.json"  , this.props],
-
-      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
-      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
     ]);
   }
 
@@ -140,6 +137,9 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/component/main" , "src/core_renderer/component/main" , null],
       ["src/_core_renderer_react/entry/main.tsx" , "src/core_renderer/entry/main.tsx" , null],
       ["src/_core_renderer_react/entry/main.ejs" , "src/core_renderer/entry/main.ejs" , null],
+
+      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
+      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
     ]);
   }
 
@@ -166,6 +166,9 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/entry/main.ejs"  , "src/core_renderer/entry/main.ejs"  , null],
       ["src/_core_renderer_react/entry/about.tsx" , "src/core_renderer/entry/about.tsx" , null],
       ["src/_core_renderer_react/entry/about.ejs" , "src/core_renderer/entry/about.ejs" , null],
+
+      ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
+      ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
 
       ["_vscode"     , ".vscode"     , null],
       ["gulpfile.js" , "gulpfile.js" , null],
