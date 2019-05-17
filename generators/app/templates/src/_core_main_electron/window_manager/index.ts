@@ -61,6 +61,7 @@ class WindowManager {
       hasShadow: options.shadow,
       webPreferences: {
         nodeIntegration: true,
+        enableRemoteModule: true,
       },
     });
 
