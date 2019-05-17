@@ -91,8 +91,8 @@ class AppConfig {
       this.store.set(app_config_default);
       myutil.dlog("load default store values");
     } else {
-      const old_store_version = parseInt(this.store.get("store_version"));
-      const new_store_version = app_config_default.store_version;
+      const old_store_version: number = parseInt(this.store.get("store_version") as string);
+      const new_store_version: number = app_config_default.store_version;
 
       if(_.isNil(old_store_version) || _.isNil(new_store_version)) {
         console.warn("Undefined store version");
