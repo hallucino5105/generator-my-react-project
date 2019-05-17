@@ -87,6 +87,7 @@ export default class About extends React.Component<AboutPropsType> {
             <div>{`Released under the ${package_json.license} license`}</div>
           </CenteringContainer>
 
+          {/* electron 5.0.0 にアップデートしたらprocess objectが見つからない
           <CenteringContainer style={{ fontSize: "0.75rem" }}>
             <Style>
               {`
@@ -109,6 +110,7 @@ export default class About extends React.Component<AboutPropsType> {
               </tbody></table>
             </Style>
           </CenteringContainer>
+          */}
         </div>
       </div>
     );
