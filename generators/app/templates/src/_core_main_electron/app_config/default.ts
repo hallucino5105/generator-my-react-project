@@ -16,14 +16,14 @@ export interface AppConfigType {
 
 
 const data: AppConfigType = {
-  store_version: 31,
+  store_version: 32,
 
   window: {
     size: {
       about: {
         main: {
           width: 400,
-          height: 400,
+          height: 500,
         },
       },
     },

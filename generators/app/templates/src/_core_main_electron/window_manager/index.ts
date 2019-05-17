@@ -59,6 +59,9 @@ class WindowManager {
       resizable: options.resizeable,
       frame: options.frame,
       hasShadow: options.shadow,
+      webPreferences: {
+        nodeIntegration: true,
+      },
     });
 
     const wid = win.id;
