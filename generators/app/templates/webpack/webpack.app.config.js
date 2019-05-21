@@ -236,9 +236,8 @@ const __exports = (env, argv) => {
     };
 
     const common_plugin = [
-      new WebpackNotifierPlugin({
-        title: "Webpack app",
-        alwaysNotify: true,
+      new FilterWarningsPlugin({
+        exclude: /Critical dependency: the request of a dependency is an expression/,
       }),
 
       new ExtractTextPlugin("styles.css"),
@@ -261,8 +260,9 @@ const __exports = (env, argv) => {
         },
       }),
 
-      new FilterWarningsPlugin({
-        exclude: /Critical dependency: the request of a dependency is an expression/,
+      new WebpackNotifierPlugin({
+        title: "Webpack app",
+        alwaysNotify: true,
       }),
 
       //new HardSourceWebpackPlugin({
