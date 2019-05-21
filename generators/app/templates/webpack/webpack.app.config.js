@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
@@ -258,6 +259,10 @@ const __exports = (env, argv) => {
             }),
           ],
         },
+      }),
+
+      new FilterWarningsPlugin({
+        exclude: /Critical dependency: the request of a dependency is an expression/,
       }),
 
       //new HardSourceWebpackPlugin({
