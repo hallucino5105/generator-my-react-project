@@ -1,21 +1,7 @@
 // src/electron/ipckeys.jsx
 
 interface IPCKeyType {
-  window_manager: {
-    [k: string]: string,
-  },
-
-  window: {
-    main: {
-      [k: string]: string,
-    },
-    about: {
-      [k: string]: string,
-    },
-  },
-  app_config: {
-    [k: string]: string,
-  },
+  [k: string]: any,
 }
 
 
