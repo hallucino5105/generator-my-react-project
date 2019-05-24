@@ -35,17 +35,6 @@ const data: AppConfigType = {
   },
 
   general: {
-    call_hotkey: {
-			modifier: [
-				"shift",
-				"cmdorctrl",
-			],
-			main: "space",
-			accelerator: "shift+cmdorctrl+space",
-    },
-
-    keep_window_focus_out: false,
-    enable_drag_search_window: false,
     auto_launch: false,
   },
 };
