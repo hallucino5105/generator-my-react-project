@@ -7,7 +7,7 @@ import themes from "src/assets/theme/default";
 
 
 class StateTheme {
-  @observable theme: object = StateTheme.getDefaultTheme();
+  @observable theme: any = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
     let default_theme = _.find(themes, (value:any, key:any) => {
