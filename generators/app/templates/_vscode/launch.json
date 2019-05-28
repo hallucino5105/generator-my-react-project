@@ -25,6 +25,25 @@
       "outFiles": [
          "${workspaceFolder}/dist/**/*.js"
       ]
+    },
+    {
+      "name": "Debug Renderer Process",
+      "type": "chrome",
+      "request": "launch",
+      "sourceMaps": true,
+      "env": {
+        "ELECTRON_ENV": "development",
+        "NODE_ENV": "development",
+        "DEBUG": "true"
+      },
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+      },
+      "runtimeArgs": [
+        "${workspaceRoot}/src/core_renderer/entry/main.tsx",
+        "--remote-debugging-port=9222"
+      ]
     }
   ]
 }
