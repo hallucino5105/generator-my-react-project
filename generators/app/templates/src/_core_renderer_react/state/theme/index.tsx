@@ -12,10 +12,10 @@ export interface ThemesType {
 
 
 class StateTheme {
-  @observable theme: any = StateTheme.getDefaultTheme();
+  @observable theme: ThemesType = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
-    let default_theme = _.find(themes, (value:any, key:any) => {
+    let default_theme = _.find(themes, (value: any, key: any) => {
       return key === "default";
     });
 
