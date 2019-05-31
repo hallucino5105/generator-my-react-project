@@ -7,7 +7,7 @@ import themes from "src/assets/theme/default";
 
 
 export interface ThemesType {
-  [key: string]: object;
+  [key: string]: any;
 }
 
 
