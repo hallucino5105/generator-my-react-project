@@ -5,11 +5,12 @@ import {inject, observer} from "mobx-react";
 import Style from "style-it";
 
 import package_json from "package.json";
+import {ThemesType} from "src/core_renderer/state/theme;
 import AppIcon from "src/assets/image/icon.png";
 
 
 export interface AboutPropsType {
-  state_theme?: any;
+  state_theme?: ThemesType;
 }
 
 
