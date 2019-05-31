@@ -6,6 +6,11 @@ import {observable, computed, action} from "mobx";
 import themes from "src/assets/theme/default";
 
 
+export interface ThemesType {
+  [key: string]: object;
+}
+
+
 class StateTheme {
   @observable theme: any = StateTheme.getDefaultTheme();
 

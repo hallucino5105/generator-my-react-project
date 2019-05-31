@@ -1,8 +1,7 @@
 // src/assets/theme/default.ts
 
-export interface ThemesType {
-  [key: string]: object;
-}
+import {ThemesType} from "src/core_renderer/state/theme";
+
 
 const themes: ThemesType = {
   default: {
