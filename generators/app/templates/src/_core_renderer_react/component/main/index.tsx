@@ -15,6 +15,10 @@ export interface MainPropsType {
 @inject("state_theme")
 @observer
 export default class Main extends React.Component<MainPropsType> {
+  static defaultProps: MainPropsType = {
+    state_theme: undefined,
+  };
+
   render() {
     const {theme} = this.props.state_theme!;
 
