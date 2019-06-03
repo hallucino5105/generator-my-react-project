@@ -6,12 +6,21 @@ import {observable, computed, action} from "mobx";
 import config from "../../../../config.json";
 
 
+export interface StateConfigBodyType {
+  [key: string]: any;
+}
+
+export interface StateConfigType {
+  config: StateConfigBodyType;
+}
+
+
 class StateConfig {
-  @observable _config: any = config;
+  @observable config: any = config;
 
   @computed
-  get config() {
-    return this._config;
+  get getConfig() {
+    return this.config;
   }
 }
 
