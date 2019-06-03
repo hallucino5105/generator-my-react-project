@@ -6,7 +6,7 @@ import {observable, computed, action} from "mobx";
 import themes from "src/assets/theme/default";
 
 
-export interface ThemesType {
+export interface StateThemeType {
   [key: string]: any;
 }
 

@@ -4,11 +4,11 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 
 import config from "config.json";
-import {ThemesType} from "src/core_renderer/state/theme";
+import {StateThemeType} from "src/core_renderer/state/theme";
 
 
 export interface MainPropsType {
-  state_theme?: ThemesType;
+  state_theme?: StateThemeType;
 }
 
 
