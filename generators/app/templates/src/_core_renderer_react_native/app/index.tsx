@@ -6,7 +6,7 @@ import {Provider} from "mobx-react";
 import {createStackNavigator, createAppContainer} from "react-navigation";
 
 import stores from "../store";
-import DummyComponent from "./dummy";
+import DummyComponent from "../component/dummy";
 
 
 const MainNavigator = createAppContainer(createStackNavigator({
