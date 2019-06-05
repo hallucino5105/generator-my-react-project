@@ -1,6 +1,5 @@
 // src/core_renderer/app/index.tsx
 
-import {Font} from "expo";
 import React from "react";
 import {Provider} from "mobx-react";
 import {createStackNavigator, createAppContainer} from "react-navigation";
