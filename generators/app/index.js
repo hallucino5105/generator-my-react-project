@@ -150,6 +150,7 @@ module.exports = class extends Generator {
       ["babel.config.js"  , "babel.config.js"  , null],
       ["rn-cli.config.js" , "rn-cli.config.js" , null],
       ["metro.config.js"  , "metro.config.js"  , null],
+      ["index.js"         , "index.js"         , null],
 
       ["app.json" , "app.json" , this.props],
     ]);
