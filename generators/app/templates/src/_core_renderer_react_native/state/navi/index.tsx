@@ -20,7 +20,9 @@ class StateNavi {
 
   @action.bound
   setNavigator(navigator: NavigationNavigator) {
-    this.navigation = navigator._navigation;
+    if(navigator) {
+      this.navigation = navigator._navigation;
+    }
   }
 }
 
