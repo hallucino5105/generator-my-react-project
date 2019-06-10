@@ -1,4 +1,4 @@
-// src/core_renderer/store/index.tsx
+// src/core_renderer/store/index.ts
 
 import state_theme from "src/core_renderer/state/theme";
 
