@@ -1,9 +1,9 @@
 // src/assets/theme/default.ts
 
-import {ThemesType} from "src/core_renderer/state/theme";
+import {StateThemeBodyType} from "src/core_renderer/state/theme";
 
 
-const themes: ThemesType = {
+const themes: StateThemeBodyType = {
   default: {
     fg: "#111",
     bg: "#fff",

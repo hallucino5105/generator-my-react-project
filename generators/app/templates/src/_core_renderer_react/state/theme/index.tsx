@@ -7,7 +7,7 @@ import themes from "src/assets/theme/default";
 
 
 export interface StateThemeBodyType {
-  [key: string]: any;
+  [key: any]: any;
 }
 
 export interface StateThemeType {
