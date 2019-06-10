@@ -88,6 +88,10 @@
   "directories": {
     "test": "test/"
   },
+  "browserslist": [
+   "last 1 version",
+   "not dead"
+  ],
   <% if (framework_type === "Electron") { %>
   "build": {
     "productName": "electronapp",

@@ -246,28 +246,14 @@ const __exports = (env, argv) => {
         $: "jquery",
       }),
 
-      new webpack.LoaderOptionsPlugin({
-        options: {
-          postcss: [
-            autoprefixer({
-              browsers: [
-                "> 1%",
-                "last 2 versions",
-                "ie >= 9",
-              ],
-            }),
-          ],
-        },
-      }),
-
       new WebpackNotifierPlugin({
         title: "Webpack app",
         alwaysNotify: true,
       }),
 
-      //new HardSourceWebpackPlugin({
-      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      //}),
+      new HardSourceWebpackPlugin({
+        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      }),
 
       //new ForkTsCheckerWebpackPlugin({
       //  tsconfig: __paths.tsconfig,

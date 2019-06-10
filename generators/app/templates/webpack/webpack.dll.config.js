@@ -99,20 +99,6 @@ const __exports = function(env, argv) {
         path: __paths.dll_vendor,
         name: "vendor_lib",
       }),
-
-      new webpack.LoaderOptionsPlugin({
-        options: {
-          postcss: [
-            autoprefixer({
-              browsers: [
-                "> 1%",
-                "last 2 versions",
-                "ie >= 9",
-              ],
-            }),
-          ],
-        },
-      }),
     ],
 
     module: {
