@@ -156,6 +156,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "resolve-url-loader": "^3.0.0",
+    "semantic-ui-react": "^0.87.1",
     "socket.io-client": "^2.2.0",
     "sprintf-js": "^1.1.2",
     "style-it": "^2.1.2"
@@ -192,6 +193,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.87.1",
     "socket.io-client": "^2.2.0",
     "sprintf-js": "^1.1.2",
     "style-it": "^2.1.3"
