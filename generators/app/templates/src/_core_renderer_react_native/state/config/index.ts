@@ -1,4 +1,4 @@
-// src/core_renderer/state/config/index.tsx
+// src/core_renderer/state/config/index.ts
 
 import _ from "lodash";
 import {observable, computed, action} from "mobx";

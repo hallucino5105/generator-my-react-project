@@ -1,4 +1,4 @@
-// src/core_renderer/state/navi/index.tsx
+// src/core_renderer/state/navi/index.ts
 
 import _ from "lodash";
 import {observable, computed, action} from "mobx";
