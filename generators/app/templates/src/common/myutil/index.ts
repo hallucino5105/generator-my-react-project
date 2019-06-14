@@ -1,13 +1,14 @@
-// src/common/myutil/index.jsx
+// src/common/myutil/index.ts
 
-import * as _ from "lodash";
+import _ from "lodash";
+import Logger from "js-logger";
 
 
-const isDev = () => {
+export const isDev = () => {
   return process.env.ELECTRON_ENV === "development";
 };
 
-const isDebug = () => {
+export const isDebug = () => {
   const debug = process.env.DEBUG as string | number | boolean;
 
   if(_.isString(debug)) {
@@ -27,12 +28,22 @@ const isDebug = () => {
   }
 };
 
-const dlog = (...args: any[]) => {
+export const mlog = (() => {
+  Logger.useDefaults({
+    defaultLevel: Logger.TRACE,
+    formatter: (messages: any[], context: any) => {
+      messages.unshift(`[${new Date().toLocaleString()}](${context.level.name})`);
+    },
+  });
+  return Logger;
+})();
+
+export const dlog = (...args: any[]) => {
   if(!isDebug()) return;
   console.log(...args);
 };
 
-const uuid = () => {
+export const uuid = () => {
   let chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
   for(let i = 0, len = chars.length; i < len; i++) {
     switch(chars[i]) {
@@ -48,7 +59,7 @@ const uuid = () => {
   return chars.join("");
 };
 
-const deepKeys = (obj: object): any[] => {
+export const deepKeys = (obj: object): any[] => {
   return Object.keys(obj)
     .filter(key => _.isPlainObject((obj as any)[key]))
     .map(key => deepKeys((obj as any)[key]).map(k => `${key}.${k}`))
@@ -59,8 +70,8 @@ const deepKeys = (obj: object): any[] => {
 export default {
   isDev,
   isDebug,
+  mlog,
   dlog,
   uuid,
   deepKeys,
 }
-
