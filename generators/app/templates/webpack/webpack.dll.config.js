@@ -197,7 +197,7 @@ const __exports = function(env, argv) {
   }
 
   if(build_target && build_target.match(/build.*/)) {
-    if(prod) {
+    //if(prod) {
       common_setting = merge({}, common_setting, {
         plugins: common_setting.plugins.concat([
           new CompressionPlugin({
@@ -205,7 +205,7 @@ const __exports = function(env, argv) {
           }),
         ]),
       });
-    }
+    //}
   }
 
   process.env.NODE_ENV = build_target;
