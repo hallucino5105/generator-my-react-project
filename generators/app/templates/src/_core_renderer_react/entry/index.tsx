@@ -1,4 +1,4 @@
-// src/core_renderer/entry/main.tsx
+// src/core_renderer/entry/index.tsx
 
 import "src/assets/sass/main.scss";
 
