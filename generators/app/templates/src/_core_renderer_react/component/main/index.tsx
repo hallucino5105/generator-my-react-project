@@ -2,6 +2,7 @@
 
 import React from "react";
 import {inject, observer} from "mobx-react";
+import {MemoryRouter as Router, Route, Switch} from "react-router-dom";
 
 import config from "config.json";
 import {StateThemeType} from "src/core_renderer/state/theme";
@@ -19,6 +20,17 @@ export default class Main extends React.Component<MainPropsType> {
     state_theme: undefined,
   };
 
+  renderRoute() {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/" exact render={() => <div>{config.title}</div>} />
+          <Route exact render={() => <div>page not found</div>} />
+        </Switch>
+      </Router>
+    );
+  }
+
   render() {
     const {theme} = this.props.state_theme!;
 
@@ -35,10 +47,8 @@ export default class Main extends React.Component<MainPropsType> {
         backgroundColor: theme.bg,
       }}>
 
-        <div style={{
-          padding: "10px",
-        }}>
-          {config.title}
+        <div style={{ padding: "10px" }}>
+          {this.renderRoute()}
         </div>
 
       </div>
