@@ -3,7 +3,7 @@
 import {StateThemeBodyType} from "src/core_renderer/state/theme";
 
 
-const themes: StateThemeBodyType = {
+const theme: StateThemeBodyType = {
   default: {
     fg: "#111",
     bg: "#fff",
@@ -23,5 +23,5 @@ const themes: StateThemeBodyType = {
 };
 
 
-export default themes;
+export default theme;
 
