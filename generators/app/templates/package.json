@@ -26,6 +26,8 @@
     "build:all:stag": "npm run build:dll:stag && npm run build:app:stag",
     "build:all:prod": "npm run build:dll:prod && npm run build:app:prod",
     "build:all": "npm run build:all:stag",
+    "build:stag": "npm run build:dll ; npm run build:app:stag",
+    "build:prod": "npm run build:app:prod",
     "build": "npm run build:app:stag",
     "analyze:app:stag": "npm run __prebuild && webpack --mode development --progress --config webpack/webpack.app.config.js",
     "analyze:app:prod": "npm run __prebuild && webpack --mode production --progress --config webpack/webpack.app.config.js",
