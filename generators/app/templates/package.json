@@ -37,24 +37,26 @@
     "analyze:dll": "npm run analyze:dll:stag",
     "analyze": "npm run analyze:app:stag",
     "release": "npm run build:all:prod",
-    "export": "npm run build:prod && ./scripts/export/export.py",
+    "export": "npm run build:prod && python ./scripts/export/export.py",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "serve": "webpack-dev-server --mode development --config webpack/webpack.app.config.js",
     "serve:prod": "webpack-dev-server --mode production --config webpack/webpack.app.config.js",
     "uwsgi": "uwsgi --ini $(pwd)/misc/conf/uwsgi/uwsgi_app.ini --chdir $(pwd)",
-    "mkdir": "mkdir -p stag && mkdir -p prod",
-    "version": "./scripts/version/version.py",
-    "version:update": "./scripts/version/update_version.py",
-    "link": "./scripts/link/link.py",
-    "module": "./scripts/module/gen_module.py",
+    "mkdir": "run-script-os",
+    "mkdir:default": "mkdir -p stag && mkdir -p prod",
+    "mkdir:win32": "mkdir stag && mkdir prod",
+    "version": "python ./scripts/version/version.py",
+    "version:update": "python ./scripts/version/update_version.py",
+    "link": "python ./scripts/link/link.py",
+    "module": "python ./scripts/module/gen_module.py",
+    "app": "python ./backend/app/app.py",
     "clean": "./scripts/clean/clean.sh",
-    "app": "./backend/app/app.py",
     <% if (enable_app) { %>
-    "start": "concurrently 'npm run app' 'npm run serve'",
-    "start:prod": "concurrently 'npm run app' 'npm run serve:prod'"
+    "start": "concurrently \"npm run app\" \"npm run serve\"",
+    "start:prod": "concurrently \"npm run app\" \"npm run serve:prod\""
     <% } else { %>
-    "start": "concurrently 'npm run serve'",
-    "start:prod": "concurrently 'npm run serve:prod'"
+    "start": "concurrently \"npm run serve\"",
+    "start:prod": "concurrently \"npm run serve:prod\""
     <% } %>
 
     <% } else if (framework_type === "React Native") { %>
@@ -76,16 +78,27 @@
     "release:mac": "electron-builder --mac --x64",
     "release:win": "electron-builder --win --x64",
     "release:linux": "electron-builder --linux --x64",
-    "release:all": "concurrently 'npm run release:mac' 'npm run release:win' 'npm run release:linux'",
-    "electron": "ELECTRON_ENV=development DEBUG=true gulp serve",
-    "app": "./app/app.py",
-    "link": "./scripts/link/link.py",
-    "mkdir": "mkdir -p dist",
+    "release:all": "concurrently \"npm run release:mac\" \"npm run release:win\" \"npm run release:linux\"",
+    "electron": "better-npm-run electron",
+    "app": "python ./app/app.py",
+    "link": "python ./scripts/link/link.py",
+    "mkdir": "run-script-os",
+    "mkdir:default": "mkdir -p dist",
+    "mkdir:win32": "mkdir dist",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "serve": "webpack-dev-server --mode development --config webpack/webpack.app.config.js",
-    "start": "concurrently 'npm run watch' 'npm run serve' 'npm run electron'",
-    "start2": "concurrently 'npm run watch' 'npm run serve'"
+    "start": "concurrently \"npm run watch\" \"npm run serve\" \"npm run electron\"",
+    "start2": "concurrently \"npm run watch\" \"npm run serve\""
     <% } %>
+  },
+  "betterScripts": {
+    "electron": {
+      "env": {
+        "ELECTRON_ENV": "development",
+        "DEBUG": "true"
+      },
+      "command": "gulp serve"
+    }
   },
   "directories": {
     "test": "test/"
@@ -224,6 +237,7 @@
     "autoprefixer": "^9.4.7",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "better-npm-run": "^0.1.1",
     "blueprint-css": "^3.1.0",
     "bufferutil": "^4.0.1",
     "compression-webpack-plugin": "^2.0.0",
@@ -253,6 +267,7 @@
     "react-hot-loader": "^4.6.5",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
+    "run-script-os": "^1.0.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
@@ -303,6 +318,7 @@
     "aws-sdk": "^2.457.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "better-npm-run": "^0.1.1",
     "browserify-css": "^0.14.0",
     "compression-webpack-plugin": "^2.0.0",
     "concurrently": "^4.1.0",
@@ -330,6 +346,7 @@
     "reactotron-react-js": "^3.2.1",
     "reactotron-redux": "^3.1.0",
     "resolve-url-loader": "^3.1.0",
+    "run-script-os": "^1.0.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.4",
