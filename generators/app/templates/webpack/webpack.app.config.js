@@ -254,14 +254,6 @@ const __exports = (env, argv) => {
       new HardSourceWebpackPlugin({
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
-
-      //new ForkTsCheckerWebpackPlugin({
-      //  tsconfig: __paths.tsconfig,
-      //  workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
-      //  tslint: false,
-      //  useTypescriptIncrementalApi: true,
-      //  measureCompilationTime: true,
-      //}),
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {

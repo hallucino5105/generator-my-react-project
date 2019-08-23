@@ -115,7 +115,7 @@ const __exports = function(env, argv) {
             loader: "postcss-loader",
             options: {
               sourceMap: !prod,
-              plugins: function(loader) {
+              plugins: (loader) => {
                 return [
                   autoprefixer,
                 ];
