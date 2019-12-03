@@ -15,7 +15,6 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
