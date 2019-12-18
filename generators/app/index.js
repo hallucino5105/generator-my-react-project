@@ -135,8 +135,8 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
       ["src/_core_renderer_react/component/main" , "src/core_renderer/component/main" , null],
-      ["src/_core_renderer_react/entry/main.tsx" , "src/core_renderer/entry/main.tsx" , null],
-      ["src/_core_renderer_react/entry/main.ejs" , "src/core_renderer/entry/main.ejs" , null],
+      ["src/_core_renderer_react/entry/index.tsx" , "src/core_renderer/entry/index.tsx" , null],
+      ["src/_core_renderer_react/entry/index.ejs" , "src/core_renderer/entry/index.ejs" , null],
 
       ["webpack/webpack.app.config.js" , "webpack/webpack.app.config.js" , this.props],
       ["webpack/webpack.dll.config.js" , "webpack/webpack.dll.config.js" , this.props],
@@ -163,8 +163,8 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
       ["src/_core_renderer_react/component/main"  , "src/core_renderer/component/main"  , null],
       ["src/_core_renderer_react/component/about" , "src/core_renderer/component/about" , null],
-      ["src/_core_renderer_react/entry/main.tsx"  , "src/core_renderer/entry/main.tsx"  , null],
-      ["src/_core_renderer_react/entry/main.ejs"  , "src/core_renderer/entry/main.ejs"  , null],
+      ["src/_core_renderer_react/entry/index.tsx"  , "src/core_renderer/entry/index.tsx"  , null],
+      ["src/_core_renderer_react/entry/index.ejs"  , "src/core_renderer/entry/index.ejs"  , null],
       ["src/_core_renderer_react/entry/about.tsx" , "src/core_renderer/entry/about.tsx" , null],
       ["src/_core_renderer_react/entry/about.ejs" , "src/core_renderer/entry/about.ejs" , null],
 
