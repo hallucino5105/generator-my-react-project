@@ -2,11 +2,9 @@
 
 import React from "react";
 import {inject, observer} from "mobx-react";
-import Style from "style-it";
 
 import config_json from "config.json";
-import package_json from "package.json";
-import {IStateTheme} from "src/core_renderer/state/theme;
+import {IStateTheme} from "src/core_renderer/state/theme";
 
 
 export interface IMainProps {
@@ -22,8 +20,6 @@ export default class Main extends React.Component<IMainProps> {
   };
 
   render() {
-    const {theme} = this.props.state_theme!;
-
     return (
       <div>
         {config_json.title}

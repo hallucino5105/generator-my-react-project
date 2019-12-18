@@ -4,7 +4,6 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import {MemoryRouter as Router, Route, Switch} from "react-router-dom";
 
-import config from "config.json";
 import {IStateTheme} from "src/core_renderer/state/theme";
 import Main from "src/core_renderer/component/main";
 
