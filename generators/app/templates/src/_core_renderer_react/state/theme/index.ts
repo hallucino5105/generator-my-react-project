@@ -6,17 +6,17 @@ import _ from "lodash";
 import theme from "src/assets/theme/default";
 
 
-export interface StateThemeBodyType {
+export interface IStateThemeBody {
   [key: string | number]: any;
 }
 
-export interface StateThemeType {
-  theme: StateThemeBodyType;
+export interface IStateTheme {
+  theme: IStateThemeBody;
 }
 
 
 class StateTheme {
-  @observable theme: StateThemeBodyType = StateTheme.getDefaultTheme();
+  @observable theme: IStateThemeBody = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
     let default_theme = _.find(theme, (value: any, key: any) => {
