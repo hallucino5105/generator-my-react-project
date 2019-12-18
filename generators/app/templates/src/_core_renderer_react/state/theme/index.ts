@@ -7,7 +7,7 @@ import theme from "src/assets/theme/default";
 
 
 export interface IStateThemeBody {
-  [key: string | number]: any;
+  [key: string]: any;
 }
 
 export interface IStateTheme {
