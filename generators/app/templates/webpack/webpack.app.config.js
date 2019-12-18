@@ -14,7 +14,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+//const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -250,9 +250,9 @@ const __exports = (env, argv) => {
         alwaysNotify: true,
       }),
 
-      new HardSourceWebpackPlugin({
-        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      }),
+      //new HardSourceWebpackPlugin({
+      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      //}),
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {

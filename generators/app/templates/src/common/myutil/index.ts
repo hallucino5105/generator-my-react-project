@@ -17,10 +17,6 @@ const getPlatform = () => {
   };
 };
 
-const isDev = () => {
-  return process.env.ELECTRON_ENV === "development";
-};
-
 const isDebug = () => {
   const debug = process.env.DEBUG as string | number | boolean;
 
@@ -39,12 +35,6 @@ const isDebug = () => {
   } else {
     return false;
   }
-};
-
-const isMainProcess=() => {
-  if(process.type === "browser") return true;
-  else if(process.type === "renderer") return false;
-  else throw new Error("Unkown process type");
 };
 
 const dlog = (...args: any[]) => {
@@ -92,15 +82,27 @@ const timeFormat = (seconds: number): string => {
   return ret;
 };
 
+const isDev = () => {
+  //return process.env.ELECTRON_ENV === "development";
+  return true;
+};
+
+const isMainProcess=() => {
+  //if(process.type === "browser") return true;
+  //else if(process.type === "renderer") return false;
+  //else throw new Error("Unkown process type");
+  return true;
+};
+
 
 export default {
   getPlatform,
-  isDev,
   isDebug,
-  isMainProcess,
   dlog,
   uuid,
   deepKeys,
   timeFormat,
+  isDev,
+  isMainProcess,
 }
 
