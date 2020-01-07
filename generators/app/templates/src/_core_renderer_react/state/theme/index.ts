@@ -3,7 +3,7 @@
 import {observable} from "mobx";
 import _ from "lodash";
 
-import theme from "src/assets/theme/default";
+import theme_values from "src/assets/theme/default";
 
 
 export interface IStateThemeBody {
@@ -19,12 +19,12 @@ class StateTheme {
   @observable theme: IStateThemeBody = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
-    let default_theme = _.find(theme, (value: any, key: any) => {
+    let default_theme = _.find(theme_values, (value: any, key: any) => {
       return key === "default";
     });
 
     if(!default_theme) {
-      default_theme = theme[0];
+      default_theme = theme_values[0];
     }
 
     return default_theme;
