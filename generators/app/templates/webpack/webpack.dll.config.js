@@ -1,5 +1,6 @@
 // webpack.dll.config.js
 
+const fs = require("fs");
 const _ = require("lodash");
 const path = require("path");
 const merge = require("webpack-merge");
@@ -56,10 +57,20 @@ const __exports = function(env, argv) {
   const __package = require(__paths.package);
   const __config = require(__paths.config);
 
+  const __node_modules = {};
+  fs.readdirSync(__paths.node_modules)
+    .filter(x => {
+      return [".bin"].indexOf(x) === -1;
+    })
+    .forEach(mod => {
+      __node_modules[mod] = "commonjs " + mod;
+    });
+
   let common_setting = {
     cache: true,
     mode: argv.mode,
     devtool: "source-map",
+    externals: __node_modules,
 
     <% if (framework_type === "Electron") { %> 
     target: "node",

@@ -63,6 +63,15 @@ const __exports = (env, argv) => {
   const __package = require(__paths.package);
   const __config = require(__paths.config);
 
+  const __node_modules = {};
+  fs.readdirSync(__paths.node_modules)
+    .filter(x => {
+      return [".bin"].indexOf(x) === -1;
+    })
+    .forEach(mod => {
+      __node_modules[mod] = "commonjs " + mod;
+    });
+
   // src/core 直下にある"entry/*.(js|jsx|ts|tsx)"をエントリとする
   const pages = (() => {
     const target_files = fs.readdirSync(__paths.entry_renderer);
@@ -89,6 +98,7 @@ const __exports = (env, argv) => {
       cache: true,
       mode: argv.mode,
       devtool: "source-map",
+      externals: __node_modules,
 
       node: {
         __dirname: false,
