@@ -98,7 +98,6 @@ const __exports = (env, argv) => {
       cache: true,
       mode: argv.mode,
       devtool: "source-map",
-      externals: __node_modules,
 
       node: {
         __dirname: false,

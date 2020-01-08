@@ -12,7 +12,7 @@ import Main from "src/core_renderer/component/main";
 
 
 configure({
-  enforceActions: "strict",
+  enforceActions: "always",
 });
 
 const node = document.createElement("main");

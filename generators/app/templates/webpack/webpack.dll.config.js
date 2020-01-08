@@ -70,12 +70,12 @@ const __exports = function(env, argv) {
     cache: true,
     mode: argv.mode,
     devtool: "source-map",
-    externals: __node_modules,
 
     <% if (framework_type === "Electron") { %> 
     target: "node",
     <% } else { %>
     target: "web",
+    externals: __node_modules,
     <% } %>
 
     node: {
