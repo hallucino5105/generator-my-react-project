@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
+    "target": "es6",
     "lib": ["es2018", "esnext", "dom"],
     "jsx": "react",
-    "module": "es2015",
+    "module": "es6",
     "moduleResolution": "node",
     "allowJs": true,
     "sourceMap": true,
