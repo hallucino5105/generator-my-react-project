@@ -4,11 +4,16 @@ import "src/assets/sass/main.scss";
 
 import React from "react";
 import {render} from "react-dom";
+import {configure} from "mobx";
 import {Provider} from "mobx-react";
 
 import stores from "src/core_renderer/store";
 import Main from "src/core_renderer/component/main";
 
+
+configure({
+  enforceActions: "strict",
+});
 
 const node = document.createElement("main");
 document.body.appendChild(node);
