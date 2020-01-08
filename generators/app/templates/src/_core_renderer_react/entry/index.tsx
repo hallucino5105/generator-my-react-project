@@ -7,7 +7,7 @@ import {render} from "react-dom";
 import {Provider} from "mobx-react";
 
 import stores from "src/core_renderer/store";
-import Index from "src/core_renderer/component/index";
+import Main from "src/core_renderer/component/main";
 
 
 const node = document.createElement("main");
@@ -17,7 +17,7 @@ document.body.appendChild(node);
 // sync rendering
 render((
   <Provider {...stores}>
-    <Index />
+    <Main />
   </Provider>
 ), node);
 
