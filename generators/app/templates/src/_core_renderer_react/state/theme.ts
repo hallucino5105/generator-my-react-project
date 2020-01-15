@@ -1,4 +1,4 @@
-// src/core_renderer/state/theme/index.ts
+// src/core_renderer/state/theme.ts
 
 import {observable} from "mobx";
 import _ from "lodash";

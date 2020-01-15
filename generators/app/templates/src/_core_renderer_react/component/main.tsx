@@ -1,4 +1,4 @@
-// src/core_renderer/component/main/index.tsx
+// src/core_renderer/component/main.tsx
 
 import React from "react";
 import {inject, observer} from "mobx-react";
