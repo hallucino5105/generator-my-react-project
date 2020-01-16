@@ -16,7 +16,7 @@ export interface IStateTheme {
 
 
 class StateTheme {
-  @observable theme: IStateThemeBody = StateTheme.getDefaultTheme();
+  @observable.deep theme: IStateThemeBody = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
     let default_theme = _.find(theme_values, (value: any, key: any) => {
