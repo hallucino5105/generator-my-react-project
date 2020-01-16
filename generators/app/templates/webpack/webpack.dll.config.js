@@ -90,7 +90,7 @@ const __exports = function(env, argv) {
     output: {
       path: __paths.output,
       filename: "vendor.dll.js",
-      library: "vendor_lib",
+      library: "vendor",
       libraryTarget: "umd",
     },
 
@@ -108,7 +108,7 @@ const __exports = function(env, argv) {
 
       new webpack.DllPlugin({
         path: __paths.dll_vendor,
-        name: "vendor_lib",
+        name: "vendor",
       }),
     ],
 

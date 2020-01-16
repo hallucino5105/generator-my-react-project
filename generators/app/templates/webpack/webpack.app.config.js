@@ -14,7 +14,6 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
-//const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
