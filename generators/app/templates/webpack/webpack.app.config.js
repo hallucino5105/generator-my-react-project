@@ -315,6 +315,7 @@ const __exports = (env, argv) => {
           publicPath: __config.serve.public_path,
           compress: true,
           progress: true,
+          inline: false,
           disableHostCheck: true,
           historyApiFallback: true,
           host: __config.serve.dev.host,
