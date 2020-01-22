@@ -207,6 +207,7 @@
     "@babel/plugin-proposal-decorators": "^7.7.4",
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4",
+    "@types/chroma-js": "^1.4.3",
     "@types/hammerjs": "^2.0.36",
     "@types/lodash": "^4.14.149",
     "@types/mqtt": "^2.5.0",

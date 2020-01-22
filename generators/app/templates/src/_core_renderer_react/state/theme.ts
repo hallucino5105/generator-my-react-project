@@ -32,5 +32,5 @@ class StateTheme {
 }
 
 
-export default new StateTheme();
+export default StateTheme;
 
