@@ -49,6 +49,7 @@
     "module": "python ./scripts/module/gen_module.py",
     "app": "python ./backend/app/app.py",
     "clean": "./scripts/clean/clean.sh",
+    "test": "jest --passWithNoTests",
     <% if (enable_app) { %>
     "start": "concurrently \"npm run app\" \"npm run serve\"",
     "start:prod": "concurrently \"npm run app\" \"npm run serve:prod\""
@@ -257,7 +258,7 @@
     "react-transform-hmr": "^1.0.4",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "ts-jest": "^24.3.0",
+    "ts-jest": "^25.0.0",
     "ts-loader": "^6.2.1",
     "tslint": "^5.20.1",
     "typescript": "^3.7.5",

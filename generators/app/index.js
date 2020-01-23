@@ -114,7 +114,8 @@ module.exports = class extends Generator {
       ["_eslintrc"         , ".eslintrc"         , null],
       ["_requirements.txt" , ".requirements.txt" , null],
 
-      ["tsconfig.json" , "tsconfig.json" , null],
+      ["tsconfig.json"  , "tsconfig.json"  , null],
+      ["jest.config.js" , "jest.config.js" , null],
 
       ["backend", "backend", null],
       ["scripts", "scripts", null],
