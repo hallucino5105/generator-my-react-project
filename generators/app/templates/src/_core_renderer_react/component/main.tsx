@@ -1,17 +1,13 @@
 // src/core_renderer/component/main.tsx
 
 import React from "react";
-import {inject, observer} from "mobx-react";
-import {MemoryRouter as Router, Route, Switch} from "react-router-dom";
+import { inject, observer } from "mobx-react";
+import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
 
-import {IStateTheme} from "src/core_renderer/state/theme";
+import { IGlobalState } from "src/core_renderer/store";
 import Main from "src/core_renderer/component/main";
 
-
-export interface IMainProps {
-  state_theme?: IStateTheme;
-}
-
+export interface IMainProps extends IGlobalState {}
 
 @inject("state_theme")
 @observer

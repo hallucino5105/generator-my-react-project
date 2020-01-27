@@ -1,18 +1,14 @@
 // src/core_renderer/component/about.tsx
 
 import React from "react";
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 import Style from "style-it";
 
 import package_json from "package.json";
-import {IStateTheme} from "src/core_renderer/state/theme;
+import { IGlobalState } from "src/core_renderer/store;
 import AppIcon from "src/assets/image/icon.png";
 
-
-export interface AboutProps {
-  state_theme?: IStateTheme;
-}
-
+export interface IAboutProps extends IGlobalState {}
 
 const CenteringContainer = (props: any) => (
   <div style={{
@@ -27,10 +23,9 @@ const CenteringContainer = (props: any) => (
   </div>
 );
 
-
 @inject("state_theme")
 @observer
-export default class About extends React.Component<AboutPropsType> {
+export default class About extends React.Component<IAboutProps> {
   static defaultProps: AboutPropsType = {
     state_theme: undefined,
   };

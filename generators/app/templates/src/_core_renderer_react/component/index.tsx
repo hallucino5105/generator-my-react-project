@@ -1,16 +1,12 @@
 // src/core_renderer/component/index.tsx
 
 import React from "react";
-import {inject, observer} from "mobx-react";
+import { inject, observer } from "mobx-react";
 
 import config_json from "config.json";
-import {IStateTheme} from "src/core_renderer/state/theme";
+import { IGlobalState } from "src/core_renderer/store";
 
-
-export interface IIndexProps {
-  state_theme?: IStateTheme;
-}
-
+export interface IIndexProps extends IGlobalState {}
 
 @inject("state_theme")
 @observer

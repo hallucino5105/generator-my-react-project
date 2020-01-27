@@ -1,7 +1,10 @@
 // src/core_renderer/store/index.ts
 
-import StateTheme from "src/core_renderer/state/theme";
+import StateTheme, { IStateTheme } from "src/core_renderer/state/theme";
 
+export interface IGlobalState {
+  state_theme?: IStateTheme;
+}
 
 const state_them = new StateTheme();
 
