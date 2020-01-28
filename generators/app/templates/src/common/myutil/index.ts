@@ -3,11 +3,11 @@
 import os from "os";
 
 import _ from "lodash";
-import log4js from "log4js";
+//import log4js from "log4js";
 
 
-export const logger = log4js.getLogger();
-logger.level = "debug";
+//export const logger = log4js.getLogger();
+//logger.level = "debug";
 
 
 const getPlatform = () => {
