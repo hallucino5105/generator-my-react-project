@@ -5,7 +5,6 @@ import _ from "lodash";
 
 import theme_values from "src/assets/theme/default";
 
-
 export interface IStateThemeBody {
   [key: string]: any;
 }
@@ -14,8 +13,7 @@ export interface IStateTheme {
   theme: IStateThemeBody;
 }
 
-
-class StateTheme {
+export default class StateTheme {
   @observable.deep theme: IStateThemeBody = StateTheme.getDefaultTheme();
 
   static getDefaultTheme() {
@@ -30,7 +28,4 @@ class StateTheme {
     return default_theme;
   }
 }
-
-
-export default StateTheme;
 
