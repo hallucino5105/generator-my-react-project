@@ -57,25 +57,25 @@ const __exports = function(env, argv) {
   const __package = require(__paths.package);
   const __config = require(__paths.config);
 
-  const __node_modules = {};
-  fs.readdirSync(__paths.node_modules)
-    .filter(x => {
-      return [".bin"].indexOf(x) === -1;
-    })
-    .forEach(mod => {
-      __node_modules[mod] = "commonjs " + mod;
-    });
+  //const __node_modules = {};
+  //fs.readdirSync(__paths.node_modules)
+  //  .filter(x => {
+  //    return [".bin"].indexOf(x) === -1;
+  //  })
+  //  .forEach(mod => {
+  //    __node_modules[mod] = "amd " + mod;
+  //  });
 
   let common_setting = {
     cache: true,
     mode: argv.mode,
-    devtool: "source-map",
+    //devtool: "source-map",
 
     <% if (framework_type === "Electron") { %> 
     target: "node",
     <% } else { %>
     target: "web",
-    externals: __node_modules,
+    //externals: __node_modules,
     <% } %>
 
     node: {
@@ -120,12 +120,12 @@ const __exports = function(env, argv) {
           use: [{
             loader: "css-loader",
             options: {
-              sourceMap: !prod,
+              //sourceMap: !prod,
             },
           }, {
             loader: "postcss-loader",
             options: {
-              sourceMap: !prod,
+              //sourceMap: !prod,
               plugins: (loader) => {
                 return [
                   autoprefixer,
@@ -143,7 +143,7 @@ const __exports = function(env, argv) {
           }, {
             loader: "sass-loader",
             options: {
-              sourceMap: true, // 無条件でtrueにすること
+              //sourceMap: true, // 無条件でtrueにすること
             },
           }],
         }),
