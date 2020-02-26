@@ -5,7 +5,7 @@ import { inject, observer } from "mobx-react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
 
 import { IGlobalState } from "src/core_renderer/store";
-import Main from "src/core_renderer/component/main";
+import Index from "src/core_renderer/component/index";
 
 export interface IMainProps extends IGlobalState {}
 
@@ -20,7 +20,7 @@ export default class Main extends React.Component<IMainProps> {
     return (
       <Router>
         <Switch>
-          <Route path="/" exact render={() => <Main />} />
+          <Route path="/" exact render={() => <Index />} />
           <Route exact render={() => <div>page not found</div>} />
         </Switch>
       </Router>
