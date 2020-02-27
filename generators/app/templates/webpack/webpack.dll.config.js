@@ -5,11 +5,8 @@ const _ = require("lodash");
 const path = require("path");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
-const autoprefixer = require("autoprefixer");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const HtmlwebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const WebpackNotifierPlugin = require("webpack-notifier");
 
@@ -104,7 +101,9 @@ const __exports = function(env, argv) {
         alwaysNotify: true,
       }),
 
-      new ExtractTextPlugin("vendor.css"),
+      new MiniCssExtractPlugin({
+        filename: "vendor.css"
+      }),
 
       new webpack.DllPlugin({
         path: __paths.dll_vendor,
@@ -114,39 +113,27 @@ const __exports = function(env, argv) {
 
     module: {
       rules: [{
-        test: /(\.scss|\.css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [{
-            loader: "css-loader",
-            options: {
-              //sourceMap: !prod,
-            },
-          }, {
-            loader: "postcss-loader",
-            options: {
-              //sourceMap: !prod,
-              plugins: (loader) => {
-                return [
-                  autoprefixer,
-                ];
-              },
-            },
-          }, {
-            loader: "resolve-url-loader",
-            options: {
-              //root: paths.src,
-              //includeRoot: true,
-              debug: false,
-              absolute: false,
-            },
-          }, {
-            loader: "sass-loader",
-            options: {
-              //sourceMap: true, // 無条件でtrueにすること
-            },
-          }],
-        }),
+        test: /(\.scss|\.sass|\.css)$/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {}
+        }, {
+          loader: "css-loader",
+          options: {
+            sourceMap: false
+          }
+        }, {
+          loader: "resolve-url-loader",
+          options: {
+            debug: false,
+            absolute: false,
+          },
+        }, {
+          loader: "sass-loader",
+          options: {
+            sourceMap: false,
+          }
+        }],
       }, {
         test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{

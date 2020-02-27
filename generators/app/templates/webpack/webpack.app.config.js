@@ -1,16 +1,13 @@
 // webpack.app.config.js
 
-const _ = require("lodash");
 const fs = require("fs");
+const _ = require("lodash");
 const path = require("path");
 const merge = require("webpack-merge");
 const webpack = require("webpack");
-const autoprefixer = require("autoprefixer");
-const nodeExternals = require("webpack-node-externals");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
@@ -158,36 +155,27 @@ const __exports = (env, argv) => {
             },
           }],
         }, {
-          test: /(\.scss|\.css)$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: [{
-              loader: "css-loader",
-              options: {
-                sourceMap: !prod,
-              },
-            }, {
-              loader: "postcss-loader",
-              options: {
-                sourceMap: !prod,
-                plugins: loader => {
-                  return [
-                    autoprefixer,
-                  ];
-                },
-              },
-            }, {
-              loader: "resolve-url-loader",
-              options: {
-                debug: false,
-              },
-            }, {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true, // 無条件でtrueにすること
-              },
-            }],
-          }),
+          test: /(\.scss|\.sass|\.css)$/,
+          use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {}
+          }, {
+            loader: "css-loader",
+            options: {
+              sourceMap: !prod,
+              modules: true
+            }
+          }, {
+            loader: "resolve-url-loader",
+            options: {
+              debug: false
+            }
+          }, {
+            loader: "sass-loader",
+            options: {
+              sourceMap: !prod
+            }
+          }],
         }, {
           test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
           use: [{
@@ -247,7 +235,9 @@ const __exports = (env, argv) => {
         exclude: /Critical dependency: the request of a dependency is an expression/,
       }),
 
-      new ExtractTextPlugin("styles.css"),
+      new MiniCssExtractPlugin({
+        filename: "styles.css"
+      }),
 
       new webpack.ProvidePlugin({
         $: "jquery",
