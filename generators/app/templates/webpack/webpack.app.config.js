@@ -163,7 +163,9 @@ const __exports = (env, argv) => {
             loader: "css-loader",
             options: {
               sourceMap: !prod,
-              modules: true
+              modules: {
+                localIdentName: prod ? "[name]__[local]___[hash:base64:5]" : "[name]__[local]"
+              }
             }
           }, {
             loader: "resolve-url-loader",
