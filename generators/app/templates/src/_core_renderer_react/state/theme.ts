@@ -5,18 +5,22 @@ import _ from "lodash";
 
 import theme_values from "src/assets/theme/default";
 
-export interface IStateThemeBody {
+export interface IThemeBody {
   [key: string]: any;
 }
 
 export interface IStateTheme {
-  theme: IStateThemeBody;
+  theme: IThemeBody;
 }
 
 export default class StateTheme {
-  @observable.deep theme: IStateThemeBody = StateTheme.getDefaultTheme();
+  @observable.deep theme: IThemeBody;
 
-  static getDefaultTheme() {
+  constructor(config: any) {
+    this.theme = this.getDefaultTheme();
+  }
+
+  getDefaultTheme = () => {
     let default_theme = _.find(theme_values, (value: any, key: any) => {
       return key === "default";
     });
@@ -26,6 +30,6 @@ export default class StateTheme {
     }
 
     return default_theme;
-  }
+  };
 }
 

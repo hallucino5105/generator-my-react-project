@@ -4,7 +4,7 @@ import StateGlobalConfig, { IStateGlobalConfig } from "src/core_renderer/state/g
 import StateTheme, { IStateTheme } from "src/core_renderer/state/theme";
 
 const state_global_config = new StateGlobalConfig();
-const state_theme = new StateTheme();
+const state_theme = new StateTheme(state_global_config.config);
 
 export interface IGlobalState {
   state_global_config?: IStateGlobalConfig;
