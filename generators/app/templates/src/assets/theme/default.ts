@@ -1,9 +1,9 @@
 // src/assets/theme/default.ts
 
-import {IStateThemeBody} from "src/core_renderer/state/theme";
+import {IThemeBody} from "src/core_renderer/state/theme";
 
 
-const theme: IStateThemeBody = {
+const theme: IThemeBody = {
   default: {
     fg: "#111",
     bg: "#fff",
