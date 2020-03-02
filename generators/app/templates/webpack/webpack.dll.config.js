@@ -78,6 +78,7 @@ const __exports = function(env, argv) {
     node: {
       __dirname: false,
       __filename: false,
+      fs: "empty"
     },
 
     entry: {
