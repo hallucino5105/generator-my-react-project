@@ -258,9 +258,11 @@ const __exports = (env, argv) => {
         checkSyntacticErrors: true,
       }),
 
-      new HardSourceWebpackPlugin.ExcludeModulePlugin({
+      new HardSourceWebpackPlugin({
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      }, [{
+      }),
+
+      new HardSourceWebpackPlugin.ExcludeModulePlugin([{
         // HardSource works with mini-css-extract-plugin but due to how
         // mini-css emits assets, assets are not emitted on repeated builds with
         // mini-css and hard-source together. Ignoring the mini-css loader
