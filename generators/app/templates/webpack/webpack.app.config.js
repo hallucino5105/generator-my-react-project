@@ -11,6 +11,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -127,7 +129,8 @@ const __exports = (env, argv) => {
             options: {
               configFile: __paths.tsconfig,
               experimentalWatchApi: true,
-              //transpileOnly: true,
+              transpileOnly: true,
+              happyPackMode: true,
               //logLevel: "info",
             },
           }],
@@ -250,9 +253,13 @@ const __exports = (env, argv) => {
         alwaysNotify: true,
       }),
 
-      //new HardSourceWebpackPlugin({
-      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      //}),
+      new HardSourceWebpackPlugin({
+        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      }),
+
+      new ForkTsCheckerWebpackPlugin({
+        checkSyntacticErrors: true,
+      })
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {

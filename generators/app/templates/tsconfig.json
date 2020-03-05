@@ -20,6 +20,7 @@
     "noEmit": false,
     "esModuleInterop": true,
     "downlevelIteration": true,
+    "skipLibCheck": true,
     "typeRoots" : [
       "node_modules/@types",
       "./src/typings"
