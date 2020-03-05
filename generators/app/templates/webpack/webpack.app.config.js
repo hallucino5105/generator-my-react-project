@@ -253,13 +253,21 @@ const __exports = (env, argv) => {
         alwaysNotify: true,
       }),
 
-      new HardSourceWebpackPlugin({
-        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      new ForkTsCheckerWebpackPlugin({
+        async: true,
+        checkSyntacticErrors: true,
       }),
 
-      new ForkTsCheckerWebpackPlugin({
-        checkSyntacticErrors: true,
-      })
+      new HardSourceWebpackPlugin.ExcludeModulePlugin({
+        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      }, [{
+        // HardSource works with mini-css-extract-plugin but due to how
+        // mini-css emits assets, assets are not emitted on repeated builds with
+        // mini-css and hard-source together. Ignoring the mini-css loader
+        // modules, but not the other css loader modules, excludes the modules
+        // that mini-css needs rebuilt to output assets every time.
+        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
+      }]),
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {
