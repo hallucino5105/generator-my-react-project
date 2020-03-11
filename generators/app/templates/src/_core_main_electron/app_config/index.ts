@@ -5,15 +5,16 @@
 // This class referenced from both main and renderer process.
 // Make instance in main process so that can be referred from renderer via IPC.
 
-import {ipcMain, webContents} from "electron";
+import { ipcMain, webContents } from "electron";
 import ElectronStore from "electron-store";
 
-import _ from "lodash";
+import { isNil, cloneDeep, merge, difference } from "lodash-es";
 
-import myutil, {logger} from "src/common/myutil";
+import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
 import app_config_default from "./default";
 
+const logger = undefined;
 
 export type ChangeValueHandlerType = (value: any) => void;
 

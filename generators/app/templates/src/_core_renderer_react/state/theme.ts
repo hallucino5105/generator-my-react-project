@@ -1,7 +1,7 @@
 // src/core_renderer/state/theme.ts
 
 import {observable} from "mobx";
-import _ from "lodash";
+import {find} from "lodash-es";
 
 import theme_values from "src/assets/theme/default";
 
@@ -21,7 +21,7 @@ export default class StateTheme {
   }
 
   getDefaultTheme = () => {
-    let default_theme = _.find(theme_values, (value: any, key: any) => {
+    let default_theme = find(theme_values, (value: any, key: any) => {
       return key === "default";
     });
 

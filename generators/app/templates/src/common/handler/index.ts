@@ -1,6 +1,6 @@
 // src/common/handler/index.ts
 
-import _ from "lodash";
+import { omit } from "lodash-es";
 
 import myutil from "src/common/myutil";
 
@@ -14,7 +14,7 @@ export default class Handler<T> {
   };
 
   delete = (handler_id: string) => {
-    this.handlers = _.omit(this.handlers, [handler_id]);
+    this.handlers = omit(this.handlers, [handler_id]);
   };
 }
 

@@ -1,6 +1,6 @@
 // src/common/myutil/index.jsx
 
-import _ from "lodash";
+import { isPlainObject, padStart } from "lodash-es";
 
 const uuid = () => {
   let chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
@@ -20,7 +20,7 @@ const uuid = () => {
 
 const deepkeys = (obj: object): any[] => {
   return Object.keys(obj)
-    .filter(key => _.isPlainObject((obj as any)[key]))
+    .filter(key => isPlainObject((obj as any)[key]))
     .map(key => deepkeys((obj as any)[key]).map(k => `${key}.${k}`))
     .reduce((x, y) => x.concat(y), Object.keys(obj));
 };
@@ -35,9 +35,9 @@ const timeformat = (seconds: number): string => {
   const hour = parseInt(seconds + "");
 
   let ret = "";
-  if (hour > 0) ret += `${_.padStart(hour + "", 2, "0")}:`;
-  ret += `${_.padStart(minute + "", 2, "0")}:`;
-  ret += `${_.padStart(second + "", 2, "0")}`;
+  if (hour > 0) ret += `${padStart(hour + "", 2, "0")}:`;
+  ret += `${padStart(minute + "", 2, "0")}:`;
+  ret += `${padStart(second + "", 2, "0")}`;
 
   return ret;
 };

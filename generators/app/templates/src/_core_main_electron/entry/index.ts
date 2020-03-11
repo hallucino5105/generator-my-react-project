@@ -1,8 +1,8 @@
 // src/core_main/entry/index.ts
 
-import {app, BrowserWindow, globalShortcut, ipcMain} from "electron";
+import { app, BrowserWindow, globalShortcut, ipcMain } from "electron";
 import ElectronDebug from "electron-debug";
-import _ from "lodash";
+import { filter } from "lodash-es";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
@@ -40,7 +40,7 @@ class Entry {
     this.wins.main = await WindowMain.createWindowAsync();
     this.wins.about = await WindowAbout.createWindowAsync();
 
-    if(_.filter(this.wins, win => !win).length > 0) {
+    if(filter(this.wins, win => !win).length > 0) {
       throw Error("Window creation did not end normally.");
     }
 
