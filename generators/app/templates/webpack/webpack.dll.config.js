@@ -66,7 +66,8 @@ const __exports = function(env, argv) {
   let common_setting = {
     cache: true,
     mode: argv.mode,
-    devtool: "source-map",
+    //devtool: "source-map",
+    devtool: false,
 
     <% if (framework_type === "Electron") { %> 
     target: "node",
