@@ -49,7 +49,7 @@
     "module": "python ./scripts/module/gen_module.py",
     "app": "python ./backend/app/app.py",
     "clean": "./scripts/clean/clean.sh",
-    "clean:cache": "rm -rf ./cache",
+    "clean:cache": "rm -rf ./.cache",
     "test": "jest --passWithNoTests",
     <% if (enable_app) { %>
     "start": "concurrently \"npm run app\" \"npm run serve\"",
@@ -78,7 +78,7 @@
     "mkdir": "python -c \"import os; os.makedirs('./dist', exist_ok=True)\"",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
     "serve": "webpack-dev-server --mode development --config webpack/webpack.app.config.js",
-    "clean:cache": "rm -rf ./cache",
+    "clean:cache": "rm -rf ./.cache",
     "start": "concurrently \"npm run watch\" \"npm run serve\" \"npm run electron\"",
     "start2": "concurrently \"npm run watch\" \"npm run serve\""
 
