@@ -25,8 +25,23 @@ const deepkeys = (obj: object): any[] => {
     .reduce((x, y) => x.concat(y), Object.keys(obj));
 };
 
-const timeformat = (seconds: number): string => {
+const timeformat = (
+  seconds: number,
+  options: {
+    include_ms: boolean;
+    display_ms: boolean;
+  } = {
+    include_ms: false,
+    display_ms: false
+  }
+): string => {
   seconds = parseInt(seconds + "");
+
+  let ms = 0;
+  if (options.include_ms) {
+    ms = parseInt((seconds % 1000) + "");
+    seconds = (seconds - ms) / 1000;
+  }
 
   const second = parseInt((seconds % 60) + "");
   seconds = (seconds - second) / 60;
@@ -38,6 +53,10 @@ const timeformat = (seconds: number): string => {
   if (hour > 0) ret += `${padStart(hour + "", 2, "0")}:`;
   ret += `${padStart(minute + "", 2, "0")}:`;
   ret += `${padStart(second + "", 2, "0")}`;
+
+  if (options.include_ms && options.display_ms) {
+    ret += `.${padStart(ms + "", 3, "0")}`;
+  }
 
   return ret;
 };
