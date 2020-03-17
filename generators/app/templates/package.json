@@ -47,7 +47,7 @@
     "version:update": "python ./scripts/version/update_version.py",
     "link": "python ./scripts/link/link.py",
     "module": "python ./scripts/module/gen_module.py",
-    "app": "python ./backend/app/app.py",
+    "app": "./backend/app/<%= projname %>_app",
     "clean": "./scripts/clean/clean.sh",
     "clean:cache": "rm -rf ./.cache",
     "test": "jest --passWithNoTests",
