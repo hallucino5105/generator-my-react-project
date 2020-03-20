@@ -135,6 +135,7 @@ module.exports = class extends Generator {
     this._copy_target([
       ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
+      ["src/_core_renderer_react/control" , "src/core_renderer/control" , null],
       ["src/_core_renderer_react/component/main.tsx"  , "src/core_renderer/component/main.tsx"  , null],
       ["src/_core_renderer_react/component/index/index.tsx" , "src/core_renderer/component/index/index.tsx" , null],
       ["src/_core_renderer_react/entry/index.tsx" , "src/core_renderer/entry/index.tsx" , null],
@@ -163,6 +164,7 @@ module.exports = class extends Generator {
       ["src/_core_main_electron"  , "src/core_main"     , null],
       ["src/_core_renderer_react/state" , "src/core_renderer/state" , null],
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
+      ["src/_core_renderer_react/control" , "src/core_renderer/control" , null],
       ["src/_core_renderer_react/component/main.tsx"  , "src/core_renderer/component/main.tsx"  , null],
       ["src/_core_renderer_react/component/index/index.tsx" , "src/core_renderer/component/index/index.tsx" , null],
       ["src/_core_renderer_react/component/about/about.tsx" , "src/core_renderer/component/about/about.tsx" , null],
