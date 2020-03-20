@@ -47,7 +47,6 @@
     "version:update": "python ./scripts/version/update_version.py",
     "link": "python ./scripts/link/link.py",
     "module": "python ./scripts/module/gen_module.py",
-    "app": "./backend/app/<%= projname %>_app",
     "clean": "./scripts/clean/clean.sh",
     "clean:cache": "rm -rf ./.cache",
     "test": "jest --passWithNoTests",
@@ -73,7 +72,6 @@
     "release:linux": "electron-builder --linux --x64",
     "release:all": "concurrently \"npm run release:mac\" \"npm run release:win\" \"npm run release:linux\"",
     "electron": "better-npm-run electron",
-    "app": "python ./app/app.py",
     "link": "python ./scripts/link/link.py",
     "mkdir": "python -c \"import os; os.makedirs('./dist', exist_ok=True)\"",
     "watch": "webpack --mode development --config ./webpack/webpack.app.config.js -w --progress",
@@ -98,7 +96,7 @@
   ],
   <% if (framework_type === "Electron") { %>
   "betterScripts": {
-    "electron": {
+    t"electron": {
       "env": {
         "ELECTRON_ENV": "development",
         "DEBUG": "true"
