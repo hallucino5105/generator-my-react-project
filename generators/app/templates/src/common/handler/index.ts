@@ -2,13 +2,13 @@
 
 import { omit } from "lodash-es";
 
-import myutil from "src/common/myutil";
+import { uuid } from "src/common/myutil";
 
-export default class Handler<T> {
+export class Handler<T> {
   handlers: { [handler_id: string]: T } = {};
 
   add = (handler: T): string => {
-    const handler_id = myutil.uuid();
+    const handler_id = uuid();
     this.handlers[handler_id] = handler;
     return handler_id;
   };

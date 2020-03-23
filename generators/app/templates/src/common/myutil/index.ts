@@ -2,7 +2,7 @@
 
 import { isPlainObject, padStart } from "lodash-es";
 
-const uuid = () => {
+export const uuid = () => {
   let chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
   for (let i = 0, len = chars.length; i < len; i++) {
     switch (chars[i]) {
@@ -18,14 +18,14 @@ const uuid = () => {
   return chars.join("");
 };
 
-const deepkeys = (obj: object): any[] => {
+export const deepkeys = (obj: object): any[] => {
   return Object.keys(obj)
     .filter(key => isPlainObject((obj as any)[key]))
     .map(key => deepkeys((obj as any)[key]).map(k => `${key}.${k}`))
     .reduce((x, y) => x.concat(y), Object.keys(obj));
 };
 
-const timeformat = (
+export const timeformat = (
   seconds: number,
   options: {
     include_ms: boolean;
