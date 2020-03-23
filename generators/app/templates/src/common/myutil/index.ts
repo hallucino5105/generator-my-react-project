@@ -1,6 +1,6 @@
 // src/common/myutil/index.jsx
 
-import { isPlainObject, padStart } from "lodash-es";
+import { isPlainObject, padStart } from "lodash";
 
 export const uuid = () => {
   let chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
