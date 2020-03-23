@@ -3,12 +3,12 @@
 import "src/assets/sass/main.scss";
 
 import React from "react";
-import {render} from "react-dom";
-import {configure} from "mobx";
-import {Provider} from "mobx-react";
+import { render } from "react-dom";
+import { configure } from "mobx";
+import { Provider } from "mobx-react";
 
-import stores from "src/core_renderer/store";
-import Main from "src/core_renderer/component/main";
+import { store } from "src/core_renderer/store";
+import { Main } from "src/core_renderer/component/main";
 
 
 configure({
@@ -21,7 +21,7 @@ document.body.appendChild(node);
 
 // sync rendering
 render((
-  <Provider {...stores}>
+  <Provider {...store}>
     <Main />
   </Provider>
 ), node);

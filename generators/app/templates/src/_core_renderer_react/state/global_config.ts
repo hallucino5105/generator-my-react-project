@@ -8,7 +8,7 @@ export interface IStateGlobalConfig {
   config: any;
 }
 
-export default class StateGlobalConfig {
+export class StateGlobalConfig {
   @observable.deep config: any = config_values;
 
   @action

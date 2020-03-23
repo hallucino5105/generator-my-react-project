@@ -5,13 +5,13 @@ import { inject, observer } from "mobx-react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
 
 import { IGlobalState } from "src/core_renderer/store";
-import Index from "src/core_renderer/component/index";
+import { Index } from "src/core_renderer/component/index";
 
 export interface IMainProps extends IGlobalState {}
 
 @inject("state_theme")
 @observer
-export default class Main extends React.Component<IMainProps> {
+export class Main extends React.Component<IMainProps> {
   static defaultProps: IMainProps = {
     state_theme: undefined,
   };

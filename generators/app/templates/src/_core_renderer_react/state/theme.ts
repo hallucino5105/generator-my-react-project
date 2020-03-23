@@ -1,7 +1,7 @@
 // src/core_renderer/state/theme.ts
 
-import {observable} from "mobx";
-import {find} from "lodash-es";
+import { observable } from "mobx";
+import { find } from "lodash-es";
 
 import theme_values from "src/assets/theme/default";
 
@@ -13,7 +13,7 @@ export interface IStateTheme {
   theme: IThemeBody;
 }
 
-export default class StateTheme {
+export class StateTheme {
   @observable.deep theme: IThemeBody;
 
   constructor(config: any) {

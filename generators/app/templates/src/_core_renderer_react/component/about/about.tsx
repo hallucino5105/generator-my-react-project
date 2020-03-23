@@ -5,8 +5,8 @@ import { inject, observer } from "mobx-react";
 import Style from "style-it";
 
 import package_json from "package.json";
-import { IGlobalState } from "src/core_renderer/store;
 import AppIcon from "src/assets/image/icon.png";
+import { IGlobalState } from "src/core_renderer/store;
 
 export interface IAboutProps extends IGlobalState {}
 
@@ -25,7 +25,7 @@ const CenteringContainer = (props: any) => (
 
 @inject("state_theme")
 @observer
-export default class About extends React.Component<IAboutProps> {
+export class About extends React.Component<IAboutProps> {
   static defaultProps: AboutPropsType = {
     state_theme: undefined,
   };

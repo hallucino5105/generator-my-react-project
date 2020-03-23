@@ -10,7 +10,7 @@ export interface IIndexProps extends IGlobalState {}
 
 @inject("state_theme")
 @observer
-export default class Index extends React.Component<IIndexProps> {
+export class Index extends React.Component<IIndexProps> {
   static defaultProps: IIndexProps = {
     state_theme: undefined,
   };
