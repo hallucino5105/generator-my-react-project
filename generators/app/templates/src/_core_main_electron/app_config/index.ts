@@ -9,7 +9,7 @@ import { ipcMain, webContents } from "electron";
 import ElectronStore from "electron-store";
 import { isNil, cloneDeep, merge, difference } from "lodash";
 
-import { uuid, deepKeys } from "src/common/myutil";             
+import { uuid, deepkeys } from "src/common/myutil";             
 import { isMainProcess, logger } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import app_config_default from "./default";
@@ -118,8 +118,8 @@ class AppConfig {
 
           logger.debug(`store version has been updated: old ${old_store_version}, new ${new_store_version}`);
 
-          const old_keys = deepKeys(this.store.store);
-          const new_keys = deepKeys(app_config_default);
+          const old_keys = deepkeys(this.store.store);
+          const new_keys = deepkeys(app_config_default);
           const delete_keys = difference(old_keys, new_keys);
 
           for(const delete_key of delete_keys) {

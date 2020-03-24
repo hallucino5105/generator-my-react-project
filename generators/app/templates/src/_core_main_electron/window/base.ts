@@ -1,6 +1,6 @@
 // src/core_main/window/indow/base.ts
 
-import {ipcMain, BrowserWindow} from "electron";
+import { ipcMain, BrowserWindow } from "electron";
 
 import IPCKeys from "src/core_main/ipc/keys";
 import WindowManager from "src/core_main/window_manager";

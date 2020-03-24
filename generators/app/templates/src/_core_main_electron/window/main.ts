@@ -1,7 +1,6 @@
 // src/core_main/window/main.ts
 
-import WindowBase from "./_base";
-
+import WindowBase from "./base";
 
 class WindowMain extends WindowBase {
   window_options: object;

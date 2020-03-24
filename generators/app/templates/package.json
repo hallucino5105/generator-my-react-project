@@ -189,9 +189,12 @@
   "devDependencies": {
     <% if (framework_type === "React" || framework_type === "Electron") { %>
     <% if (framework_type === "Electron") { %>
+    "better-npm-run": "^0.1.1",
     "electron": "^8.1.1",
+    "electron-connect": "^0.6.3",
     "electron-debug": "^3.0.1",    
     "electron-store": "^5.1.1",
+    "gulp": "^4.0.2",
     <% } %>
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-decorators": "^7.7.4",
