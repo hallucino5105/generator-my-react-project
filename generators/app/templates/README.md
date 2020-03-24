@@ -1,6 +1,6 @@
 # <%= projname %>
 
-## start web server
+## Start
 
 ```
 $ npm install

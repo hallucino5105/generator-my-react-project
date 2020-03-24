@@ -157,6 +157,8 @@ const __exports = (env, argv) => {
                 [ "transform-class-properties" ],
               ],
             },
+          }, {
+            loader: "shebang-loader",
           }],
         }, {
           test: /(\.scss|\.sass|\.css)$/,
