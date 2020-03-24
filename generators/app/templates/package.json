@@ -186,7 +186,7 @@
   },
   "devDependencies": {
     <% if (framework_type === "React" || framework_type === "Electron") { %>
-    <% if framework_type === "Electron" { %>
+    <% if (framework_type === "Electron") { %>
     "electron": "^8.1.1",
     "electron-debug": "^3.0.1",    
     "electron-store": "^5.1.1",
