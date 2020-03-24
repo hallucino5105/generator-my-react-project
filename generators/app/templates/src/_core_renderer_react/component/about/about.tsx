@@ -6,7 +6,7 @@ import Style from "style-it";
 
 import package_json from "package.json";
 import AppIcon from "src/assets/image/icon.png";
-import { IGlobalState } from "src/core_renderer/store;
+import { IGlobalState } from "src/core_renderer/store";
 
 export interface IAboutProps extends IGlobalState {}
 
