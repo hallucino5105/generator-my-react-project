@@ -10,7 +10,7 @@ import ElectronStore from "electron-store";
 
 import { isNil, cloneDeep, merge, difference } from "lodash";
 
-import myutil from "src/common/myutil/electron";
+import myutil, { logger } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import app_config_default from "./default";
 
