@@ -1,8 +1,7 @@
 // src/common/myutil/electron.ts
 
+import os from "os";
 import log4js from "log4js";
-
-import myutil from .
 
 export const logger = log4js.getLogger();
 logger.level = "debug";
@@ -29,6 +28,5 @@ export default {
   getPlatform,
   isDev,
   isMainProcess,
-  ...myutil,
 }
 

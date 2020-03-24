@@ -7,10 +7,10 @@
 
 import { ipcMain, webContents } from "electron";
 import ElectronStore from "electron-store";
-
 import { isNil, cloneDeep, merge, difference } from "lodash";
 
-import myutil, { logger } from "src/common/myutil/electron";
+import { uuid, deepKeys } from "src/common/myutil";             
+import { isMainProcess, logger } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import app_config_default from "./default";
 
@@ -63,11 +63,11 @@ class AppConfig {
     this.change_value_handler = new Map();
     this.initialized = false;
     this.initialized_lazy = false;
-    this.uid = myutil.uuid();
+    this.uid = uuid();
   }
 
   private checkMainProcess() {
-    if(!myutil.isMainProcess()) {
+    if(!isMainProcess()) {
       throw new Error("Do not allow access other than main process.");
     }
   }
@@ -118,8 +118,8 @@ class AppConfig {
 
           logger.debug(`store version has been updated: old ${old_store_version}, new ${new_store_version}`);
 
-          const old_keys = myutil.deepKeys(this.store.store);
-          const new_keys = myutil.deepKeys(app_config_default);
+          const old_keys = deepKeys(this.store.store);
+          const new_keys = deepKeys(app_config_default);
           const delete_keys = difference(old_keys, new_keys);
 
           for(const delete_key of delete_keys) {
@@ -214,7 +214,7 @@ class AppConfig {
   //   register a uid and call it on the renderer side by message communication.
   //   At that time, the handler of the argument becomes Object {renderer_id, handler_uid}.
   addEventChangeValue(handler: ChangeValueHandlerType | EventChangeValueCallFromRendererType) {
-    const handler_uid = isEventChangeValueCallFromRendererType(handler) ? handler.handler_uid : myutil.uuid();
+    const handler_uid = isEventChangeValueCallFromRendererType(handler) ? handler.handler_uid : uuid();
     this.change_value_handler.set(handler_uid, handler);
     return handler_uid;
   }

@@ -3,7 +3,8 @@
 import React from "react";
 import { remote, ipcRenderer } from "electron";
 
-import myutil from "src/common/myutil";
+import { uuid } from "src/common/myutil";             
+import { isMainProcess } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import {
   ChangeValueHandlerType,
@@ -18,13 +19,13 @@ class AppConfigRenderer {
 
   constructor() {
     this.change_value_handler = new Map();
-    this.uid = myutil.uuid();
+    this.uid = uuid();
 
     this.checkRendererProcess();
   }
 
   private checkRendererProcess() {
-    if(myutil.isMainProcess()){
+    if(isMainProcess()){
       throw new Error("Do not allow access other than renderer process.");
     }
   }
@@ -32,7 +33,7 @@ class AppConfigRenderer {
   get(key: string | null = null, callback: (value: any) => void) {
     this.checkRendererProcess();
 
-    const oid = myutil.uuid();
+    const oid = uuid();
     const handler = (e: Event, reply: IPCReplyGetValueType) => {
       if(oid !== reply.oid) return;
       callback(reply.value);
@@ -51,7 +52,7 @@ class AppConfigRenderer {
   set(key: string, value: any, callback: ((value: any) => void)) {
     this.checkRendererProcess();
 
-    const oid = myutil.uuid();
+    const oid = uuid();
     const handler = (e: Event, reply: IPCReplySetValueType) => {
       if(oid !== reply.oid) return;
       callback(reply.result);
@@ -71,7 +72,7 @@ class AppConfigRenderer {
     this.checkRendererProcess();
 
     const win = remote.getCurrentWindow();
-    const handler_uid = myutil.uuid();
+    const handler_uid = uuid();
 
     ipcRenderer.on(IPCKeys.app_config.FireEventChangeValue, handler);
     this.change_value_handler.set(handler_uid, handler);
