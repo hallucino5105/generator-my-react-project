@@ -115,6 +115,11 @@ const __exports = function(env, argv) {
 
     module: {
       rules: [{
+        test: /\.js/,
+        use: [{
+          loader: "shebang-loader",
+        }],
+      }, {
         test: /(\.scss|\.sass|\.css)$/,
         use: [{
           loader: MiniCssExtractPlugin.loader,
