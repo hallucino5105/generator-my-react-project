@@ -1,7 +1,7 @@
 // src/core_main/app_config/renderer.tsx
 
 import React from "react";
-import {remote, ipcRenderer} from "electron";
+import { remote, ipcRenderer } from "electron";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";

@@ -1,10 +1,8 @@
 // src/core_main/tray/index.ts
 
-import {app, Tray, Menu} from "electron";
-
+import { app, Tray, Menu } from "electron";
 
 const rootpath = `${__dirname}`;
-
 
 class AppTray {
   create(handler={}) {

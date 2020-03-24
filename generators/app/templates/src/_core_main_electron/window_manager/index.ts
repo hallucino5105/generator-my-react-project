@@ -1,9 +1,8 @@
 // src/core_main/window_manager/index.ts
 
-
 import path from "path";
 import url from "url";
-import {app, BrowserWindow} from "electron";
+import { app, BrowserWindow } from "electron";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
@@ -11,10 +10,8 @@ import Entry from "src/core_main/entry";
 
 import config from "config.json";
 
-
 const rootpath = `${__dirname}`;
 const DEBUG = true;
-
 
 class WindowManager {
   windows!: Map<number, BrowserWindow>;

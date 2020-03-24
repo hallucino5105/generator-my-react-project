@@ -142,6 +142,9 @@
   <% } %>
   "dependencies": {
     <% if (framework_type === "React" || framework_type === "Electron") { %>
+    <% if (framework_type === "Electron") { %>
+    "log4js": "^6.1.0",
+    <% } %>
     "@blueprintjs/core": "^3.22.0",
     "@createjs/easeljs": "^2.0.0-beta.4",
     "@createjs/tweenjs": "^2.0.0-beta.4",
@@ -151,7 +154,6 @@
     "easeljs-react": "^0.2.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
-    "log4js": "^6.1.0",
     "mapbox-gl": "^1.5.1",
     "mobx": "^5.15.0",
     "mobx-react": "^6.1.4",

@@ -1,8 +1,7 @@
 // src/core_main/window/about.ts
 
 import AppConfig from "src/core_main/app_config";
-import WindowBase from "./_base";
-
+import WindowBase from "./base";
 
 class WindowAbout extends WindowBase {
   window_options: object;
@@ -36,7 +35,5 @@ class WindowAbout extends WindowBase {
   }
 }
 
-
 export default new WindowAbout();
-
 

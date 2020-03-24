@@ -13,9 +13,7 @@ import WindowManager from "src/core_main/window_manager";
 import WindowMain from "src/core_main/window/main";
 import WindowAbout from "src/core_main/window/about";
 
-
 //process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
-
 
 if(myutil.isDev()) {
   ElectronDebug({
@@ -106,10 +104,8 @@ class Entry {
   }
 }
 
-
 const entry_instance = new Entry();
 entry_instance.run();
-
 
 export default Entry;
 

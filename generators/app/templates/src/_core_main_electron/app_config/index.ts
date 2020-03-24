@@ -10,11 +10,9 @@ import ElectronStore from "electron-store";
 
 import { isNil, cloneDeep, merge, difference } from "lodash";
 
-import myutil from "src/common/myutil";
+import myutil from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import app_config_default from "./default";
-
-const logger = undefined;
 
 export type ChangeValueHandlerType = (value: any) => void;
 
@@ -104,14 +102,14 @@ class AppConfig {
       const old_store_version: number = parseInt(this.store.get("store_version") as string);
       const new_store_version: number = app_config_default.store_version;
 
-      if(_.isNil(old_store_version) || _.isNil(new_store_version)) {
+      if(isNil(old_store_version) || isNil(new_store_version)) {
         console.warn("Undefined store version");
         console.warn("Forcibly load the default value");
         this.store.set(app_config_default);
       } else {
         if(old_store_version < new_store_version) {
-          const old_store = _.cloneDeep(this.store.store);
-          const new_store = _.merge({}, old_store, app_config_default);
+          const old_store = cloneDeep(this.store.store);
+          const new_store = merge({}, old_store, app_config_default);
 
           new_store.store_version = new_store_version;
 
@@ -122,7 +120,7 @@ class AppConfig {
 
           const old_keys = myutil.deepKeys(this.store.store);
           const new_keys = myutil.deepKeys(app_config_default);
-          const delete_keys = _.difference(old_keys, new_keys);
+          const delete_keys = difference(old_keys, new_keys);
 
           for(const delete_key of delete_keys) {
             this.store.delete(delete_key);

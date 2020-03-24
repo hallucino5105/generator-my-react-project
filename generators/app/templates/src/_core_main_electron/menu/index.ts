@@ -1,14 +1,12 @@
 // src/core_main/menu/index.ts
 
-import {app, Menu} from "electron";
+import { app, Menu } from "electron";
 
 import WindowAbout from "src/core_main/window/about";
-
 
 interface HandlerType {
   quit?: () => void,
 }
-
 
 class AppMenu {
   handler!: HandlerType;
@@ -49,7 +47,6 @@ class AppMenu {
     Menu.setApplicationMenu(this.context_menu);
   }
 }
-
 
 export default new AppMenu();
 

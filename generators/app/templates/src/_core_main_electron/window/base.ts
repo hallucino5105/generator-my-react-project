@@ -5,7 +5,6 @@ import {ipcMain, BrowserWindow} from "electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import WindowManager from "src/core_main/window_manager";
 
-
 export default class WindowBase {
   window_label: string;
   ipc_label: string;

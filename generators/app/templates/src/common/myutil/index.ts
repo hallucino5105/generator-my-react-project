@@ -1,4 +1,4 @@
-// src/common/myutil/index.jsx
+// src/common/myutil/index.ts
 
 import { isPlainObject, padStart } from "lodash";
 
