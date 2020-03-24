@@ -186,6 +186,11 @@
   },
   "devDependencies": {
     <% if (framework_type === "React" || framework_type === "Electron") { %>
+    <% if framework_type === "Electron" { %>
+    "electron": "^8.1.1",
+    "electron-debug": "^3.0.1",    
+    "electron-store": "^5.1.1",
+    <% } %>
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-decorators": "^7.7.4",
     "@babel/preset-env": "7.7.4",
@@ -212,8 +217,6 @@
     "compression-webpack-plugin": "^3.0.0",
     "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
-    "electron-debug": "^3.0.1",    
-    "electron-store": "^5.1.1",
     "eslint": "^6.7.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-webpack": "^0.11.1",
