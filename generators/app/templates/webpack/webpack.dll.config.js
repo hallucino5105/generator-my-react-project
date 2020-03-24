@@ -86,6 +86,10 @@ const __exports = function(env, argv) {
       vendor: Object.keys(__package.dependencies),
     },
 
+    externals: [
+      "react-map-gl",
+    ],
+
     output: {
       path: __paths.output,
       filename: "vendor.dll.js",
