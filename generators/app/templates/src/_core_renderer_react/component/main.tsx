@@ -12,9 +12,7 @@ export interface IMainProps extends IGlobalState {}
 @inject("state_theme")
 @observer
 export class Main extends React.Component<IMainProps> {
-  static defaultProps: IMainProps = {
-    state_theme: undefined,
-  };
+  static defaultProps: Partial<IMainProps> = {};
 
   renderRoute() {
     return (

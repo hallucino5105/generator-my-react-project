@@ -4,7 +4,7 @@ import { app, BrowserWindow, globalShortcut, ipcMain } from "electron";
 import ElectronDebug from "electron-debug";
 import { filter } from "lodash";
 
-import myutil from "src/common/myutil";
+import { isDev } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import AppConfig from "src/core_main/app_config";
 import AppMenu from "src/core_main/menu";
@@ -15,7 +15,7 @@ import WindowAbout from "src/core_main/window/about";
 
 //process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
-if(myutil.isDev()) {
+if(isDev()) {
   ElectronDebug({
     showDevTools: false,
   });
@@ -78,7 +78,7 @@ class Entry {
   }
 
   run() {
-    if(!myutil.isDev()) {
+    if(!isDev()) {
       const instance_lock = app.requestSingleInstanceLock();
       if(!instance_lock) {
         this.shutdown();

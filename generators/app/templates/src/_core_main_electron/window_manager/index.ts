@@ -4,7 +4,7 @@ import path from "path";
 import url from "url";
 import { app, BrowserWindow } from "electron";
 
-import myutil from "src/common/myutil";
+import { isDev } from "src/common/myutil/electron";
 import IPCKeys from "src/core_main/ipc/keys";
 import Entry from "src/core_main/entry";
 
@@ -83,7 +83,7 @@ class WindowManager {
       win.hide();
     }
 
-    //const html_path = myutil.isDev()
+    //const html_path = isDev()
     //  ? `http://${config.serve.dev.host}:${config.serve.dev.port}/${options.html}`
     //  : `file://${path.join(rootpath, options.html)}#${wid}`;
 

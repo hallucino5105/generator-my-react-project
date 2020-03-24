@@ -26,9 +26,7 @@ const CenteringContainer = (props: any) => (
 @inject("state_theme")
 @observer
 export class About extends React.Component<IAboutProps> {
-  static defaultProps: AboutPropsType = {
-    state_theme: undefined,
-  };
+  static defaultProps: Partial<IAboutProps> = {};
 
   render() {
     const {theme} = this.props.state_theme!;
