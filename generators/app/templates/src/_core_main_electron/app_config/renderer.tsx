@@ -30,13 +30,13 @@ class AppConfigRenderer {
     }
   }
 
-  get(key: string | null = null, callback: (value: any) => void) {
+  get(key: string | null = null, callback?: (value: any) => void) {
     this.checkRendererProcess();
 
     const oid = uuid();
     const handler = (e: Event, reply: IPCReplyGetValueType) => {
       if(oid !== reply.oid) return;
-      callback(reply.value);
+      if(callback) callback(reply.value);
       ipcRenderer.removeListener(IPCKeys.app_config.ReplyGetValue, handler);
     };
 
@@ -49,13 +49,13 @@ class AppConfigRenderer {
     return ipcRenderer.sendSync(IPCKeys.app_config.GetValue, key);
   }
 
-  set(key: string, value: any, callback: ((value: any) => void)) {
+  set(key: string, value: any, callback?: (value: any) => void) {
     this.checkRendererProcess();
 
     const oid = uuid();
     const handler = (e: Event, reply: IPCReplySetValueType) => {
       if(oid !== reply.oid) return;
-      callback(reply.result);
+      if(callback) callback(reply.result);
       ipcRenderer.removeListener(IPCKeys.app_config.ReplySetValue, handler);
     };
 

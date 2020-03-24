@@ -8,7 +8,7 @@ import { configure } from "mobx";
 import { Provider } from "mobx-react";
 
 import { store } from "src/core_renderer/store";
-import { About } from "src/core_renderer/component/about";
+import { About } from "src/core_renderer/component/about/about";
 
 
 configure({
