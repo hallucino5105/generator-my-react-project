@@ -1,21 +1,10 @@
 # <%= projname %>
 
-## Install
-
-**yarn**
+## start web server
 
 ```
-$ npm install -g yarn
+$ npm install
+$ npm run build:app
+$ npm start
 ```
-
-## Start up
-
-1. `$ pip install -r requirements.txt`
-2. `$ yarn run init`
-3. `$ yarn run watch`
-4. `$ yarn start`
-
-## Run UWSGI
-
-`$ uwsgi --ini uwsgi.conf`
 
