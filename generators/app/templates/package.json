@@ -96,7 +96,7 @@
   ],
   <% if (framework_type === "Electron") { %>
   "betterScripts": {
-    t"electron": {
+    "electron": {
       "env": {
         "ELECTRON_ENV": "development",
         "DEBUG": "true"
