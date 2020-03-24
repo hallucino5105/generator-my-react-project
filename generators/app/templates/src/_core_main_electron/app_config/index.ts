@@ -8,7 +8,7 @@
 import { ipcMain, webContents } from "electron";
 import ElectronStore from "electron-store";
 
-import { isNil, cloneDeep, merge, difference } from "lodash-es";
+import { isNil, cloneDeep, merge, difference } from "lodash";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";

@@ -1,7 +1,7 @@
 // src/core_renderer/state/theme.ts
 
 import { observable } from "mobx";
-import { find } from "lodash-es";
+import { find } from "lodash";
 
 import theme_values from "src/assets/theme/default";
 

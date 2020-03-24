@@ -1,6 +1,6 @@
 // src/common/handler/index.ts
 
-import { omit } from "lodash-es";
+import { omit } from "lodash";
 
 import { uuid } from "src/common/myutil";
 

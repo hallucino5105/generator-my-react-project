@@ -2,7 +2,7 @@
 
 import { app, BrowserWindow, globalShortcut, ipcMain } from "electron";
 import ElectronDebug from "electron-debug";
-import { filter } from "lodash-es";
+import { filter } from "lodash";
 
 import myutil from "src/common/myutil";
 import IPCKeys from "src/core_main/ipc/keys";
