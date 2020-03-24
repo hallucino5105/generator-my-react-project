@@ -11,7 +11,7 @@ class WindowMain extends WindowBase {
     this.window_options = {
       width: 800,
       height: 600,
-      html: "main.html",
+      html: "index.html",
       resizeable: true,
       center: false,
       hide: false,
