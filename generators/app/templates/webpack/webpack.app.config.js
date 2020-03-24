@@ -264,6 +264,7 @@ const __exports = (env, argv) => {
         checkSyntacticErrors: true,
       }),
 
+      <% if (framework_type !== "Electron") { %> 
       new HardSourceWebpackPlugin({
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
@@ -276,6 +277,7 @@ const __exports = (env, argv) => {
         // that mini-css needs rebuilt to output assets every time.
         test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
       }]),
+      <% } %>
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {
