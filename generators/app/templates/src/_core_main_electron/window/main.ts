@@ -1,5 +1,7 @@
 // src/core_main/window/main.ts
 
+import config from "config.json";
+import { getPlatform } from "src/common/myutil/electron";
 import WindowBase from "./base";
 
 class WindowMain extends WindowBase {
@@ -16,6 +18,17 @@ class WindowMain extends WindowBase {
       center: false,
       hide: false,
     };
+
+    if (this.platform.os === "darwin") {
+      this.window_options = {
+        ...this.window_options,
+        titleBarStyle: "hidden",
+        //trafficLightPosition: {
+        //  x: 6,
+        //  y: config.window.titlebar.height / 2
+        //}
+      };
+    }
   }
 
   createWindow() {
