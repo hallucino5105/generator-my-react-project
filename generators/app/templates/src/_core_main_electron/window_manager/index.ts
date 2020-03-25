@@ -29,7 +29,11 @@ class WindowManager {
       throw Error("Window manager not initialized.");
     }
 
-    options = Object.assign({}, {
+    if(!options.html) {
+      throw Error("A null value of html is not allowed.");
+    }
+
+    const win = new BrowserWindow({
       width: 800,
       height: 600,
       minWidth: null,
@@ -42,24 +46,13 @@ class WindowManager {
       center: false,
       always_on_top: false,
       html: null,
-    }, options);
+      ...options,
 
-    if(!options.html) {
-      throw Error("A null value of html is not allowed.");
-    }
-
-    const win = new BrowserWindow({
-      width: options.width,
-      height: options.height,
-      minWidth: options.minWidth,
-      minHeight: options.minHeight,
-      resizable: options.resizeable,
-      frame: options.frame,
-      hasShadow: options.shadow,
       webPreferences: {
+        ...options.webPreferences,
         nodeIntegration: true,
-        enableRemoteModule: true,
-      },
+        enableRemoteModule: true
+      }
     });
 
     const wid = win.id;
