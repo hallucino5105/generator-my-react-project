@@ -70,7 +70,8 @@ const __exports = function(env, argv) {
     devtool: false,
 
     <% if (framework_type === "Electron") { %> 
-    target: "node",
+    target: "electron-renderer",
+    //target: "node",
     <% } else { %>
     target: "web",
     //externals: __node_modules,
