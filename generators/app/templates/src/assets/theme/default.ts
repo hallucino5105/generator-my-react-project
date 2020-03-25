@@ -7,8 +7,8 @@ const theme: IThemeBody = {
   default: {
     fg: "#111",
     bg: "#fff",
-    font_family: "NotoSansJP, Roboto, sans-serif",
-    font_family_jp: "'-apple-system', 'Hiragino Kaku Gothic ProN', Meiryo, '游ゴシック', YuGothic, sans-serif",
+    font_family: "NotoSansJP, Roboto, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
+    font_family_title: "Roboto, NotoSansJP, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
     font_weight: 300,
 
     about: {
