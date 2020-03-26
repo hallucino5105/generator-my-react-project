@@ -264,7 +264,8 @@
     "webpack-filter-warnings-plugin": "^1.2.1",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2",
-    "webpack-notifier": "^1.8.0"
+    "webpack-notifier": "^1.8.0",
+    "write-file-webpack-plugin": "^4.5.1"
     <% } else if (framework_type === "React Native") { %>
     "@types/expo": "^32.0.13",
     "@types/react": "^16.8.4",

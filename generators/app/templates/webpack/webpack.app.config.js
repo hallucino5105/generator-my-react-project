@@ -13,7 +13,8 @@ const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
-const LodashModuleReplacementPlugin = require("lodash-webpack-plugin")
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
+const WriteFilePlugin = require("write-file-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -260,6 +261,8 @@ const __exports = (env, argv) => {
         title: "Webpack app",
         alwaysNotify: true,
       }),
+
+      new WriteFilePlugin(),
 
       new ForkTsCheckerWebpackPlugin({
         async: true,
