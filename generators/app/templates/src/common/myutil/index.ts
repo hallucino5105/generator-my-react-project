@@ -61,9 +61,43 @@ export const timeformat = (
   return ret;
 };
 
+export const isNull = (arg: any): arg is null => {
+  return arg === null;
+};
+
+export const getCurrentTime = (
+  format: string = "YYYY-MM-DD HH:mm:ss"
+): string => {
+  return dayjs().format(format);
+};
+
+export const blobToUint8Array = async (blob: Blob): Promise<Uint8Array> => {
+  const arraybuf: ArrayBuffer = await blob.arrayBuffer();
+  const array: Uint8Array = new Uint8Array(arraybuf);
+  return array;
+};
+
+export const uint8ArrayToBase64 = (array: Uint8Array): string => {
+  return base64js.fromByteArray(array);
+};
+
+export const base64ToUint8Array = (b64str: string): Uint8Array => {
+  return base64js.toByteArray(b64str);
+};
+
+export const sleep = async (timeout_ms: number) => {
+  await setTimeout(() => {}, timeout_ms);
+};
+
 export default {
   uuid,
   deepkeys,
-  timeformat
+  timeformat,
+  isNull,
+  getCurrentTime,
+  blobToUint8Array,
+  uint8ArrayToBase64,
+  base64ToUint8Array,
+  sleep
 };
 
