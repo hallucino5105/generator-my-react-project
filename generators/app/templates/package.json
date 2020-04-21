@@ -88,9 +88,6 @@
     "eject": "expo eject"
     <% } %>
   },
-  "directories": {
-    "test": "test/"
-  },
   "browserslist": [
    "defaults"
   ],
