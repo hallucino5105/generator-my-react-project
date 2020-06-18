@@ -6,16 +6,18 @@ import config_values from "config.json";
 
 export interface IStateGlobalConfig {
   config: any;
+
+  updateGlobalConfig: (config: any) => void;
 }
 
 export class StateGlobalConfig {
   @observable.deep config: any = config_values;
 
   @action
-  update = (new_config: any = {}) => {
+  updateGlobalConfig = (config: any = {}) => {
     this.config = {
       ...this.config,
-      ...new_config,
+      ...config,
     };
   };
 }
