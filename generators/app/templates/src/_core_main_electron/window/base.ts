@@ -1,5 +1,6 @@
 // src/core_main/window/indow/base.ts
 
+import os from "os";
 import { ipcMain, BrowserWindow } from "electron";
 
 import IPCKeys from "src/core_main/ipc/keys";
@@ -9,13 +10,16 @@ export default class WindowBase {
   window_label: string;
   ipc_label: string;
   visible: boolean;
+  platform: { os: string };
   window_info!: BrowserWindow;
 
   constructor(window_label: string, ipc_label: string) {
     this.window_label = window_label;
     this.ipc_label = ipc_label;
-
     this.visible = false;
+    this.platform = {
+      os: os.platform(),
+    };
 
     this.setEventHandler();
     this.initMethodBinding();

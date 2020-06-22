@@ -1,7 +1,6 @@
 // src/core_main/window/main.ts
 
 import config from "config.json";
-import { getPlatform } from "src/common/myutil/electron";
 import WindowBase from "./base";
 
 class WindowMain extends WindowBase {

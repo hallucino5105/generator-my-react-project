@@ -1,6 +1,8 @@
 // src/common/myutil/index.ts
 
 import { isPlainObject, padStart } from "lodash";
+import dayjs from "dayjs";
+import base64js from "base64-js";
 
 export const uuid = () => {
   let chars = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("");
