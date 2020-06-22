@@ -112,7 +112,6 @@ module.exports = class extends Generator {
       ["_editorconfig"     , ".editorconfig"     , null],
       ["_babelrc"          , ".babelrc"          , null],
       ["_eslintrc"         , ".eslintrc"         , null],
-      ["_requirements.txt" , ".requirements.txt" , null],
       ["_prettierrc"       , ".prettierrc"       , null],
 
       ["tsconfig.json"  , "tsconfig.json"  , null],
