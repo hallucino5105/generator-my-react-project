@@ -48,6 +48,24 @@ export class Index extends React.Component<IIndexProps> {
     );
   };
 
+  private renderContent = () => {
+    return (
+      <div
+        style={{
+          flex: 1,
+          width: "100%",
+          marginTop: "2px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+        }}
+      >
+        <div>content</div>
+      </div>
+    );
+  };
+
   render() {
     return (
       <div
@@ -66,21 +84,7 @@ export class Index extends React.Component<IIndexProps> {
         }}
       >
         {this.renderTitle()}
-
-        <div
-          style={{
-            flex: 1,
-            width: "100%",
-            marginTop: "2px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
-          }}
-        >
-          <div>content</div>
-        </div>
-      </div>
+        {this.renderContent()}
     );
   }
 }
