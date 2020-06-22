@@ -37,7 +37,7 @@ export class Index extends React.Component<IIndexProps> {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "12px",
+            fontSize: "11px",
             fontWeight: 300,
             userSelect: "none",
           }}
