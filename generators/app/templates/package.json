@@ -108,11 +108,13 @@
       "output": "build"
     },
     "files": [
-      "./**/*"
+      "dist/",
+      "config.json",
+      "package.json",
+      "package-lock.json"
     ],
     "extraResources": [
       "./config.json",
-      "./dist"
     ],
     "mac": {
       "target": [
