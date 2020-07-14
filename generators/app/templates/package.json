@@ -131,7 +131,7 @@
     "linux": {
       "target": [
         "deb",
-        "rpm"
+        "appImage"
       ]
     },
     "nsis": {
