@@ -4,7 +4,11 @@
   "private": true,
   "description": "React application",
   "keywords": [],
-  "author": "Hohshino",
+  "author": {
+    "name": "Hohshino",
+    "email": "traced.in.air.2008@gmail.com"
+  },
+  "homepage": "https://github.com/hallucino5105",
   "license": "MIT",
   <% if (framework_type === "React") { %>
   "main": "index.js",
