@@ -85,6 +85,7 @@ export class Index extends React.Component<IIndexProps> {
       >
         {this.renderTitle()}
         {this.renderContent()}
+      </div>
     );
   }
 }
