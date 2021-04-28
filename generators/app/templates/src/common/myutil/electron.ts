@@ -1,5 +1,6 @@
 // src/common/myutil/electron.ts
 
+/*
 import os from "os";
 import log4js from "log4js";
 
@@ -16,7 +17,7 @@ export const getPlatform = () => {
 export const isDev = () => {
   return process.env.ELECTRON_ENV === "development";
 };
- 
+
 export const isMainProcess = () => {
   if(process.type === "browser") return true;
   else if(process.type === "renderer") return false;
@@ -29,4 +30,5 @@ export default {
   isDev,
   isMainProcess,
 }
+*/
 

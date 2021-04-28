@@ -1,8 +1,8 @@
 // src/assets/theme/default.ts
 
-import { IThemeBody } from "src/core_renderer/state/theme";
+import { IStateThemeBody } from "src/core_renderer/state/theme";
 
-const theme: IThemeBody = {
+const theme: IStateThemeBody = {
   default: {
     initial_theme_label: "default_color",
 

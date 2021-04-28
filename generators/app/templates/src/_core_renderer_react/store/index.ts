@@ -9,10 +9,12 @@ export interface IGlobalState {
 }
 
 const state_global_config = new StateGlobalConfig();
-const state_theme = new StateTheme(state_global_config.config);
+const state_theme = new StateTheme();
 
-export const store = {
+const stores = {
   state_global_config,
   state_theme,
 };
+
+export default stores;
 

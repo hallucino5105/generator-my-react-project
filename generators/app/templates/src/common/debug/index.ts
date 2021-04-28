@@ -2,7 +2,7 @@
 
 import { sprintf } from "sprintf-js";
 
-import { store } from "src/core_renderer/store";
+import store from "src/core_renderer/store";
 
 export const dlog = (fmt: string, ...args: any) => {
   if (store.state_global_config?.config?.debug?.enable ?? false) {
