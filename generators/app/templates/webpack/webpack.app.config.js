@@ -19,7 +19,7 @@ const WriteFilePlugin = require("write-file-webpack-plugin");
 const __workingdir = `${__dirname}/..`;
 
 
-<% if (framework_type === "Electron") { %> 
+<% if (framework_type === "Electron") { %>
 const electron_project = true;
 <% } else { %>
 const electron_project = false;
@@ -231,7 +231,7 @@ const __exports = (env, argv) => {
           }],
         }, {
           test: /\.(frag|vert|vs|fs|glsl)$/,
-          use: [{ 
+          use: [{
             loader: "glsl-shader-loader",
             options: {},
           }],
@@ -269,7 +269,7 @@ const __exports = (env, argv) => {
         checkSyntacticErrors: true,
       }),
 
-      <% if (framework_type !== "Electron") { %> 
+      <% if (framework_type !== "Electron") { %>
       new HardSourceWebpackPlugin({
         cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
       }),
@@ -357,7 +357,7 @@ const __exports = (env, argv) => {
     }
 
     return {
-      <% if (framework_type === "Electron") { %> 
+      <% if (framework_type === "Electron") { %>
       electron: () => merge({}, common_setting, {
         target: "electron-main",
 
@@ -370,10 +370,10 @@ const __exports = (env, argv) => {
 
         plugins: common_plugin,
       }),
-      <% } %> 
+      <% } %>
 
       react: page => merge({}, common_setting, {
-        <% if (framework_type !== "Electron") { %> 
+        <% if (framework_type !== "Electron") { %>
         target: "web",
         <% } else { %>
         target: "electron-renderer",
@@ -420,7 +420,7 @@ const __exports = (env, argv) => {
   process.env.BABEL_ENV = build_target;
 
   return [
-    <% if (framework_type === "Electron") { %> 
+    <% if (framework_type === "Electron") { %>
     generate_entry.electron(),
     <% } %>
     ..._.map(pages, page => generate_entry.react(page)),
@@ -429,4 +429,3 @@ const __exports = (env, argv) => {
 
 
 module.exports = __exports;
-

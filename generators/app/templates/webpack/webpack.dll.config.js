@@ -13,7 +13,7 @@ const WebpackNotifierPlugin = require("webpack-notifier");
 const __workingdir = `${__dirname}/..`;
 
 
-<% if (framework_type === "Electron") { %> 
+<% if (framework_type === "Electron") { %>
 const electron_project = true;
 <% } else { %>
 const electron_project = false;
@@ -69,7 +69,7 @@ const __exports = function(env, argv) {
     //devtool: "source-map",
     devtool: false,
 
-    <% if (framework_type === "Electron") { %> 
+    <% if (framework_type === "Electron") { %>
     target: "electron-renderer",
     //target: "node",
     <% } else { %>
@@ -192,7 +192,7 @@ const __exports = function(env, argv) {
         }],
       }, {
         test: /\.(frag|vert|vs|fs|glsl)$/,
-        use: [{ 
+        use: [{
           loader: "glsl-shader-loader",
           options: {},
         }],
@@ -226,4 +226,3 @@ const __exports = function(env, argv) {
 
 
 module.exports = __exports;
-
