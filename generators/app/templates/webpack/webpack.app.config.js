@@ -9,12 +9,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
+//const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+//const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
-const WriteFilePlugin = require("write-file-webpack-plugin");
+//const WriteFilePlugin = require("write-file-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -110,6 +110,43 @@ const __exports = (env, argv) => {
           path.resolve(__paths.root),
           "node_modules",
         ],
+        alias: {
+          assert: "assert",
+          buffer: "buffer",
+          console: "console-browserify",
+          constants: "constants-browserify",
+          crypto: "crypto-browserify",
+          domain: "domain-browser",
+          events: "events",
+          http: "stream-http",
+          https: "https-browserify",
+          os: "os-browserify/browser",
+          path: "path-browserify",
+          punycode: "punycode",
+          process: "process/browser",
+          querystring: "querystring-es3",
+          stream: "stream-browserify",
+          _stream_duplex: "readable-stream/duplex",
+          _stream_passthrough: "readable-stream/passthrough",
+          _stream_readable: "readable-stream/readable",
+          _stream_transform: "readable-stream/transform",
+          _stream_writable: "readable-stream/writable",
+          string_decoder: "string_decoder",
+          sys: "util",
+          timers: "timers-browserify",
+          tty: "tty-browserify",
+          url: "url",
+          util: "util",
+          vm: "vm-browserify",
+          zlib: "browserify-zlib"
+        },
+        fallback: {
+          child_process: false,
+          fs: false,
+          crypto: false,
+          net: false,
+          tls: false
+        },
       },
 
       module: {
@@ -240,9 +277,9 @@ const __exports = (env, argv) => {
     };
 
     const common_plugin = [
-      new FilterWarningsPlugin({
-        exclude: /Critical dependency: the request of a dependency is an expression/,
-      }),
+      //new FilterWarningsPlugin({
+      //  exclude: /Critical dependency: the request of a dependency is an expression/,
+      //}),
 
       new MiniCssExtractPlugin({
         filename: "styles.css"
@@ -262,7 +299,7 @@ const __exports = (env, argv) => {
         alwaysNotify: true,
       }),
 
-      new WriteFilePlugin(),
+      //new WriteFilePlugin(),
 
       new ForkTsCheckerWebpackPlugin({
         async: true,
@@ -270,18 +307,18 @@ const __exports = (env, argv) => {
       }),
 
       <% if (framework_type !== "Electron") { %>
-      new HardSourceWebpackPlugin({
-        cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      }),
+      //new HardSourceWebpackPlugin({
+      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
+      //}),
 
-      new HardSourceWebpackPlugin.ExcludeModulePlugin([{
-        // HardSource works with mini-css-extract-plugin but due to how
-        // mini-css emits assets, assets are not emitted on repeated builds with
-        // mini-css and hard-source together. Ignoring the mini-css loader
-        // modules, but not the other css loader modules, excludes the modules
-        // that mini-css needs rebuilt to output assets every time.
-        test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
-      }]),
+      //new HardSourceWebpackPlugin.ExcludeModulePlugin([{
+      //  // HardSource works with mini-css-extract-plugin but due to how
+      //  // mini-css emits assets, assets are not emitted on repeated builds with
+      //  // mini-css and hard-source together. Ignoring the mini-css loader
+      //  // modules, but not the other css loader modules, excludes the modules
+      //  // that mini-css needs rebuilt to output assets every time.
+      //  test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
+      //}]),
       <% } %>
     ];
 
