@@ -2,7 +2,7 @@
 
 import { observable, action } from "mobx";
 
-import config_values from "config.json";
+import config_values from "config.yaml";
 
 export interface IStateGlobalConfig {
   config: any;
