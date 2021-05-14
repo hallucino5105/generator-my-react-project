@@ -157,7 +157,6 @@ const __exports = function(env, argv) {
           loader: "resolve-url-loader",
           options: {
             debug: false,
-            absolute: false,
           },
         }, {
           loader: "sass-loader",
@@ -167,28 +166,16 @@ const __exports = function(env, argv) {
         }],
       }, {
         test: /\.(gif|png|jpg)$/,
-        use: [{
-          loader: "file-loader",
-          type: "asset/resource",
-        }],
+        type: "asset/resource",
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: "file-loader",
-          type: "asset/resource",
-        }],
+        type: "asset/resource",
       }, {
         test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: "file-loader",
-          type: "asset/resource",
-        }],
+        type: "asset/resource",
       }, {
         test: /\.(mp4|mkv|mov)$/,
-        use: [{
-          loader: "file-loader",
-          type: "asset/resource",
-        }],
+        type: "asset/resource",
       }, {
         test: /\.(frag|vert|vs|fs|glsl)$/,
         use: [{
