@@ -223,7 +223,6 @@ const __exports = (env, argv) => {
           }],
         }, {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-          use: "file-loader",
           use: [{
             loader: "file-loader",
             options: {
@@ -235,7 +234,6 @@ const __exports = (env, argv) => {
           }],
         }, {
           test: /\.(gif|png|jpg)$/,
-          use: "file-loader",
           use: [{
             loader: "file-loader",
             options: {
