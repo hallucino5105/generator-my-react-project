@@ -119,7 +119,7 @@ const __exports = (env, argv) => {
           url: "url",
           util: "util",
           vm: "vm-browserify",
-          zlib: "browserify-zlib"
+          zlib: "browserify-zlib",
         },
         fallback: {
           child_process: false,
@@ -133,7 +133,7 @@ const __exports = (env, argv) => {
 
       module: {
         rules: [{
-          test: /\.(html)$/,
+          test: /\.html$/,
           include: __paths.src,
           exclude: /node_modules/,
           use: [{
@@ -152,7 +152,6 @@ const __exports = (env, argv) => {
               experimentalWatchApi: true,
               transpileOnly: true,
               happyPackMode: true,
-              //logLevel: "info",
             },
           }],
         }, {
@@ -163,15 +162,20 @@ const __exports = (env, argv) => {
             loader: "babel-loader",
             options: {
               cacheDirectory: true,
-              presets: ["@babel/preset-react", ["@babel/preset-env", {
-                modules: false,
-                useBuiltIns: "usage",
-                targets: [
-                  ">0.25%",
-                  "not ie 11",
-                  "not op_mini all"
-                ],
-              }]],
+              presets: [
+                "@babel/preset-react",
+                [
+                  "@babel/preset-env", {
+                    modules: false,
+                    useBuiltIns: "usage",
+                    targets: [
+                      ">0.25%",
+                      "not ie 11",
+                      "not op_mini all"
+                    ],
+                  },
+                ]
+              ],
               plugins: [
                 [ "@babel/plugin-proposal-decorators", { "legacy": true } ],
                 [ "transform-class-properties" ],
@@ -189,9 +193,6 @@ const __exports = (env, argv) => {
             loader: "css-loader",
             options: {
               sourceMap: !prod,
-              //modules: {
-              //  localIdentName: prod ? "[name]__[local]___[hash:base64:5]" : "[name]__[local]"
-              //}
             }
           }, {
             loader: "resolve-url-loader",
@@ -203,6 +204,11 @@ const __exports = (env, argv) => {
             options: {
               sourceMap: !prod
             }
+          }],
+        }, {
+          test: /\.ya?ml$/,
+          use: [{
+            loader: "js-yaml-loader",
           }],
         }, {
           test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
@@ -279,7 +285,6 @@ const __exports = (env, argv) => {
 
       new ForkTsCheckerWebpackPlugin({
         async: true,
-        //checkSyntacticErrors: true,
       }),
     ];
 

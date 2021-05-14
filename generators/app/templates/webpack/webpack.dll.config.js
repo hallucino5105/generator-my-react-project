@@ -51,12 +51,11 @@ const __exports = function(env, argv) {
     });
   })();
 
-  const __package = require(__paths.package);a
+  const __package = require(__paths.package);
 
   let common_setting = {
     cache: true,
     mode: argv.mode,
-    //devtool: "source-map",
     devtool: false,
 
     <% if (framework_type === "Electron") { %>
@@ -110,14 +109,15 @@ const __exports = function(env, argv) {
         url: "url",
         util: "util",
         vm: "vm-browserify",
-        zlib: "browserify-zlib"
+        zlib: "browserify-zlib",
       },
       fallback: {
         child_process: false,
         fs: false,
         crypto: false,
         net: false,
-        tls: false
+        tls: false,
+        os: false,
       },
     },
 
