@@ -81,9 +81,15 @@ const __exports = (env, argv) => {
 
   const generate_entry = (() => {
     let common_setting = {
-      cache: true,
       mode: argv.mode,
       devtool: "source-map",
+
+      cache: {
+        type: "filesystem",
+        buildDependencies: {
+          config: [__filename]
+        },
+      },
 
       resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
