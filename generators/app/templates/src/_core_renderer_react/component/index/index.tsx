@@ -1,7 +1,5 @@
 // src/core_renderer/component/index.tsx
 
-import os from "os";
-
 import React from "react";
 import { inject, observer } from "mobx-react";
 import Style from "style-it";
@@ -16,36 +14,6 @@ export interface IIndexProps extends IGlobalState {}
 export class Index extends React.Component<IIndexProps> {
   static defaultProps: IIndexProps = {
     state_theme: undefined,
-  };
-
-  private renderTitle = () => {
-    return os.platform() !== "darwin" ? null : (
-      <Style>
-        {`
-          .titlebar {
-            -webkit-app-region: drag;
-            -webkit-user-select: none;
-          }
-        `}
-
-        <div
-          className="titlebar"
-          style={{
-            width: "100%",
-            height: "22px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: "11px",
-            fontWeight: 300,
-            userSelect: "none",
-          }}
-        >
-          {config_json.title}
-        </div>
-      </Style>
-    );
   };
 
   private renderContent = () => {
@@ -83,7 +51,6 @@ export class Index extends React.Component<IIndexProps> {
           paddingBottom: "3px",
         }}
       >
-        {this.renderTitle()}
         {this.renderContent()}
       </div>
     );

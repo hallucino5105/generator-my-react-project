@@ -3,11 +3,11 @@
 const fs = require("fs");
 const _ = require("lodash");
 const path = require("path");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const webpack = require("webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const WebpackNotifierPlugin = require("webpack-notifier");
 
 const __workingdir = `${__dirname}/..`;
@@ -53,17 +53,6 @@ const __exports = function(env, argv) {
 
   const __package = require(__paths.package);a
 
-  //const __config = require(__paths.config);
-
-  //const __node_modules = {};
-  //fs.readdirSync(__paths.node_modules)
-  //  .filter(x => {
-  //    return [".bin"].indexOf(x) === -1;
-  //  })
-  //  .forEach(mod => {
-  //    __node_modules[mod] = "amd " + mod;
-  //  });
-
   let common_setting = {
     cache: true,
     mode: argv.mode,
@@ -72,17 +61,9 @@ const __exports = function(env, argv) {
 
     <% if (framework_type === "Electron") { %>
     target: "electron-renderer",
-    //target: "node",
     <% } else { %>
     target: "web",
-    //externals: __node_modules,
     <% } %>
-
-    //node: {
-    //  __dirname: false,
-    //  __filename: false,
-    //  fs: "empty"
-    //},
 
     entry: {
       vendor: Object.keys(__package.dependencies),
@@ -245,15 +226,13 @@ const __exports = function(env, argv) {
   }
 
   if(build_target && build_target.match(/build.*/)) {
-    //if(prod) {
-      common_setting = merge({}, common_setting, {
-        plugins: common_setting.plugins.concat([
-          new CompressionPlugin({
-            test: /\.(js|css)(\?.*)?$/i
-          }),
-        ]),
-      });
-    //}
+    common_setting = merge({}, common_setting, {
+      plugins: common_setting.plugins.concat([
+        new CompressionPlugin({
+          test: /\.(js|css)(\?.*)?$/i
+        }),
+      ]),
+    });
   }
 
   process.env.NODE_ENV = build_target;
