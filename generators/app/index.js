@@ -123,10 +123,11 @@ module.exports = class extends Generator {
       ["src/common"  , "src/common"  , null],
       ["src/typings" , "src/typings" , null],
 
-      ["README.md"    , "README.md"    , this.props],
-      ["VERSION"      , "VERSION"      , this.props],
-      ["package.json" , "package.json" , this.props],
-      ["config.yaml"  , "config.yaml"  , this.props],
+      ["README.md"          , "README.md"          , this.props] ,
+      ["VERSION"            , "VERSION"            , this.props] ,
+      ["package.json"       , "package.json"       , this.props] ,
+      ["config_init.yaml"   , "config_init.yaml"   , this.props] ,
+      ["config_common.yaml" , "config_common.yaml" , this.props] ,
     ]);
   }
 
