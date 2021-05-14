@@ -1,18 +1,10 @@
-{
-  "title": "<%= projname %>",
-
-  "serve": {
-    "public_path": "/",
-
-    "dev": {
-      "host": "0.0.0.0",
-      "port": <%= defport %>
-    },
-
-    "app": {
-      "host": "0.0.0.0",
-      "port": <%= defport_app %>
-    }
-  }
-}
+title: "<%= projname %>"
+serve:
+  public_path: /
+  dev:
+    host: 0.0.0.0
+    port: "<%= defport %>"
+  app:
+    host: 0.0.0.0
+    port: "<%= defport_app %>"
 
