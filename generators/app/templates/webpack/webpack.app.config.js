@@ -40,9 +40,9 @@ const __exports = (env, argv) => {
       entry_main     : path.join(__workingdir, "src/core_main/entry"),
       entry_renderer : path.join(__workingdir, "src/core_renderer/entry"),
 
-      package  : path.join(__workingdir, "package.json"),
-      tsconfig : path.join(__workingdir, "tsconfig.json"),
-      config   : path.join(__workingdir, "config.yaml"),
+      package     : path.join(__workingdir, "package.json"),
+      tsconfig    : path.join(__workingdir, "tsconfig.json"),
+      config_init : path.join(__workingdir, "config_init.yaml"),
     };
 
     const output = (() => {
@@ -58,8 +58,8 @@ const __exports = (env, argv) => {
     });
   })();
 
-  const __config = (() => {
-    const buf = fs.readFileSync(__paths.config);
+  const __config_init = (() => {
+    const buf = fs.readFileSync(__paths.config_init);
     return yaml.safeLoad(buf);
   })();
 
@@ -277,19 +277,19 @@ const __exports = (env, argv) => {
     }
 
     if(!build_target || build_target.match(/serve.*/)) {
-      const proxy_app_addr = `http://${__config.serve.app.host}:${__config.serve.app.port}`;
+      const proxy_app_addr = `http://${__config_init.serve.app.host}:${__config_init.serve.app.port}`;
 
       common_setting = merge({}, common_setting, {
         devServer: {
           contentBase: __paths.output,
-          publicPath: __config.serve.public_path,
+          publicPath: __config_init.serve.public_path,
           compress: true,
           progress: true,
           inline: false,
           disableHostCheck: true,
           historyApiFallback: true,
-          host: __config.serve.dev.host,
-          port: __config.serve.dev.port,
+          host: __config_init.serve.dev.host,
+          port: __config_init.serve.dev.port,
 
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -332,7 +332,7 @@ const __exports = (env, argv) => {
 
         output: {
           path: __paths.output,
-          publicPath: __config.serve.public_path,
+          publicPath: __config_init.serve.public_path,
           filename: `${page.name}.build.js`,
           assetModuleFilename: "assets/[hash][ext]",
         },
@@ -343,7 +343,7 @@ const __exports = (env, argv) => {
 
           if(fs.existsSync(html_template_path)) {
             ret.push(new HtmlWebpackPlugin({
-              title: __config.title,
+              title: __config_init.title,
               filename: `${page.name}.html`,
               template: html_template_path,
               minify: false,

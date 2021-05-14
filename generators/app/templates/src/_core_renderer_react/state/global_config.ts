@@ -2,7 +2,8 @@
 
 import { observable, action } from "mobx";
 
-import config_values from "config.yaml";
+import config_init from "config_init.yaml";
+import config_common from "config_common.yaml";
 
 export interface IStateGlobalConfig {
   config: any;
@@ -11,7 +12,10 @@ export interface IStateGlobalConfig {
 }
 
 export class StateGlobalConfig {
-  @observable.deep config: any = config_values;
+  @observable.deep config: any = {
+    config_init,
+    config_common,
+  };
 
   @action
   updateGlobalConfig = (config: any = {}) => {
