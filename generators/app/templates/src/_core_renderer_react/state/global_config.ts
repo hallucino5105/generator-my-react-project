@@ -13,8 +13,8 @@ export interface IStateGlobalConfig {
 
 export class StateGlobalConfig {
   @observable.deep config: any = {
-    config_init,
-    config_common,
+    ...config_init,
+    ...config_common,
   };
 
   @action
