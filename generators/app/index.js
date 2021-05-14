@@ -4,7 +4,6 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
-
 const FRAMEWORKS = ["React", "React Native", "Electron"];
 const framework_mapper = (framework, actions) => {
   if(!(actions instanceof Array) || FRAMEWORKS.length !== actions.length) {
