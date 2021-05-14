@@ -76,6 +76,7 @@ const __exports = function(env, argv) {
       filename: "vendor.dll.js",
       library: "vendor",
       libraryTarget: "umd",
+      assetModuleFilename: "assets/[hash][ext]",
     },
 
     resolve: {
@@ -165,46 +166,28 @@ const __exports = function(env, argv) {
           }
         }],
       }, {
-        test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(gif|png|jpg)$/,
         use: [{
           loader: "file-loader",
-          options: {
-            mimetype: "application/font-woff",
-            name: "[hash].[ext]",
-            outputPath: "assets",
-            publicPath: "assets",
-          },
+          type: "asset/resource",
         }],
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [{
           loader: "file-loader",
-          options: {
-            mimetype: "image/svg+xml",
-            name: "[hash].[ext]",
-            outputPath: "assets",
-            publicPath: "assets",
-          },
+          type: "asset/resource",
         }],
       }, {
-        test: /\.(gif|png|jpg)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
         use: [{
           loader: "file-loader",
-          options: {
-            name: "[hash].[ext]",
-            outputPath: "assets",
-            publicPath: "assets",
-          },
+          type: "asset/resource",
         }],
       }, {
         test: /\.(mp4|mkv|mov)$/,
         use: [{
           loader: "file-loader",
-          options: {
-            name: "[hash].[ext]",
-            outputPath: "assets",
-            publicPath: "assets",
-          },
+          type: "asset/resource",
         }],
       }, {
         test: /\.(frag|vert|vs|fs|glsl)$/,

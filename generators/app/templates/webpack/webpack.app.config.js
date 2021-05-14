@@ -217,47 +217,17 @@ const __exports = (env, argv) => {
             loader: "js-yaml-loader",
           }],
         }, {
-          test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [{
-            loader: "file-loader",
-            options: {
-              mimetype: "application/font-woff",
-              name: "[hash].[ext]",
-              outputPath: "assets",
-              publicPath: "assets",
-            },
-          }],
+          test: /\.(gif|png|jpg)$/,
+          type: "asset/resource",
         }, {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-          use: [{
-            loader: "file-loader",
-            options: {
-              mimetype: "image/svg+xml",
-              name: "[hash].[ext]",
-              outputPath: "assets",
-              publicPath: "assets",
-            },
-          }],
+          type: "asset/resource",
         }, {
-          test: /\.(gif|png|jpg)$/,
-          use: [{
-            loader: "file-loader",
-            options: {
-              name: "[hash].[ext]",
-              outputPath: "assets",
-              publicPath: "assets",
-            },
-          }],
+          test: /\.(woff|woff2|eot|ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
+          type: "asset/resource",
         }, {
           test: /\.(mp4|mov)$/,
-          use: [{
-            loader: "file-loader",
-            options: {
-              name: "[hash].[ext]",
-              outputPath: "assets",
-              publicPath: "assets",
-            },
-          }],
+          type: "asset/resource",
         }, {
           test: /\.(frag|vert|vs|fs|glsl)$/,
           use: [{
@@ -364,6 +334,7 @@ const __exports = (env, argv) => {
           path: __paths.output,
           publicPath: __config.serve.public_path,
           filename: `${page.name}.build.js`,
+          assetModuleFilename: "assets/[hash][ext]",
         },
 
         plugins: common_plugin.concat((() => {
