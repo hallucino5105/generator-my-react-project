@@ -126,7 +126,7 @@ module.exports = class extends Generator {
       ["README.md"    , "README.md"    , this.props],
       ["VERSION"      , "VERSION"      , this.props],
       ["package.json" , "package.json" , this.props],
-      ["config.json"  , "config.json"  , this.props],
+      ["config.yaml"  , "config.yaml"  , this.props],
     ]);
   }
 

@@ -51,8 +51,9 @@ const __exports = function(env, argv) {
     });
   })();
 
-  const __package = require(__paths.package);
-  const __config = require(__paths.config);
+  const __package = require(__paths.package);a
+
+  //const __config = require(__paths.config);
 
   //const __node_modules = {};
   //fs.readdirSync(__paths.node_modules)

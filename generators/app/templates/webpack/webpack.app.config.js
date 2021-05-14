@@ -1,6 +1,7 @@
 // webpack.app.config.js
 
 const fs = require("fs");
+const yaml = require("js-yaml");
 const _ = require("lodash");
 const path = require("path");
 const merge = require("webpack-merge");
@@ -9,12 +10,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-//const FilterWarningsPlugin = require("webpack-filter-warnings-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-//const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
-//const WriteFilePlugin = require("write-file-webpack-plugin");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -43,8 +41,8 @@ const __exports = (env, argv) => {
       entry_renderer : path.join(__workingdir, "src/core_renderer/entry"),
 
       package  : path.join(__workingdir, "package.json"),
-      config   : path.join(__workingdir, "config.json"),
       tsconfig : path.join(__workingdir, "tsconfig.json"),
+      config   : path.join(__workingdir, "config.yaml"),
     };
 
     const output = (() => {
@@ -60,17 +58,22 @@ const __exports = (env, argv) => {
     });
   })();
 
-  const __package = require(__paths.package);
-  const __config = require(__paths.config);
+  //const __package = require(__paths.package);
 
-  const __node_modules = {};
-  fs.readdirSync(__paths.node_modules)
-    .filter(x => {
-      return [".bin"].indexOf(x) === -1;
-    })
-    .forEach(mod => {
-      __node_modules[mod] = "commonjs " + mod;
-    });
+  //const __config = require(__paths.config);
+  const __config = (() => {
+    const buf = fs.readFileSync(__paths.config);
+    return yaml.safeLoad(buf);
+  })();
+
+  //const __node_modules = {};
+  //fs.readdirSync(__paths.node_modules)
+  //  .filter(x => {
+  //    return [".bin"].indexOf(x) === -1;
+  //  })
+  //  .forEach(mod => {
+  //    __node_modules[mod] = "commonjs " + mod;
+  //  });
 
   // src/core 直下にある"entry/*.(js|jsx|ts|tsx)"をエントリとする
   const pages = (() => {
@@ -86,10 +89,10 @@ const __exports = (env, argv) => {
     return entry_files;
   })();
 
-  const ts_checker_async = (
-    (!build_target || build_target.match(/serve.*/)) ||
-    (build_target && build_target.match(/watch.*/))
-  ) ? false : true;
+  //const ts_checker_async = (
+  //  (!build_target || build_target.match(/serve.*/)) ||
+  //  (build_target && build_target.match(/watch.*/))
+  //) ? false : true;
 
   const exist_dll_vendor = fs.existsSync(__paths.dll_vendor);
 
@@ -277,10 +280,6 @@ const __exports = (env, argv) => {
     };
 
     const common_plugin = [
-      //new FilterWarningsPlugin({
-      //  exclude: /Critical dependency: the request of a dependency is an expression/,
-      //}),
-
       new MiniCssExtractPlugin({
         filename: "styles.css"
       }),
@@ -299,27 +298,10 @@ const __exports = (env, argv) => {
         alwaysNotify: true,
       }),
 
-      //new WriteFilePlugin(),
-
       new ForkTsCheckerWebpackPlugin({
         async: true,
         checkSyntacticErrors: true,
       }),
-
-      <% if (framework_type !== "Electron") { %>
-      //new HardSourceWebpackPlugin({
-      //  cacheDirectory: `${__paths.root}/.cache/hard-source/[confighash]`,
-      //}),
-
-      //new HardSourceWebpackPlugin.ExcludeModulePlugin([{
-      //  // HardSource works with mini-css-extract-plugin but due to how
-      //  // mini-css emits assets, assets are not emitted on repeated builds with
-      //  // mini-css and hard-source together. Ignoring the mini-css loader
-      //  // modules, but not the other css loader modules, excludes the modules
-      //  // that mini-css needs rebuilt to output assets every time.
-      //  test: /mini-css-extract-plugin[\\/]dist[\\/]loader/,
-      //}]),
-      <% } %>
     ];
 
     if(build_target && build_target.match(/analyze.*/)) {
@@ -328,40 +310,40 @@ const __exports = (env, argv) => {
       );
     }
 
-    if(build_target && build_target.match(/build.*/)) {
-      if(!prod) {
-        const reactTransform = [];
+    if(build_target && build_target.match(/build.*/) && prod) {
+      //if(prod) {
+      //  const reactTransform = [];
 
-        reactTransform.push({
-          // https://github.com/gaearon/react-transform-hmr
-          transform: "react-transform-hmr",
-          imports: ["react"],
-          locals: ["module"],
-        });
+      //  reactTransform.push({
+      //    // https://github.com/gaearon/react-transform-hmr
+      //    transform: "react-transform-hmr",
+      //    imports: ["react"],
+      //    locals: ["module"],
+      //  });
 
-        reactTransform.push({
-          // https://github.com/gaearon/react-transform-catch-errors
-          transform: "react-transform-catch-errors",
-          imports: ["react", "redbox-react"],
-        });
+      //  reactTransform.push({
+      //    // https://github.com/gaearon/react-transform-catch-errors
+      //    transform: "react-transform-catch-errors",
+      //    imports: ["react", "redbox-react"],
+      //  });
 
-        for(let i = 0; i < common_setting.module.rules.length; i++) {
-          const module_rule = common_setting.module.rules[i].use;
-          if(module_rule && module_rule.loader === "babel-loader") {
-            module_rule.options.plugins.push([
-              "react-transform", { transforms: reactTransform },
-            ]);
-            break;
-          }
-        }
-      }
-      else {
+      //  for(let i = 0; i < common_setting.module.rules.length; i++) {
+      //    const module_rule = common_setting.module.rules[i].use;
+      //    if(module_rule && module_rule.loader === "babel-loader") {
+      //      module_rule.options.plugins.push([
+      //        "react-transform", { transforms: reactTransform },
+      //      ]);
+      //      break;
+      //    }
+      //  }
+      //}
+      //else {
         common_plugin.push(
           new CompressionPlugin({
             test: /\.(js|css)(\?.*)?$/i
           }),
         );
-      }
+      //}
     }
 
     if(!build_target || build_target.match(/serve.*/)) {
