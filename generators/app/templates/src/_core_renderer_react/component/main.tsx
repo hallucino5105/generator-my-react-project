@@ -40,11 +40,9 @@ export class Main extends React.Component<IMainProps> {
         color: theme.fg,
         backgroundColor: theme.bg,
       }}>
-
         <>
           {this.renderRoute()}
         </>
-
       </div>
     );
   }
