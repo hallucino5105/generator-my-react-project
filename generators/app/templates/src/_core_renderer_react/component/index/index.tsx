@@ -2,9 +2,6 @@
 
 import React from "react";
 import { inject, observer } from "mobx-react";
-import Style from "style-it";
-
-import config_json from "config.json";
 import { IGlobalState } from "src/core_renderer/store";
 
 export interface IIndexProps extends IGlobalState {}
