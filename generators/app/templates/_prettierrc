@@ -1,7 +1,17 @@
 {
-  "trailingComma": "es5",
+  "parser": "typescript",
   "printWidth": 150,
   "tabWidth": 2,
+  "endOfLine": "lf",
+  "trailingComma": "es5",
   "semi": true,
-  "endOfLine": "lf"
+  "singleQuote": false,
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "requirePragma": false,
+  "insertPragma": false,
+  "arrowParens": "always",
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false
 }
+
