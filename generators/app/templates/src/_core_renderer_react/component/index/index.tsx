@@ -6,13 +6,8 @@ import { IGlobalState } from "src/core_renderer/store";
 
 export interface IIndexProps extends IGlobalState {}
 
-@inject("state_theme")
 @observer
 export class Index extends React.Component<IIndexProps> {
-  static defaultProps: IIndexProps = {
-    state_theme: undefined,
-  };
-
   private renderContent = () => {
     return (
       <div

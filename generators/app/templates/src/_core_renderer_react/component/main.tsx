@@ -11,9 +11,7 @@ export interface IMainProps extends IGlobalState {}
 @inject("state_theme")
 @observer
 export class Main extends React.Component<IMainProps> {
-  static defaultProps: Partial<IMainProps> = {};
-
-  renderRoute() {
+  renderRoute = () => {
     return (
       <Router>
         <Switch>
@@ -22,7 +20,7 @@ export class Main extends React.Component<IMainProps> {
         </Switch>
       </Router>
     );
-  }
+  };
 
   render() {
     const {theme} = this.props.state_theme!;

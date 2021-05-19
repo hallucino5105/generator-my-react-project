@@ -3,7 +3,6 @@
 import { observable, action } from "mobx";
 import _ from "lodash";
 import deepmerge from "deepmerge";
-
 import theme_values from "src/assets/theme/default";
 
 export interface IStateThemeBody {
@@ -13,7 +12,6 @@ export interface IStateThemeBody {
 export interface IStateTheme {
   theme: IStateThemeBody;
   current_theme_label: string;
-
   getThemeList: () => string[];
   updateTheme: (color_label: string) => void;
 }

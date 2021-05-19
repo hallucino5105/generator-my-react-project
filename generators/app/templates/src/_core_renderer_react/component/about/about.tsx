@@ -3,7 +3,6 @@
 import React from "react";
 import { inject, observer } from "mobx-react";
 import Style from "style-it";
-
 import package_json from "package.json";
 import AppIcon from "src/assets/image/icon.png";
 import { IGlobalState } from "src/core_renderer/store";
@@ -26,8 +25,6 @@ const CenteringContainer = (props: any) => (
 @inject("state_theme")
 @observer
 export class About extends React.Component<IAboutProps> {
-  static defaultProps: Partial<IAboutProps> = {};
-
   render() {
     const {theme} = this.props.state_theme!;
 
