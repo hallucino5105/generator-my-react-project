@@ -1,6 +1,6 @@
 // src/core_renderer/state/global_config.ts
 
-import { observable, action } from "mobx";
+import { observable, action, makeObservable } from "mobx";
 import config_init from "config_init.yaml";
 import config_common from "config_common.yaml";
 
@@ -10,12 +10,18 @@ export interface IStateGlobalConfig {
 }
 
 export class StateGlobalConfig {
-  @observable.deep config: any = {
+  config: any = {
     ...config_init,
     ...config_common,
   };
 
-  @action
+  constructor() {
+    makeObservable<StateGlobalConfig>(this, {
+      config: observable,
+      updateGlobalConfig: action,
+    });
+  }
+
   updateGlobalConfig = (config: any = {}) => {
     this.config = {
       ...this.config,
