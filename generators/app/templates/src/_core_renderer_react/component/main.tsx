@@ -8,7 +8,7 @@ import { Index } from "src/core_renderer/component/index";
 
 export interface IMainProps extends IGlobalState {}
 
-@inject("state_theme")
+@inject("stateTheme")
 @observer
 export class Main extends React.Component<IMainProps> {
   renderRoute = () => {
@@ -23,7 +23,7 @@ export class Main extends React.Component<IMainProps> {
   };
 
   render() {
-    const {theme} = this.props.state_theme!;
+    const {theme} = this.props.stateTheme!;
 
     return (
       <div style={{
