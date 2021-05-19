@@ -22,11 +22,11 @@ const CenteringContainer = (props: any) => (
   </div>
 );
 
-@inject("state_theme")
+@inject("stateTheme")
 @observer
 export class About extends React.Component<IAboutProps> {
   render() {
-    const {theme} = this.props.state_theme!;
+    const { theme } = this.props.stateTheme!;
 
     return (
       <div style={{

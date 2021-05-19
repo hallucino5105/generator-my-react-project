@@ -4,16 +4,16 @@ import { StateGlobalConfig, IStateGlobalConfig } from "src/core_renderer/state/g
 import { StateTheme, IStateTheme } from "src/core_renderer/state/theme";
 
 export interface IGlobalState {
-  state_global_config?: IStateGlobalConfig;
-  state_theme?: IStateTheme;
+  stateGlobalConfig?: IStateGlobalConfig;
+  stateTheme?: IStateTheme;
 }
 
-const state_global_config = new StateGlobalConfig();
-const state_theme = new StateTheme();
+const stateGlobalConfig = new StateGlobalConfig();
+const stateTheme = new StateTheme();
 
 const stores = {
-  state_global_config,
-  state_theme,
+  stateGlobalConfig,
+  stateTheme,
 };
 
 export default stores;
