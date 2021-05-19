@@ -1,12 +1,10 @@
 // src/core_renderer/component/index.tsx
 
 import React from "react";
-import { inject, observer } from "mobx-react";
 import { IGlobalState } from "src/core_renderer/store";
 
 export interface IIndexProps extends IGlobalState {}
 
-@observer
 export class Index extends React.Component<IIndexProps> {
   private renderContent = () => {
     return (
