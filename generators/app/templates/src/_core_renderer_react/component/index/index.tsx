@@ -3,9 +3,7 @@
 import { Observer } from "mobx-react-lite";
 import React from "react";
 
-export interface IIndexProps {}
-
-export const Index = (props: IIndexProps) => {
+export const Index = () => {
   const renderSampleContent = () => (
     <div
       style={{

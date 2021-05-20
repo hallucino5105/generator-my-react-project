@@ -6,9 +6,7 @@ import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
 import { useStore } from "src/core_renderer/store";
 import { Index } from "./index/index";
 
-export interface IMainProps {}
-
-export const Main = (props: IMainProps) => {
+export const Main = () => {
   const { theme } = useStore("stateTheme");
 
   const renderRoute = () => {
