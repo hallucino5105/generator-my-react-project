@@ -1,17 +1,17 @@
 // src/core_renderer/component/main.tsx
 
 import React from "react";
-import { inject, observer } from "mobx-react";
+import { Observer } from "mobx-react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
-import { IGlobalState } from "src/core_renderer/store";
-import { Index } from "src/core_renderer/component/index";
+import { useStore } from "src/core_renderer/store";
+import { Index } from "./index/index";
 
-export interface IMainProps extends IGlobalState {}
+export interface IMainProps {}
 
-@inject("stateTheme")
-@observer
-export class Main extends React.Component<IMainProps> {
-  renderRoute = () => {
+export const Main = (props: IMainProps) => {
+  const { theme } = useStore("stateTheme");
+
+  const renderRoute = () => {
     return (
       <Router>
         <Switch>
@@ -22,26 +22,26 @@ export class Main extends React.Component<IMainProps> {
     );
   };
 
-  render() {
-    const {theme} = this.props.stateTheme!;
-
-    return (
-      <div style={{
-        width: "100%",
-        height: "100%",
-        margin: 0,
-        padding: 0,
-        fontSize: "0.9rem",
-        fontFamily: theme.font_family,
-        fontWeight: theme.font_weight,
-        color: theme.fg,
-        backgroundColor: theme.bg,
-      }}>
-        <>
-          {this.renderRoute()}
-        </>
-      </div>
-    );
-  }
-}
+  return (
+    <Observer>
+      {() => (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            margin: 0,
+            padding: 0,
+            fontSize: "0.9rem",
+            fontFamily: theme.font_family,
+            fontWeight: theme.font_weight,
+            color: theme.fg,
+            backgroundColor: theme.bg,
+          }}
+        >
+          <>{renderRoute()}</>
+        </div>
+      )}
+    </Observer>
+  );
+};
 
