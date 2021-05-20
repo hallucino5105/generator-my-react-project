@@ -4,7 +4,7 @@ import "src/assets/sass/main.scss";
 import React from "react";
 import { render } from "react-dom";
 import { configure } from "mobx";
-import { store, StoreContext } from "src/core_renderer/store";
+import { globalStore, StoreContext } from "src/core_renderer/store";
 import { Main } from "src/core_renderer/component/main";
 
 configure({
@@ -16,7 +16,7 @@ document.body.appendChild(node);
 
 // sync rendering
 render(
-  <StoreContext.Provider value={store}>
+  <StoreContext.Provider value={globalStore}>
     <Main />
   </StoreContext.Provider>,
   node

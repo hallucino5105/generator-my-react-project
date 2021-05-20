@@ -7,12 +7,12 @@ import { StateTheme } from "src/core_renderer/state/theme";
 const stateGlobalConfig = new StateGlobalConfig();
 const stateTheme = new StateTheme();
 
-export const store = Object.freeze({
+export const globalStore = Object.freeze({
   stateGlobalConfig,
   stateTheme,
 });
 
-export const StoreContext = createContext<typeof store>(store);
+export const StoreContext = createContext<typeof globalStore>(globalStore);
 export const useStores = () => useContext(StoreContext);
-export const useStore = <T extends keyof typeof store>(store: T) => useContext(StoreContext)[store];
+export const useStore = <T extends keyof typeof globalStore>(store: T) => useContext(StoreContext)[store];
 
