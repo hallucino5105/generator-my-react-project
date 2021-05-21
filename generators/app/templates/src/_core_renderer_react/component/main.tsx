@@ -2,7 +2,7 @@
 
 import React from "react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
-import { useStateStore } from "src/core_renderer/state_store";
+import { useStateStore } from "src/core_renderer/store/state_store";
 import { Index } from "./index/index";
 
 export const Main = () => {
