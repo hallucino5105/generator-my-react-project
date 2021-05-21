@@ -87,8 +87,8 @@ export const base64ToUint8Array = (b64str: string): Uint8Array => {
   return base64js.toByteArray(b64str);
 };
 
-export const sleep = async (timeout_ms: number) => {
-  await setTimeout(() => {}, timeout_ms);
+export const sleep = (timeout: number) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
 export default {
