@@ -14,7 +14,6 @@ export const stateStore = Object.freeze({
 });
 
 export const StateStoreContext = createContext<typeof stateStore | null>(null);
-
 export const useStateStore = <TState extends keyof typeof stateStore, TSelection>(
   state: TState,
   selector: Selector<typeof stateStore[TState], TSelection>,
