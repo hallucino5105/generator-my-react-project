@@ -1,13 +1,11 @@
 // src/core_renderer/component/about.tsx
 
 import React from "react";
-import { Observer } from "mobx-react";
+import { observer } from "mobx-react";
 import Style from "style-it";
 import packageJson from "package.json";
 import AppIcon from "src/assets/image/icon.png";
 import { useStateStore } from "src/core_renderer/store";
-
-export interface IAboutProps {}
 
 const CenteringContainer = (props: any) => (
   <div
@@ -24,8 +22,8 @@ const CenteringContainer = (props: any) => (
   </div>
 );
 
-export const About = (props: IAboutProps) => {
-  const [theme] = useStateStore("stateTheme", (state) => [state.theme])
+export const About = observer(() => {
+  const { theme } = useStateStore("stateTheme");
 
   return (
     <div
@@ -130,5 +128,5 @@ export const About = (props: IAboutProps) => {
       </div>
     </div>
   );
-};
+});
 
