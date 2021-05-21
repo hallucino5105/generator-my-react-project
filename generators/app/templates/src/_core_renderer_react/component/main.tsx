@@ -1,13 +1,12 @@
 // src/core_renderer/component/main.tsx
 
 import React from "react";
-import { Observer } from "mobx-react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
-import { useStore } from "src/core_renderer/store";
+import { useStateStore } from "src/core_renderer/store";
 import { Index } from "./index/index";
 
 export const Main = () => {
-  const { theme } = useStore("stateTheme");
+  const [theme] = useStateStore("stateTheme", (state) => [state.theme])
 
   const renderRoute = () => {
     return (
@@ -21,25 +20,21 @@ export const Main = () => {
   };
 
   return (
-    <Observer>
-      {() => (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            margin: 0,
-            padding: 0,
-            fontSize: "0.9rem",
-            fontFamily: theme.font_family,
-            fontWeight: theme.font_weight,
-            color: theme.fg,
-            backgroundColor: theme.bg,
-          }}
-        >
-          <>{renderRoute()}</>
-        </div>
-      )}
-    </Observer>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        margin: 0,
+        padding: 0,
+        fontSize: "0.9rem",
+        fontFamily: theme.font_family,
+        fontWeight: theme.font_weight,
+        color: theme.fg,
+        backgroundColor: theme.bg,
+      }}
+    >
+      <>{renderRoute()}</>
+    </div>
   );
 };
 
