@@ -4,7 +4,7 @@ import "src/assets/sass/main.scss";
 import React from "react";
 import { render } from "react-dom";
 import { configure } from "mobx";
-import { stateStore, StateStoreContext } from "src/core_renderer/store";
+import { stateStore, StateStoreContext } from "src/core_renderer/state_store";
 import { Main } from "src/core_renderer/component/main";
 
 configure({
