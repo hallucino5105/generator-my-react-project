@@ -52,7 +52,8 @@ const __exports = function(env, argv) {
   })();
 
   const __package = require(__paths.package);
-  const __resolve_node = {
+
+  const resolve_node = {
     assert: "assert",
     buffer: "buffer",
     console: "console-browserify",
@@ -111,7 +112,7 @@ const __exports = function(env, argv) {
 
     resolve: {
       extensions: [".js", ".jsx", ".json"],
-      alias: __resolve_node,
+      alias: resolve_node,
       fallback: {
         child_process: false,
         fs: false,
@@ -123,7 +124,7 @@ const __exports = function(env, argv) {
     },
 
     plugins: [
-      new webpack.ProvidePlugin(__resolve_node),
+      new webpack.ProvidePlugin(resolve_node),
 
       new WebpackNotifierPlugin({
         title: "Webpack dll",

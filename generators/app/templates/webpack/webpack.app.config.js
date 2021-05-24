@@ -79,6 +79,37 @@ const __exports = (env, argv) => {
 
   const exist_dll_vendor = fs.existsSync(__paths.dll_vendor);
 
+  const reolve_node = {
+    assert: "assert",
+    buffer: "buffer",
+    console: "console-browserify",
+    constants: "constants-browserify",
+    crypto: "crypto-browserify",
+    domain: "domain-browser",
+    events: "events",
+    http: "stream-http",
+    https: "https-browserify",
+    os: "os-browserify/browser",
+    path: "path-browserify",
+    punycode: "punycode",
+    process: "process/browser",
+    querystring: "querystring-es3",
+    stream: "stream-browserify",
+    _stream_duplex: "readable-stream/duplex",
+    _stream_passthrough: "readable-stream/passthrough",
+    _stream_readable: "readable-stream/readable",
+    _stream_transform: "readable-stream/transform",
+    _stream_writable: "readable-stream/writable",
+    string_decoder: "string_decoder",
+    sys: "util",
+    timers: "timers-browserify",
+    tty: "tty-browserify",
+    url: "url",
+    util: "util",
+    vm: "vm-browserify",
+    zlib: "browserify-zlib",
+  };
+
   const generate_entry = (() => {
     let common_setting = {
       mode: argv.mode,
@@ -97,36 +128,7 @@ const __exports = (env, argv) => {
           path.resolve(__paths.root),
           "node_modules",
         ],
-        alias: {
-          assert: "assert",
-          buffer: "buffer",
-          console: "console-browserify",
-          constants: "constants-browserify",
-          crypto: "crypto-browserify",
-          domain: "domain-browser",
-          events: "events",
-          http: "stream-http",
-          https: "https-browserify",
-          os: "os-browserify/browser",
-          path: "path-browserify",
-          punycode: "punycode",
-          process: "process/browser",
-          querystring: "querystring-es3",
-          stream: "stream-browserify",
-          _stream_duplex: "readable-stream/duplex",
-          _stream_passthrough: "readable-stream/passthrough",
-          _stream_readable: "readable-stream/readable",
-          _stream_transform: "readable-stream/transform",
-          _stream_writable: "readable-stream/writable",
-          string_decoder: "string_decoder",
-          sys: "util",
-          timers: "timers-browserify",
-          tty: "tty-browserify",
-          url: "url",
-          util: "util",
-          vm: "vm-browserify",
-          zlib: "browserify-zlib",
-        },
+        alias: resolve_node,
         fallback: {
           child_process: false,
           fs: false,
@@ -239,6 +241,8 @@ const __exports = (env, argv) => {
     };
 
     const common_plugin = [
+      new webpack.ProvidePlugin(resolve_node),
+    
       new MiniCssExtractPlugin({
         filename: "styles.css"
       }),
