@@ -285,15 +285,15 @@ const __exports = (env, argv) => {
 
       common_setting = merge({}, common_setting, {
         devServer: {
-          contentBase: __paths.output,
-          publicPath: __config_init.serve.public_path,
           compress: true,
-          progress: true,
-          inline: false,
-          disableHostCheck: true,
           historyApiFallback: true,
           host: __config_init.serve.dev.host,
           port: __config_init.serve.dev.port,
+          //contentBase: __paths.output,
+          //publicPath: __config_init.serve.public_path,
+          //progress: true,
+          //inline: false,
+          //disableHostCheck: true,
 
           headers: {
             "Access-Control-Allow-Origin": "*",
