@@ -200,17 +200,18 @@ const __exports = (env, argv) => {
           }, {
             loader: "css-loader",
             options: {
-              sourceMap: !prod,
+              sourceMap: true
             }
           }, {
             loader: "resolve-url-loader",
             options: {
+              sourceMap: true,
               debug: false
             }
           }, {
             loader: "sass-loader",
             options: {
-              sourceMap: !prod
+              sourceMap: true
             }
           }],
         }, {
