@@ -79,7 +79,7 @@ const __exports = (env, argv) => {
 
   const exist_dll_vendor = fs.existsSync(__paths.dll_vendor);
 
-  const reolve_node = {
+  const resolve_node = {
     assert: "assert",
     buffer: "buffer",
     console: "console-browserify",
