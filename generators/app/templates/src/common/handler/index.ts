@@ -1,7 +1,6 @@
 // src/common/handler/index.ts
 
 import { omit } from "lodash";
-
 import { uuid } from "src/common/myutil";
 
 export class Handler<T> {
