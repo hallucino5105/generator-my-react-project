@@ -54,13 +54,10 @@
     "clean": "./scripts/clean/clean.sh",
     "clean:cache": "rm -rf ./.cache",
     "test": "jest --passWithNoTests",
-    <% if (enable_app) { %>
-    "start": "concurrently \"npm run app\" \"npm run serve\"",
-    "start:prod": "concurrently \"npm run app\" \"npm run serve:prod\""
-    <% } else { %>
-    "start": "concurrently \"npm run serve\"",
-    "start:prod": "concurrently \"npm run serve:prod\""
-    <% } %>
+    "start": "npm run serve",
+    "start:prod": "npm run serve:prod"
+    "start2": "concurrently \"npm run serve\"",
+    "start2:prod": "concurrently \"npm run serve:prod\""
 
     <% } else if (framework_type === "Electron") { %>
     "__prebuild": "npm run link && npm run clean:cache",
