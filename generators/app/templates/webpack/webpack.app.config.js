@@ -283,15 +283,21 @@ const __exports = (env, argv) => {
 
     if(!build_target || build_target.match(/serve.*/)) {
       const proxy_app_addr = `http://${__config_init.serve.app.host}:${__config_init.serve.app.port}`;
-      const proxy_prop = path.join(__config_init.serve.public_path, "/api/*")
+      const proxy_dir = path.join(__config_init.serve.public_path, "/api");
 
       common_setting = merge({}, common_setting, {
         devServer: {
-          compress: true,
-          historyApiFallback: true,
-          allowedHosts: "all",
           host: __config_init.serve.dev.host,
           port: __config_init.serve.dev.port,
+
+          historyApiFallback: true,
+          compress: true,
+          allowedHosts: "all",
+
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+          },
 
           static: [{
             directory: __paths.output,
@@ -302,16 +308,10 @@ const __exports = (env, argv) => {
             overlay: true,
           },
 
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-          },
-
-          proxy: {
-            [proxy_prop]: {
-              target: proxy_app_addr,
-            },
-          },
+          proxy: [{
+            context: [proxy_dir],
+            target: proxy_app_addr,
+          }],
         },
       });
     }
