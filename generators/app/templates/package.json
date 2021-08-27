@@ -55,7 +55,7 @@
     "clean:cache": "rm -rf ./.cache",
     "test": "jest --passWithNoTests",
     "start": "npm run serve",
-    "start:prod": "npm run serve:prod"
+    "start:prod": "npm run serve:prod",
     "start2": "concurrently \"npm run serve\"",
     "start2:prod": "concurrently \"npm run serve:prod\""
 
