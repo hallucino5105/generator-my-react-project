@@ -197,24 +197,24 @@ const __exports = (env, argv) => {
           use: [{
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: __config_init.serve.public_path,
-            },
+              publicPath: __config_init.serve.public_path
+            }
           }, {
             loader: "css-loader",
             options: {
-              sourceMap: true,
-            },
+              sourceMap: true
+            }
           }, {
             loader: "resolve-url-loader",
             options: {
               sourceMap: true,
-              debug: false,
-            },
+              debug: false
+            }
           }, {
             loader: "sass-loader",
             options: {
-              sourceMap: true,
-            },
+              sourceMap: true
+            }
           }],
         }, {
           test: /\.ya?ml$/,
