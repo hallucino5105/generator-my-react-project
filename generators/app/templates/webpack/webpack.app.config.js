@@ -179,7 +179,7 @@ const __exports = (env, argv) => {
                     targets: [
                       ">0.25%",
                       "not ie 11",
-                      "not op_mini all"
+                      "not op_mini all",
                     ],
                   },
                 ]
@@ -196,23 +196,25 @@ const __exports = (env, argv) => {
           test: /(\.scss|\.sass|\.css)$/,
           use: [{
             loader: MiniCssExtractPlugin.loader,
-            options: {}
+            options: {
+              publicPath: __config_init.serve.public_path,
+            },
           }, {
             loader: "css-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           }, {
             loader: "resolve-url-loader",
             options: {
               sourceMap: true,
-              debug: false
-            }
+              debug: false,
+            },
           }, {
             loader: "sass-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           }],
         }, {
           test: /\.ya?ml$/,
@@ -276,7 +278,7 @@ const __exports = (env, argv) => {
     if(build_target && build_target.match(/build.*/) && prod) {
       common_plugin.push(
         new CompressionPlugin({
-          test: /\.(js|css)(\?.*)?$/i
+          test: /\.(js|css)(\?.*)?$/i,
         }),
       );
     }
