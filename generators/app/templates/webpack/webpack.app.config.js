@@ -306,6 +306,17 @@ const __exports = (env, argv) => {
             publicPath: __config_init.serve.public_path,
           }],
 
+          devMiddleware: {
+            writeToDisk: true,
+            serverSideRender: false,
+            stats: {
+              builtAt: false,
+              children: false,
+              modules: false,
+              version: false,
+            },
+          },
+
           client: {
             overlay: true,
           },
