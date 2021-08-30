@@ -325,6 +325,13 @@ const __exports = (env, argv) => {
             context: [proxy_dir],
             target: proxy_app_addr,
           }],
+
+          onBeforeSetupMiddleware: (devServer) => {
+            devServer.app.get(__config_init.serve.public_path, (req, res, next) => {
+              console.log(`from ${req.ip} - ${req.method} - ${req.originalUrl}`);
+              next();
+            });
+          },
         },
       });
     }
