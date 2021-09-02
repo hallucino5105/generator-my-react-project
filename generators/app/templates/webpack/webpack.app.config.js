@@ -338,62 +338,66 @@ const __exports = (env, argv) => {
 
     return {
       <% if (framework_type === "Electron") { %>
-      electron: () => merge({}, common_setting, {
-        target: "electron-main",
+      electron: () => {
+        return merge({}, common_setting, {
+          target: "electron-main",
 
-        entry: [path.join(__paths.entry_main, "index.ts")],
+          entry: [path.join(__paths.entry_main, "index.ts")],
 
-        output: {
-          path: __paths.output,
-          filename: "electron.build.js",
-        },
+          output: {
+            path: __paths.output,
+            filename: "electron.build.js",
+          },
 
-        plugins: common_plugin,
-      }),
+          plugins: common_plugin,
+        });
+      },
       <% } %>
 
-      react: page => merge({}, common_setting, {
-        <% if (framework_type !== "Electron") { %>
-        target: "web",
-        <% } else { %>
-        target: "electron-renderer",
-        <% } %>
+      react: page => {
+        return merge({}, common_setting, {
+          <% if (framework_type !== "Electron") { %>
+          target: "web",
+          <% } else { %>
+          target: "electron-renderer",
+          <% } %>
 
-        entry: [path.join(__paths.entry_renderer, `${page.name}.${page.ext}`)],
+          entry: [path.join(__paths.entry_renderer, `${page.name}.${page.ext}`)],
 
-        output: {
-          path: __paths.output,
-          publicPath: __config_init.serve.public_path,
-          filename: `${page.name}.build.js`,
-          assetModuleFilename: "assets/[hash][ext]",
-        },
+          output: {
+            path: __paths.output,
+            publicPath: __config_init.serve.public_path,
+            filename: `${page.name}.build.js`,
+            assetModuleFilename: "assets/[hash][ext]",
+          },
 
-        plugins: common_plugin.concat((() => {
-          const ret = [];
-          const html_template_path = path.join(__paths.entry_renderer, `${page.name}.ejs`);
+          plugins: common_plugin.concat((() => {
+            const ret = [];
+            const html_template_path = path.join(__paths.entry_renderer, `${page.name}.ejs`);
 
-          if(fs.existsSync(html_template_path)) {
-            ret.push(new HtmlWebpackPlugin({
-              title: __config_init.title,
-              filename: `${page.name}.html`,
-              template: html_template_path,
-              minify: false,
-              hash: false,
-              inject: false,
-              exist_dll: exist_dll_vendor,
-            }));
-          }
+            if(fs.existsSync(html_template_path)) {
+              ret.push(new HtmlWebpackPlugin({
+                title: __config_init.title,
+                filename: `${page.name}.html`,
+                template: html_template_path,
+                minify: false,
+                hash: false,
+                inject: false,
+                exist_dll: exist_dll_vendor,
+              }));
+            }
 
-          if(exist_dll_vendor) {
-            ret.push(new webpack.DllReferencePlugin({
-              context: __paths.root,
-              manifest: require(__paths.dll_vendor),
-            }));
-          }
+            if(exist_dll_vendor) {
+              ret.push(new webpack.DllReferencePlugin({
+                context: __paths.root,
+                manifest: require(__paths.dll_vendor),
+              }));
+            }
 
-          return ret;
-        })()),
-      }),
+            return ret;
+          })()),
+        });
+      },
     };
   })();
 
