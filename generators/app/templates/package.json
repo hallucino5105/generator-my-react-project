@@ -19,7 +19,7 @@
   <% } %>
   "scripts": {
     <% if (framework_type === "React") { %>
-    "__prebuild": "npm run link",
+    "__prebuild": "npm run link && npm run clean:cache",
     "init": "npm install && npm run build",
     "build:app:stag": "npm run __prebuild && webpack --mode development --config webpack/webpack.app.config.js",
     "build:app:prod": "npm run __prebuild && webpack --mode production  --config webpack/webpack.app.config.js",
