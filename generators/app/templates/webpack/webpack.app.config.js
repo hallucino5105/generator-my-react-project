@@ -244,7 +244,11 @@ const __exports = (env, argv) => {
     };
 
     const common_plugin = [
-      new webpack.ProvidePlugin(resolve_node),
+      new webpack.ProvidePlugin(
+        Object.assign(resolve_node, {
+          Buffer: ["buffer", "Buffer"],
+        })
+      ),
     
       new MiniCssExtractPlugin({
         filename: "styles.css"
