@@ -222,6 +222,12 @@ const __exports = (env, argv) => {
             loader: "js-yaml-loader",
           }],
         }, {
+          test: /\.(frag|vert|vs|fs|glsl)$/,
+          use: [{
+            loader: "glsl-shader-loader",
+            options: {},
+          }],
+        }, {
           test: /\.(gif|png|jpg)$/,
           type: "asset/resource",
         }, {
@@ -234,11 +240,8 @@ const __exports = (env, argv) => {
           test: /\.(mp4|mov)$/,
           type: "asset/resource",
         }, {
-          test: /\.(frag|vert|vs|fs|glsl)$/,
-          use: [{
-            loader: "glsl-shader-loader",
-            options: {},
-          }],
+          test: /.(crt|csr|key)$/,
+          type: "asset/resource",
         }],
       },
     };
