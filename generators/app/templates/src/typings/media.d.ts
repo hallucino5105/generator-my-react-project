@@ -12,3 +12,7 @@ declare module "*.mp4";
 declare module "*.mkv";
 declare module "*.mov";
 
+declare module "*.csr";
+declare module "*.crt";
+declare module "*.key";
+
