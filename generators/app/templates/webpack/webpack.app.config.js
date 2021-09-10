@@ -240,7 +240,7 @@ const __exports = (env, argv) => {
           test: /\.(mp4|mov)$/,
           type: "asset/resource",
         }, {
-          test: /.(crt|csr|key)$/,
+          test: /\.(crt|csr|key)$/,
           type: "asset/resource",
         }],
       },
