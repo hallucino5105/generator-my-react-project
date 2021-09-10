@@ -228,6 +228,11 @@ const __exports = (env, argv) => {
             options: {},
           }],
         }, {
+          test: /\.(crt|csr|key)$/,
+          use: [{
+            loader: "raw-loader",
+          }],
+        }, {
           test: /\.(gif|png|jpg)$/,
           type: "asset/resource",
         }, {
@@ -238,9 +243,6 @@ const __exports = (env, argv) => {
           type: "asset/resource",
         }, {
           test: /\.(mp4|mov)$/,
-          type: "asset/resource",
-        }, {
-          test: /\.(crt|csr|key)$/,
           type: "asset/resource",
         }],
       },
