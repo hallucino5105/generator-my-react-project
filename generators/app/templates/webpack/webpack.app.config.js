@@ -228,7 +228,7 @@ const __exports = (env, argv) => {
             options: {},
           }],
         }, {
-          test: /\.(crt|csr|key)$/,
+          test: /\.(crt|csr|key|pem)$/,
           use: [{
             loader: "raw-loader",
           }],

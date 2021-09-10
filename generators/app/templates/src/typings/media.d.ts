@@ -15,4 +15,5 @@ declare module "*.mov";
 declare module "*.csr";
 declare module "*.crt";
 declare module "*.key";
+declare module "*.pem";
 
