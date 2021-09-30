@@ -1,9 +1,9 @@
 // src/core_renderer/store/index.ts
 
 import { createContext } from "react";
-import { StateGlobalConfig } from "src/core_renderer/state/global_config";
-import { StateTheme } from "src/core_renderer/state/theme";
 import { Selector, useStore, useStoreWithObserver } from "./common";
+import { StateGlobalConfig } from "../state/global_config";
+import { StateTheme } from "../state/theme";
 
 const stateGlobalConfig = new StateGlobalConfig();
 const stateTheme = new StateTheme();
