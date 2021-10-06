@@ -7,7 +7,6 @@ import { Index } from "./index/index";
 
 export const Main = observer(() => {
   const { config } = useStateStore("StateGlobalConfig");
-  const { theme } = useStateStore("StateTheme");
 
   const renderRoute = () => {
     return (
@@ -32,12 +31,10 @@ export const Main = observer(() => {
   return (
     <div
       style={{
-        ...theme.base,
         width: "100%",
         height: "100%",
         margin: 0,
         padding: 0,
-        fontSize: "0.9rem",
       }}
     >
       <>{renderRoute()}</>

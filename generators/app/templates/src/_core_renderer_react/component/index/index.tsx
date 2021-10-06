@@ -12,6 +12,7 @@ export const Index = observer(() => {
   return (
     <div
       style={{
+        ...theme.base,
         width: "100%",
         height: "100%",
         userSelect: "none",
