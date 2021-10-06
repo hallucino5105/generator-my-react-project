@@ -301,9 +301,12 @@ const __exports = (env, argv) => {
           host: __config_init.serve.dev.host,
           port: __config_init.serve.dev.port,
 
-          historyApiFallback: true,
           compress: true,
           allowedHosts: "all",
+
+          historyApiFallback: {
+            index: path.join(__config_init.serve.public_path, "/"),
+          },
 
           headers: {
             "Access-Control-Allow-Origin": "*",
