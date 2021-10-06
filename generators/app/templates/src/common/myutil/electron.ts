@@ -1,5 +1,3 @@
-// src/common/myutil/electron.ts
-
 /*
 import os from "os";
 import log4js from "log4js";

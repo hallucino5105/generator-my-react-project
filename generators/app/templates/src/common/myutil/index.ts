@@ -1,5 +1,3 @@
-// src/common/myutil/index.ts
-
 import { isPlainObject, padStart } from "lodash";
 import dayjs from "dayjs";
 import base64js from "base64-js";
