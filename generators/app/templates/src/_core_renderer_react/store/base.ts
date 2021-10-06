@@ -5,8 +5,22 @@ import { useObserver } from "mobx-react";
 
 export type Selector<TStore, TSelection> = (store: TStore) => TSelection;
 
+// Wrap the component in "observer" when using
+// usage: const { config } = useStateStore("stateGlobalConfig");
+export const useStore = <TStore, TState extends keyof TStore>(
+  context: React.Context<TStore | null>,
+  state: TState,
+) => {
+  const store = useContext<TStore | null>(context);
+  if (!store) {
+    throw new Error("need to pass a value to the context");
+  }
+  return store[state];
+};
+
+// No need to wrap with "observer" but "useObserver" is deprecated
 // usage: const [config] = useStateStore("stateGlobalConfig", (state) => [state.config]);
-export const useStore = <TStore, TState extends keyof TStore, TSelection>(
+export const useStoreWithObserver = <TStore, TState extends keyof TStore, TSelection>(
   context: React.Context<TStore | null>,
   state: TState,
   selector: Selector<TStore[TState], TSelection>,
@@ -16,18 +30,6 @@ export const useStore = <TStore, TState extends keyof TStore, TSelection>(
     throw new Error("need to pass a value to the context");
   }
   return useObserver(() => selector(store[state]));
-};
-
-// usage: const { config } = useStateStore("stateGlobalConfig");
-export const useStoreNonObservable = <TStore, TState extends keyof TStore>(
-  context: React.Context<TStore | null>,
-  state: TState,
-) => {
-  const store = useContext<TStore | null>(context);
-  if (!store) {
-    throw new Error("need to pass a value to the context");
-  }
-  return store[state];
 };
 
 

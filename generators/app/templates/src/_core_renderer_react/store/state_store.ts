@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Selector, useStore, useStoreNonObservable } from "./base";
+import { Selector, useStore, useStoreWithObserver } from "./base";
 import { StateGlobalConfig } from "../state/global_config";
 import { StateTheme } from "../state/theme";
 
@@ -13,14 +13,14 @@ export const stateStore = Object.freeze({
 
 export const StateStoreContext = createContext<typeof stateStore | null>(null);
 
+// Wrap the component in "observer" when using
+export const useStateStore = <TState extends keyof typeof stateStore>(
+  state: TState,
+) => useStore(StateStoreContext, state);
+
 // No need to wrap with "observer" but "useObserver" is deprecated
-export const useStateStore = <TState extends keyof typeof stateStore, TSelection>(
+export const useStateStoreWithObserver = <TState extends keyof typeof stateStore, TSelection>(
   state: TState,
   selector: Selector<typeof stateStore[TState], TSelection>,
-) => useStore(StateStoreContext, state, selector);
-
-// Wrap the component in "observer" when using
-export const useStateStoreNonObservable = <TState extends keyof typeof stateStore>(
-  state: TState,
-) => useStoreNonObservable(StateStoreContext, state);
+) => useStoreWithObserver(StateStoreContext, state, selector);
 
