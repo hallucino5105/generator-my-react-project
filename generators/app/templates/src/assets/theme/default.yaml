@@ -1,0 +1,32 @@
+targetColorLabel: default
+
+themes:
+  default:
+    base:
+      fontFamily: NotoSansJP, Roboto, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif
+      fontFamilyTitle: Roboto, NotoSansJP, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif
+      fontWeight: 300
+
+    about:
+      title:
+        fontWeight: bold
+
+colors:
+  default:
+    base:
+      color: "#000"
+      backgroundColor: "#fff"
+
+    about:
+      color: "#000"
+      backgroundColor: "#fff"
+
+  color1:
+    base:
+      color: "#fff"
+      backgroundColor: "#000"
+
+    about:
+      color: "#fff"
+      backgroundColor: "#000"
+

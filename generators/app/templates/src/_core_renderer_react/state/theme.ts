@@ -1,44 +1,40 @@
 import { observable, action, makeObservable } from "mobx";
 import _ from "lodash";
 import deepmerge from "deepmerge";
-import ThemeValues from "src/assets/theme/default";
-
-export interface IStateThemeBody {
-  [key: string]: any;
-}
+import ThemeValues from "src/assets/theme/default.yaml";
 
 export class StateTheme {
-  theme: IStateThemeBody = {};
-  currentThemeLabel: string = "";
+  theme: any = {};
+  currentColorLabel: string = "";
 
   constructor() {
     makeObservable<StateTheme>(this, {
       theme: observable,
-      currentThemeLabel: observable,
-      updateTheme: action,
+      currentColorLabel: observable,
+      updateColor: action,
     });
 
-    this.updateTheme(ThemeValues.default.initialThemeLabel);
+    this.updateColor(ThemeValues.targetColorLabel);
   }
 
   getThemeList = (): string[] => {
-    return _.filter(_.keys(ThemeValues), (v) => v !== "default");
+    return _.filter(_.keys(ThemeValues.themes), (v) => v !== "default");
   };
 
-  updateTheme = (colorLabel: string) => {
-    let defaultTheme = _.find(ThemeValues, (value: any, key: any) => {
+  updateColor = (colorLabel: string) => {
+    let theme = _.find(ThemeValues.themes, (value: any, key: any) => {
       return key === "default";
     });
 
-    if (!defaultTheme) {
-      defaultTheme = ThemeValues[0];
+    if (!theme) {
+      theme = ThemeValues.themes[0];
     }
 
-    const currentColor = ThemeValues[colorLabel];
-    const currentTheme: object = deepmerge(defaultTheme, currentColor);
+    const currentColor = ThemeValues.colors[colorLabel];
+    const currentThemeValues: object = deepmerge(theme, currentColor);
 
-    this.theme = currentTheme;
-    this.currentThemeLabel = colorLabel;
+    this.theme = currentThemeValues;
+    this.currentColorLabel = colorLabel;
   };
 }
 
