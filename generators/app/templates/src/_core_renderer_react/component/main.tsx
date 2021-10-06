@@ -1,18 +1,29 @@
 import React from "react";
-import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
-import { observer } from "mobx-react-lite";
+import path from "path";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { observer } from "mobx-react";
 import { useStateStore } from "src/core_renderer/store/state_store";
 import { Index } from "./index/index";
 
 export const Main = observer(() => {
+  const { config } = useStateStore("StateGlobalConfig");
   const { theme } = useStateStore("StateTheme");
 
   const renderRoute = () => {
     return (
       <Router>
         <Switch>
-          <Route path="/" exact render={() => <Index />} />
-          <Route exact render={() => <div>page not found</div>} />
+          <Route path={config.serve.public_path} exact>
+            <Index />
+          </Route>
+
+          <Route path={path.join(config.serve.public_path, "about")}>
+            <div>about</div>
+          </Route>
+
+          <Route>
+            <div>page not found</div>
+          </Route>
         </Switch>
       </Router>
     );
@@ -21,15 +32,12 @@ export const Main = observer(() => {
   return (
     <div
       style={{
+        ...theme.base,
         width: "100%",
         height: "100%",
         margin: 0,
         padding: 0,
         fontSize: "0.9rem",
-        fontFamily: theme.fontFamily,
-        fontWeight: theme.fontWeight,
-        color: theme.color,
-        backgroundColor: theme.backgroundColor,
       }}
     >
       <>{renderRoute()}</>
