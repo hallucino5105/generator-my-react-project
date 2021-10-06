@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { useStateStore } from "src/core_renderer/store/state_store";
 
-export const Index = observer(() => {
+export const Index: React.FC<{}> = observer(() => {
   const { theme } = useStateStore("StateTheme");
 
   const renderSampleContent = () => (
@@ -26,4 +26,6 @@ export const Index = observer(() => {
     </div>
   );
 });
+
+Index.defaultProps = {};
 
