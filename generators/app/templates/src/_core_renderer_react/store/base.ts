@@ -7,10 +7,7 @@ export type Selector<TStore, TSelection> = (store: TStore) => TSelection;
 
 // Wrap the component in "observer" when using
 // usage: const { config } = useStateStore("stateGlobalConfig");
-export const useStore = <TStore, TState extends keyof TStore>(
-  context: React.Context<TStore | null>,
-  state: TState,
-) => {
+export const useStore = <TStore, TState extends keyof TStore>(context: React.Context<TStore | null>, state: TState) => {
   const store = useContext<TStore | null>(context);
   if (!store) {
     throw new Error("need to pass a value to the context");
@@ -23,7 +20,7 @@ export const useStore = <TStore, TState extends keyof TStore>(
 export const useStoreWithObserver = <TStore, TState extends keyof TStore, TSelection>(
   context: React.Context<TStore | null>,
   state: TState,
-  selector: Selector<TStore[TState], TSelection>,
+  selector: Selector<TStore[TState], TSelection>
 ) => {
   const store = useContext<TStore | null>(context);
   if (!store) {
@@ -31,5 +28,4 @@ export const useStoreWithObserver = <TStore, TState extends keyof TStore, TSelec
   }
   return useObserver(() => selector(store[state]));
 };
-
 

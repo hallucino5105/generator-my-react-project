@@ -21,12 +21,3 @@ colors:
       color: "#000"
       backgroundColor: "#fff"
 
-  color1:
-    base:
-      color: "#fff"
-      backgroundColor: "#000"
-
-    about:
-      color: "#fff"
-      backgroundColor: "#000"
-

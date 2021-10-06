@@ -1,20 +1,12 @@
 import React from "react";
+import { observer } from "mobx-react";
+import { useStateStore } from "src/core_renderer/store/state_store";
 
-export const Index = () => {
+export const Index = observer(() => {
+  const { theme } = useStateStore("StateTheme");
+
   const renderSampleContent = () => (
-    <div
-      style={{
-        flex: 1,
-        width: "100%",
-        marginTop: "2px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-      }}
-    >
-      <div>Sample Content</div>
-    </div>
+    <div>Sample Content</div>
   );
 
   return (
@@ -23,18 +15,14 @@ export const Index = () => {
         width: "100%",
         height: "100%",
         userSelect: "none",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         // electronのバグ?
         // flex column のとき flex 1 の要素があるとき
         // height 100% の要素からはみ出てスクロールバーが表示されるのを回避する
-        paddingBottom: "3px",
+        //paddingBottom: "3px",
       }}
     >
       {renderSampleContent()}
     </div>
   );
-};
+});
 

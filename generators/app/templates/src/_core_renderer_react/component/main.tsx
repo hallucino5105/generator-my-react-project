@@ -1,11 +1,11 @@
 import React from "react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import { useStateStore } from "src/core_renderer/store/state_store";
 import { Index } from "./index/index";
 
 export const Main = observer(() => {
-  const { theme } = useStateStore("stateTheme");
+  const { theme } = useStateStore("StateTheme");
 
   const renderRoute = () => {
     return (
