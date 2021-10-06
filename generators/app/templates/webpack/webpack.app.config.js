@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const WebpackNotifierPlugin = require("webpack-notifier");
+//const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 
@@ -268,10 +268,10 @@ const __exports = (env, argv) => {
         chaining: true
       }),
 
-      new WebpackNotifierPlugin({
-        title: "Webpack app",
-        alwaysNotify: true,
-      }),
+      //new WebpackNotifierPlugin({
+      //  title: "Webpack app",
+      //  alwaysNotify: true,
+      //}),
 
       new ForkTsCheckerWebpackPlugin({
         async: true,

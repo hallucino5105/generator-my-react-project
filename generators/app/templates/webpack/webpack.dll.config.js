@@ -8,7 +8,7 @@ const webpack = require("webpack");
 const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const WebpackNotifierPlugin = require("webpack-notifier");
+//const WebpackNotifierPlugin = require("webpack-notifier");
 
 const __workingdir = `${__dirname}/..`;
 
@@ -126,10 +126,10 @@ const __exports = function(env, argv) {
     plugins: [
       new webpack.ProvidePlugin(resolve_node),
 
-      new WebpackNotifierPlugin({
-        title: "Webpack dll",
-        alwaysNotify: true,
-      }),
+      //new WebpackNotifierPlugin({
+      //  title: "Webpack dll",
+      //  alwaysNotify: true,
+      //}),
 
       new MiniCssExtractPlugin({
         filename: "vendor.css"

@@ -1,5 +1,6 @@
 import "src/assets/sass/main.scss";
-import React from "react";
+
+import React, { StrictMode } from "react";
 import { render } from "react-dom";
 import { configure } from "mobx";
 import { stateStore, StateStoreContext } from "src/core_renderer/store/state_store";
@@ -14,9 +15,11 @@ document.body.appendChild(node);
 
 // sync rendering
 render(
-  <StateStoreContext.Provider value={stateStore}>
-    <Main />
-  </StateStoreContext.Provider>,
+  <StrictMode>
+    <StateStoreContext.Provider value={stateStore}>
+      <Main />
+    </StateStoreContext.Provider>
+  </StrictMode>,
   node
 );
 
