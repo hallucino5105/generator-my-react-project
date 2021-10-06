@@ -91,6 +91,10 @@ export const sleep = (timeout: number) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
+export const randRange = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
 export default {
   uuid,
   deepkeys,
@@ -100,6 +104,7 @@ export default {
   blobToUint8Array,
   uint8ArrayToBase64,
   base64ToUint8Array,
-  sleep
+  sleep,
+  randRange,
 };
 
