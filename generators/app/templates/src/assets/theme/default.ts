@@ -4,26 +4,26 @@ import { IStateThemeBody } from "src/core_renderer/state/theme";
 
 const theme: IStateThemeBody = {
   default: {
-    initial_theme_label: "default_color",
+    initialThemeLabel: "defaultColor",
 
-    font_family: "NotoSansJP, Roboto, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
-    font_family_title: "Roboto, NotoSansJP, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
-    font_weight: 300,
+    fontFamily: "NotoSansJP, Roboto, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
+    fontFamilyTitle: "Roboto, NotoSansJP, 'M+ 1p', YuGothic, Verdana, Meiryo, -apple-system, 'Helvetica Neue', monospace, sans-serif",
+    fontWeight: 300,
 
     about: {
       title: {
-        font_weight: "bold",
+        fontWeight: "bold",
       },
     },
   },
 
-  default_color: {
-    fg: "#111",
-    bg: "#fff",
+  defaultColor: {
+    color: "#111",
+    backgroundColor: "#fff",
 
     about: {
-      fg: "#111",
-      bg: "#eee",
+      color: "#111",
+      backgroundColor: "#eee",
     },
   },
 };

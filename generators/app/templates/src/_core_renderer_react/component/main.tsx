@@ -1,5 +1,3 @@
-// src/core_renderer/component/main.tsx
-
 import React from "react";
 import { MemoryRouter as Router, Route, Switch } from "react-router-dom";
 import { observer } from "mobx-react";
@@ -28,10 +26,10 @@ export const Main = observer(() => {
         margin: 0,
         padding: 0,
         fontSize: "0.9rem",
-        fontFamily: theme.font_family,
-        fontWeight: theme.font_weight,
-        color: theme.fg,
-        backgroundColor: theme.bg,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeight,
+        color: theme.color,
+        backgroundColor: theme.backgroundColor,
       }}
     >
       <>{renderRoute()}</>

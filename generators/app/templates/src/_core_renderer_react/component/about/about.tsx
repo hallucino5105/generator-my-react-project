@@ -1,5 +1,3 @@
-// src/core_renderer/component/about.tsx
-
 import React from "react";
 import { observer } from "mobx-react";
 import Style from "style-it";
@@ -31,11 +29,11 @@ export const About = observer(() => {
         width: "100%",
         height: "100%",
         padding: "5px",
-        color: theme.about.fg,
-        backgroundColor: theme.about.bg,
+        color: theme.about.color,
+        backgroundColor: theme.about.backgroundColor,
         fontSize: "1rem",
-        fontFamily: theme.font_family,
-        fontWeight: theme.font_weight,
+        fontFamily: theme.fontFamily,
+        fontWeight: theme.fontWeight,
       }}
     >
       <div
@@ -70,7 +68,7 @@ export const About = observer(() => {
 
         <CenteringContainer
           style={{
-            fontWeight: theme.about.title.font_weight,
+            fontWeight: theme.about.title.fontWeight,
             lineHeight: "1.5rem",
           }}
         >

@@ -1,5 +1,3 @@
-// src/core_renderer/entry/index.tsx
-
 import "src/assets/sass/main.scss";
 import React from "react";
 import { render } from "react-dom";

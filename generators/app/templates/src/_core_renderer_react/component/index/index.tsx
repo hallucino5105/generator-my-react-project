@@ -1,5 +1,3 @@
-// src/core_renderer/component/index.tsx
-
 import React from "react";
 
 export const Index = () => {

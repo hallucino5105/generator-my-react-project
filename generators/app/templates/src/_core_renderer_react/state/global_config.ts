@@ -1,13 +1,11 @@
-// src/core_renderer/state/global_config.ts
-
 import { observable, action, makeObservable } from "mobx";
-import config_init from "config_init.yaml";
-import config_common from "config_common.yaml";
+import ConfigInit from "config_init.yaml";
+import ConfigCommon from "config_common.yaml";
 
 export class StateGlobalConfig {
   config: any = {
-    ...config_init,
-    ...config_common,
+    ...ConfigInit,
+    ...ConfigCommon,
   };
 
   constructor() {

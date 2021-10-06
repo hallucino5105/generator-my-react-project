@@ -1,9 +1,7 @@
-// src/core_renderer/state/theme.ts
-
 import { observable, action, makeObservable } from "mobx";
 import _ from "lodash";
 import deepmerge from "deepmerge";
-import themeValues from "src/assets/theme/default";
+import ThemeValues from "src/assets/theme/default";
 
 export interface IStateThemeBody {
   [key: string]: any;
@@ -20,23 +18,23 @@ export class StateTheme {
       updateTheme: action,
     });
 
-    this.updateTheme(themeValues.default.initial_theme_label);
+    this.updateTheme(ThemeValues.default.initialThemeLabel);
   }
 
   getThemeList = (): string[] => {
-    return _.filter(_.keys(themeValues), (v) => v !== "default");
+    return _.filter(_.keys(ThemeValues), (v) => v !== "default");
   };
 
   updateTheme = (colorLabel: string) => {
-    let defaultTheme = _.find(themeValues, (value: any, key: any) => {
+    let defaultTheme = _.find(ThemeValues, (value: any, key: any) => {
       return key === "default";
     });
 
     if (!defaultTheme) {
-      defaultTheme = themeValues[0];
+      defaultTheme = ThemeValues[0];
     }
 
-    const currentColor = themeValues[colorLabel];
+    const currentColor = ThemeValues[colorLabel];
     const currentTheme: object = deepmerge(defaultTheme, currentColor);
 
     this.theme = currentTheme;
