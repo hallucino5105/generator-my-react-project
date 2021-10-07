@@ -1,5 +1,3 @@
-// src/typings/style-it.d.ts
-
 declare module "style-it" {
   import React from "react";
 
