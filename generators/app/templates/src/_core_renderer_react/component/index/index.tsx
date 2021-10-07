@@ -1,12 +1,21 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { css } from "@emotion/css";
 import { useStateStore } from "src/core_renderer/store/state_store";
 
 export const Index: React.FC<{}> = observer(() => {
   const { theme } = useStateStore("StateTheme");
 
   const renderSampleContent = () => (
-    <div>Sample Content</div>
+    <div
+      className={css`
+        &:hover {
+          filter: invert(1);
+        }
+      `}
+    >
+      Sample Content
+    </div>
   );
 
   return (
