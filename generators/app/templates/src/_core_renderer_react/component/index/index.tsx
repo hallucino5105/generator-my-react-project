@@ -1,22 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { css } from "@emotion/css";
 import { useStateStore } from "src/core_renderer/store/state_store";
+import { MainView } from "src/core_renderer/component/main_view/main_view";
 
 export const Index: React.FC<{}> = observer(() => {
   const { theme } = useStateStore("StateTheme");
-
-  const renderSampleContent = () => (
-    <div
-      className={css`
-        &:hover {
-          filter: invert(1);
-        }
-      `}
-    >
-      Sample Content
-    </div>
-  );
 
   return (
     <div
@@ -31,7 +19,7 @@ export const Index: React.FC<{}> = observer(() => {
         //paddingBottom: "3px",
       }}
     >
-      {renderSampleContent()}
+      <MainView />
     </div>
   );
 });
