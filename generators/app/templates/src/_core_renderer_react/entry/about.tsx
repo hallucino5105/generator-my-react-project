@@ -3,7 +3,7 @@ import "src/assets/sass/main.scss";
 import React, { StrictMode } from "react";
 import { render } from "react-dom";
 import { configure } from "mobx";
-import { globalStore, StoreContext } from "src/core_renderer/store";
+import { GlobalStore, StoreContext } from "src/core_renderer/store";
 import { About } from "src/core_renderer/component/about/about";
 
 configure({
@@ -16,7 +16,7 @@ document.body.appendChild(node);
 // sync rendering
 render(
   <StrictMode>
-    <StoreContext.Provider value={globalStore}>
+    <StoreContext.Provider value={GlobalStore}>
       <About />
     </StoreContext.Provider>
   </StrictMode>,
