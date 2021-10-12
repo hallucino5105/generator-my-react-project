@@ -136,6 +136,7 @@ module.exports = class extends Generator {
       ["src/_core_renderer_react/store" , "src/core_renderer/store" , null],
       ["src/_core_renderer_react/component/main.tsx"  , "src/core_renderer/component/main.tsx"  , null],
       ["src/_core_renderer_react/component/index/index.tsx" , "src/core_renderer/component/index/index.tsx" , null],
+      ["src/_core_renderer_react/component/main_view" , "src/core_renderer/component/main_view" , null],
       ["src/_core_renderer_react/entry/index.tsx" , "src/core_renderer/entry/index.tsx" , null],
       ["src/_core_renderer_react/entry/index.ejs" , "src/core_renderer/entry/index.ejs" , null],
 
